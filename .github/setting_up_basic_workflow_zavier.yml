@@ -1,0 +1,13 @@
+name: Basic Workflow Zavier
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Hello World
+        run: echo "Hello World! My name is Zavier, and this is me setting up my first workflow, YAML file, and workflow!"
