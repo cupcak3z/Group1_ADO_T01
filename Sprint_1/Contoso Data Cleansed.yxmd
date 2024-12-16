@@ -3206,66 +3206,9 @@ Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
     </Node>
-    <Node ToolID="170">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-        <Position x="78" y="4662" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Passwords>40FEE648C1D0D7577C410B671AD83D975CB9A8977538D98D159A5FA1B</Passwords>
-          <File RecordLimit="" FileFormat="23">odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||"ADO_GROUP1_DB_RAW"."CONTOSO"."DIMSTORE_RAW"</File>
-          <FormatSpecificOptions>
-            <PreSQL />
-            <PreSQLOnConfig>True</PreSQLOnConfig>
-            <NoProgress>True</NoProgress>
-            <SessionReadOnly>True</SessionReadOnly>
-            <CacheData>False</CacheData>
-            <TableStyle>Quoted</TableStyle>
-            <ReadUncommitted>False</ReadUncommitted>
-            <PostSQL />
-          </FormatSpecificOptions>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText>DSN=Contoso
-Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="STOREKEY" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
-            <Field name="GEOGRAPHYKEY" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
-            <Field name="STOREMANAGER" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
-            <Field name="STORETYPE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="STORENAME" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="STOREDESCRIPTION" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="STATUS" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="Bool" />
-            <Field name="OPENDATE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="CLOSEDATE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="ENTITYKEY" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
-            <Field name="ZIPCODE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="ZIPCODEEXTENSION" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="STOREPHONE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="STOREFAX" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="ADDRESSLINE1" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="ADDRESSLINE2" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="CLOSEREASON" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="EMPLOYEECOUNT" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="SELLINGAREASIZE" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
-            <Field name="LASTREMODELDATE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="GEOLOCATION" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="Double" />
-            <Field name="GEOMETRY" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="Double" />
-            <Field name="ETLLOADID" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
-            <Field name="LOADDATE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-            <Field name="UPDATEDATE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
-    </Node>
     <Node ToolID="171">
       <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="234" y="4662" />
+        <Position x="234" y="4674" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -3298,58 +3241,9 @@ Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
     </Node>
-    <Node ToolID="172">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-        <Position x="366" y="4662" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <FormulaFields>
-            <FormulaField expression="[STOREMANAGER]" field="EmployeeKey" size="1073741823" type="V_WString" />
-          </FormulaFields>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText><![CDATA[EmployeeKey = [STOREMANAGER]
-]]></DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
-    </Node>
-    <Node ToolID="173">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="510" y="4662" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <OrderChanged value="False" />
-          <CommaDecimal value="False" />
-          <SelectFields>
-            <SelectField field="STORETYPE" selected="True" size="225" />
-            <SelectField field="STORENAME" selected="True" size="225" />
-            <SelectField field="OPENDATE" selected="True" size="225" />
-            <SelectField field="CLOSEDATE" selected="True" type="DateTime" size="19" />
-            <SelectField field="STOREPHONE" selected="True" size="225" />
-            <SelectField field="STOREFAX" selected="True" size="225" />
-            <SelectField field="CLOSEREASON" selected="True" size="225" />
-            <SelectField field="EMPLOYEECOUNT" selected="True" type="Int64" size="8" />
-            <SelectField field="LASTREMODELDATE" selected="True" size="225" />
-            <SelectField field="EmployeeKey" selected="True" size="225" />
-            <SelectField field="*Unknown" selected="True" />
-          </SelectFields>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText />
-          <Left value="False" />
-        </Annotation>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
-    </Node>
     <Node ToolID="174">
       <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-        <Position x="606" y="4662" />
+        <Position x="342" y="4674" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -3407,12 +3301,12 @@ Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
     </Node>
     <Node ToolID="177">
       <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
-        <Position x="738" y="4662" />
+        <Position x="462" y="4674" />
       </GuiSettings>
       <Properties>
         <Configuration>
           <FormulaFields>
-            <FormulaField expression="IF IsNull([EMPLOYEECOUNT]) OR TRIM ([EMPLOYEECOUNT]) = &quot;NULL&quot; THEN 18 else [EMPLOYEECOUNT] ENDIF&#xA;" field="EMPLOYEECOUNT" size="8" type="Int64" />
+            <FormulaField expression="IF IsNull([EMPLOYEECOUNT]) OR TRIM ([EMPLOYEECOUNT]) = &quot;NULL&quot; THEN 18 else [EMPLOYEECOUNT] ENDIF&#xA;" field="EMPLOYEECOUNT" size="16777216" type="V_WString" />
           </FormulaFields>
         </Configuration>
         <Annotation DisplayMode="0">
@@ -3425,13 +3319,13 @@ Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
     </Node>
     <Node ToolID="178">
       <GuiSettings>
-        <Position x="858" y="4662" />
+        <Position x="690" y="4674" />
       </GuiSettings>
       <Properties>
         <Configuration>
           <Value name="Check Box (135)">True</Value>
           <Value name="Check Box (136)">False</Value>
-          <Value name="List Box (11)">"CLOSEDATE"</Value>
+          <Value name="List Box (11)">""</Value>
           <Value name="Check Box (84)">False</Value>
           <Value name="Check Box (117)">False</Value>
           <Value name="Check Box (15)">True</Value>
@@ -3448,49 +3342,15 @@ Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
           <DefaultAnnotationText />
           <Left value="False" />
         </Annotation>
+        <Dependencies>
+          <Implicit />
+        </Dependencies>
       </Properties>
       <EngineSettings Macro="Cleanse.yxmc" />
     </Node>
-    <Node ToolID="179">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-        <Position x="78" y="4842" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Passwords>40FEE648C1D0D7577C410B671AD83D975CB9A8977538D98D159A5FA1B</Passwords>
-          <File RecordLimit="" FileFormat="23">odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||"ADO_GROUP1_DB_RAW"."CONTOSO"."FACTEXCHANGERATE"</File>
-          <FormatSpecificOptions>
-            <PreSQL />
-            <PreSQLOnConfig>True</PreSQLOnConfig>
-            <NoProgress>True</NoProgress>
-            <SessionReadOnly>True</SessionReadOnly>
-            <CacheData>False</CacheData>
-            <TableStyle>Quoted</TableStyle>
-            <ReadUncommitted>False</ReadUncommitted>
-            <PostSQL />
-          </FormatSpecificOptions>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText>DSN=Contoso
-Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="EXCHANGERATEKEY" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="FixedDecimal" />
-            <Field name="CURRENCYKEY" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="FixedDecimal" />
-            <Field name="DATEKEY" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="Date" />
-            <Field name="AVERAGERATE" scale="5" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="FixedDecimal" />
-            <Field name="ENDOFDAYRATE" scale="6" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="FixedDecimal" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
-    </Node>
     <Node ToolID="180">
       <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="198" y="4842" />
+        <Position x="210" y="4854" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -3533,49 +3393,9 @@ Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
         </Annotation>
       </Properties>
     </Node>
-    <Node ToolID="182">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
-        <Position x="78" y="5022" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <Passwords>40FEE648C1D0D7577C410B671AD83D975CB9A8977538D98D159A5FA1B</Passwords>
-          <File RecordLimit="" FileFormat="23">odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||"ADO_GROUP1_DB_RAW"."CONTOSO"."FACTITMACHINE_RAW"</File>
-          <FormatSpecificOptions>
-            <PreSQL />
-            <PreSQLOnConfig>True</PreSQLOnConfig>
-            <NoProgress>True</NoProgress>
-            <SessionReadOnly>True</SessionReadOnly>
-            <CacheData>False</CacheData>
-            <TableStyle>Quoted</TableStyle>
-            <ReadUncommitted>False</ReadUncommitted>
-            <PostSQL />
-          </FormatSpecificOptions>
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText>DSN=Contoso
-Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-        <MetaInfo connection="Output">
-          <RecordInfo>
-            <Field name="ITMACHINEKEY" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="FixedDecimal" />
-            <Field name="MACHINEKEY" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="FixedDecimal" />
-            <Field name="DATEKEY" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="V_WString" />
-            <Field name="COSTAMOUNT" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="FixedDecimal" />
-            <Field name="COSTTYPE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="V_WString" />
-            <Field name="ETLLOADID" scale="0" size="40" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="FixedDecimal" />
-            <Field name="LOADDATE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="V_WString" />
-            <Field name="UPDATEDATE" size="16777216" source="File: odbc:DSN=Contoso;UID=BOA;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="V_WString" />
-          </RecordInfo>
-        </MetaInfo>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
-    </Node>
     <Node ToolID="183">
       <GuiSettings Plugin="AlteryxBasePluginsGui.AlteryxSelect.AlteryxSelect">
-        <Position x="186" y="5022" />
+        <Position x="186" y="5034" />
       </GuiSettings>
       <Properties>
         <Configuration>
@@ -3584,7 +3404,7 @@ Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
           <SelectFields>
             <SelectField field="ITMACHINEKEY" selected="True" />
             <SelectField field="MACHINEKEY" selected="True" />
-            <SelectField field="DATEKEY" selected="True" size="225" />
+            <SelectField field="DATEKEY" selected="True" />
             <SelectField field="COSTAMOUNT" selected="True" />
             <SelectField field="COSTTYPE" selected="True" size="225" />
             <SelectField field="LOADDATE" selected="False" size="225" />
@@ -3824,93 +3644,6 @@ Query=Promotion</DefaultAnnotationText>
           <Name />
           <DefaultAnnotationText>DSN=Contoso Cleaned
 Query=Scenario</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
-    </Node>
-    <Node ToolID="193">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-        <Position x="942" y="4662" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <File MaxRecords="" FileFormat="23">odbc:DSN=Contoso Cleaned;UID=BOA;PWD=__EncPwd1__|||Store</File>
-          <Passwords>40FEE648C1D0D7577C410B671AD83D975CB9A8977538D98D159A5FA1B</Passwords>
-          <Disable>False</Disable>
-          <FormatSpecificOptions>
-            <TransactionSize>10000</TransactionSize>
-            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
-            <PostSQL />
-            <TableStyle>Quoted</TableStyle>
-            <PreSQL />
-            <TransactionMessages>False</TransactionMessages>
-            <OutputOption>Create</OutputOption>
-          </FormatSpecificOptions>
-          <MultiFile value="False" />
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText>DSN=Contoso Cleaned
-Query=Store</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
-    </Node>
-    <Node ToolID="194">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-        <Position x="318" y="4842" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <File MaxRecords="" FileFormat="23">odbc:DSN=Contoso Cleaned;UID=BOA;PWD=__EncPwd1__|||ExchangeRate</File>
-          <Passwords>40FEE648C1D0D7577C410B671AD83D975CB9A8977538D98D159A5FA1B</Passwords>
-          <Disable>False</Disable>
-          <FormatSpecificOptions>
-            <TransactionSize>10000</TransactionSize>
-            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
-            <PostSQL />
-            <TableStyle>Quoted</TableStyle>
-            <PreSQL />
-            <TransactionMessages>False</TransactionMessages>
-            <OutputOption>Create</OutputOption>
-          </FormatSpecificOptions>
-          <MultiFile value="False" />
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText>DSN=Contoso Cleaned
-Query=ExchangeRate</DefaultAnnotationText>
-          <Left value="False" />
-        </Annotation>
-      </Properties>
-      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
-    </Node>
-    <Node ToolID="195">
-      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
-        <Position x="318" y="5022" />
-      </GuiSettings>
-      <Properties>
-        <Configuration>
-          <File MaxRecords="" FileFormat="23">odbc:DSN=Contoso Cleaned;UID=BOA;PWD=__EncPwd1__|||ITMachine</File>
-          <Passwords>40FEE648C1D0D7577C410B671AD83D975CB9A8977538D98D159A5FA1B</Passwords>
-          <Disable>False</Disable>
-          <FormatSpecificOptions>
-            <TransactionSize>10000</TransactionSize>
-            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
-            <PostSQL />
-            <TableStyle>Quoted</TableStyle>
-            <PreSQL />
-            <TransactionMessages>False</TransactionMessages>
-            <OutputOption>Create</OutputOption>
-          </FormatSpecificOptions>
-          <MultiFile value="False" />
-        </Configuration>
-        <Annotation DisplayMode="0">
-          <Name />
-          <DefaultAnnotationText>DSN=Contoso Cleaned
-Query=ITMachine</DefaultAnnotationText>
           <Left value="False" />
         </Annotation>
       </Properties>
@@ -4820,6 +4553,245 @@ Query=SalesTerritory</DefaultAnnotationText>
       </Properties>
       <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxSelect" />
     </Node>
+    <Node ToolID="234">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.Formula.Formula">
+        <Position x="582" y="4674" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <FormulaFields>
+            <FormulaField expression="IF IsNull([CLOSEDATE]) OR TRIM([CLOSEDATE]) = 'NULL' THEN '2090-12-31' ELSE [CLOSEDATE] ENDIF" field="CLOSEDATE" size="16777216" type="V_WString" />
+          </FormulaFields>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>CLOSEDATE = IF IsNull([CLOSEDATE]) OR TRIM([CLOSEDATE]) = 'NULL' THEN '2090-12-3...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxFormula" />
+    </Node>
+    <Node ToolID="238">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="78" y="4854" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords>4C554B995B37BFADBE0075DC7C8BB6852FC9D303142CB79A108B4FC16</Passwords>
+          <File RecordLimit="" FileFormat="23">odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||"ADO_GROUP1_DB_RAW"."CONTOSO"."FACTEXCHANGERATE"</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=Test
+Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="EXCHANGERATEKEY" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="FixedDecimal" />
+            <Field name="CURRENCYKEY" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="FixedDecimal" />
+            <Field name="DATEKEY" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="Date" />
+            <Field name="AVERAGERATE" scale="5" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="FixedDecimal" />
+            <Field name="ENDOFDAYRATE" scale="6" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTEXCHANGERATE&quot;" type="FixedDecimal" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="239">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="102" y="4674" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords>4C554B995B37BFADBE0075DC7C8BB6852FC9D303142CB79A108B4FC16</Passwords>
+          <File RecordLimit="" FileFormat="23">odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||"ADO_GROUP1_DB_RAW"."CONTOSO"."DIMSTORE_RAW"</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=Test
+Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="STOREKEY" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
+            <Field name="GEOGRAPHYKEY" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
+            <Field name="STOREMANAGER" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
+            <Field name="STORETYPE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="STORENAME" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="STOREDESCRIPTION" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="STATUS" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="Bool" />
+            <Field name="OPENDATE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="CLOSEDATE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="ENTITYKEY" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
+            <Field name="ZIPCODE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="ZIPCODEEXTENSION" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="STOREPHONE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="STOREFAX" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="ADDRESSLINE1" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="ADDRESSLINE2" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="CLOSEREASON" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="EMPLOYEECOUNT" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="SELLINGAREASIZE" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
+            <Field name="LASTREMODELDATE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="GEOLOCATION" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="Double" />
+            <Field name="GEOMETRY" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="Double" />
+            <Field name="ETLLOADID" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="FixedDecimal" />
+            <Field name="LOADDATE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+            <Field name="UPDATEDATE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;DIMSTORE_RAW&quot;" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="240">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="774" y="4674" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="23">odbc:DSN=Contoso Cleaned - Senderos;UID=beetle;PWD=__EncPwd1__|||Store</File>
+          <Passwords>4C554B995B37BFADBE0075DC7C8BB6852FC9D303142CB79A108B4FC16</Passwords>
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>10000</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <TableStyle>Quoted</TableStyle>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Create</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=Contoso Cleaned - Senderos
+Query=Store</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="241">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="318" y="4854" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="23">odbc:DSN=Contoso Cleaned - Senderos;UID=beetle;PWD=__EncPwd1__|||ExchangeRate</File>
+          <Passwords>4C554B995B37BFADBE0075DC7C8BB6852FC9D303142CB79A108B4FC16</Passwords>
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>10000</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <TableStyle>Quoted</TableStyle>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Create</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=Contoso Cleaned - Senderos
+Query=ExchangeRate</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
+    <Node ToolID="242">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileInput.DbFileInput">
+        <Position x="78" y="5034" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <Passwords>4C554B995B37BFADBE0075DC7C8BB6852FC9D303142CB79A108B4FC16</Passwords>
+          <File RecordLimit="" FileFormat="23">odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||"ADO_GROUP1_DB_RAW"."CONTOSO"."FACTITMACHINE_RAW"</File>
+          <FormatSpecificOptions>
+            <PreSQL />
+            <PreSQLOnConfig>True</PreSQLOnConfig>
+            <NoProgress>True</NoProgress>
+            <SessionReadOnly>True</SessionReadOnly>
+            <CacheData>False</CacheData>
+            <TableStyle>Quoted</TableStyle>
+            <ReadUncommitted>False</ReadUncommitted>
+            <PostSQL />
+          </FormatSpecificOptions>
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=Test
+Query="ADO_GROUP1_DB_RAW"."CONTOSO...</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+        <MetaInfo connection="Output">
+          <RecordInfo>
+            <Field name="ITMACHINEKEY" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="FixedDecimal" />
+            <Field name="MACHINEKEY" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="FixedDecimal" />
+            <Field name="DATEKEY" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="Date" />
+            <Field name="COSTAMOUNT" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="FixedDecimal" />
+            <Field name="COSTTYPE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="V_WString" />
+            <Field name="ETLLOADID" scale="0" size="40" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="FixedDecimal" />
+            <Field name="LOADDATE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="V_WString" />
+            <Field name="UPDATEDATE" size="16777216" source="File: odbc:DSN=Test;UID=beetle;PWD=__EncPwd1__|||&quot;ADO_GROUP1_DB_RAW&quot;.&quot;CONTOSO&quot;.&quot;FACTITMACHINE_RAW&quot;" type="V_WString" />
+          </RecordInfo>
+        </MetaInfo>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileInput" />
+    </Node>
+    <Node ToolID="244">
+      <GuiSettings Plugin="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput">
+        <Position x="294" y="5034" />
+      </GuiSettings>
+      <Properties>
+        <Configuration>
+          <File MaxRecords="" FileFormat="23">odbc:DSN=Contoso Cleaned - Senderos;UID=beetle;PWD=__EncPwd1__|||ITMachine</File>
+          <Passwords>4C554B995B37BFADBE0075DC7C8BB6852FC9D303142CB79A108B4FC16</Passwords>
+          <Disable>False</Disable>
+          <FormatSpecificOptions>
+            <TransactionSize>10000</TransactionSize>
+            <IgnoreDropTableSQLErrors>False</IgnoreDropTableSQLErrors>
+            <PostSQL />
+            <TableStyle>Quoted</TableStyle>
+            <PreSQL />
+            <TransactionMessages>False</TransactionMessages>
+            <OutputOption>Create</OutputOption>
+          </FormatSpecificOptions>
+          <MultiFile value="False" />
+        </Configuration>
+        <Annotation DisplayMode="0">
+          <Name />
+          <DefaultAnnotationText>DSN=Contoso Cleaned - Senderos
+Query=ITMachine</DefaultAnnotationText>
+          <Left value="False" />
+        </Annotation>
+      </Properties>
+      <EngineSettings EngineDll="AlteryxBasePluginsEngine.dll" EngineDllEntryPoint="AlteryxDbFileOutput" />
+    </Node>
   </Nodes>
   <Connections>
     <Connection>
@@ -5203,19 +5175,7 @@ Query=SalesTerritory</DefaultAnnotationText>
       <Destination ToolID="192" Connection="Input" />
     </Connection>
     <Connection>
-      <Origin ToolID="170" Connection="Output" />
-      <Destination ToolID="171" Connection="Input" />
-    </Connection>
-    <Connection>
       <Origin ToolID="171" Connection="Output" />
-      <Destination ToolID="172" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="172" Connection="Output" />
-      <Destination ToolID="173" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="173" Connection="Output" />
       <Destination ToolID="174" Connection="Input" />
     </Connection>
     <Connection>
@@ -5224,27 +5184,19 @@ Query=SalesTerritory</DefaultAnnotationText>
     </Connection>
     <Connection>
       <Origin ToolID="177" Connection="Output" />
-      <Destination ToolID="178" Connection="Input2" />
+      <Destination ToolID="234" Connection="Input" />
     </Connection>
     <Connection>
       <Origin ToolID="178" Connection="Output26" />
-      <Destination ToolID="193" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="179" Connection="Output" />
-      <Destination ToolID="180" Connection="Input" />
+      <Destination ToolID="240" Connection="Input" />
     </Connection>
     <Connection>
       <Origin ToolID="180" Connection="Output" />
-      <Destination ToolID="194" Connection="Input" />
-    </Connection>
-    <Connection>
-      <Origin ToolID="182" Connection="Output" />
-      <Destination ToolID="183" Connection="Input" />
+      <Destination ToolID="241" Connection="Input" />
     </Connection>
     <Connection>
       <Origin ToolID="183" Connection="Output" />
-      <Destination ToolID="195" Connection="Input" />
+      <Destination ToolID="244" Connection="Input" />
     </Connection>
     <Connection>
       <Origin ToolID="185" Connection="Output" />
@@ -5325,6 +5277,22 @@ Query=SalesTerritory</DefaultAnnotationText>
     <Connection>
       <Origin ToolID="232" Connection="Output" />
       <Destination ToolID="231" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="234" Connection="Output" />
+      <Destination ToolID="178" Connection="Input2" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="238" Connection="Output" />
+      <Destination ToolID="180" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="239" Connection="Output" />
+      <Destination ToolID="171" Connection="Input" />
+    </Connection>
+    <Connection>
+      <Origin ToolID="242" Connection="Output" />
+      <Destination ToolID="183" Connection="Input" />
     </Connection>
   </Connections>
   <Properties>
