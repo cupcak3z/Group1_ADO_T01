@@ -19,3 +19,13 @@ models:
             tests:
                 - unique
                 - not_null
+
+sources:
+  - name: raw
+    database: ADO_GROUP1_DB_ANALYSIS   # Replace with your actual Snowflake database name
+    schema: public                    # Replace with your actual schema
+    tables:
+      - name: sales_data              # Name of the table in Snowflake
+        description: "Raw sales data before transformation"
+      
+    
