@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: raw
+    database: ADO_GROUP1_DB_ANALYSIS  # Your Snowflake database name
+    schema: public                   # Your Snowflake schema
+    tables:
+      - name: sales_data             # The source table name
+
+models:
+  - name: my_first_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: my_second_dbt_model
+    description: "A starter dbt model"
+    columns:
+      - name: id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
