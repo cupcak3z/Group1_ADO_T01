@@ -1,0 +1,31 @@
+# Project configuration
+name: 'Group1_ADO_T01'
+version: '1.0.0'
+config-version: 2
+
+# Specify which "profile" dbt uses for this project
+profile: 'default'
+
+# Specify the directories for different types of files
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+# Output and clean paths
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# Configuring models
+models:
+  Group1_ADO_T01:  # Update this to your project name
+    staging:       # For staging models
+      +materialized: view
+    marts:         # For final, production-level models
+      +materialized: table
+    example:       # Existing example folder
+      +materialized: table
