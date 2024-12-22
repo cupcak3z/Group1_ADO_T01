@@ -21,10 +21,10 @@ models:
                 - not_null
 
 sources:
-  - name: contoso
-    database: ADO_GROUP1_DB_ANALYSIS
-    schema: CONTOSO
+  - name: contoso               # This matches the database schema in Snowflake
+    database: ADO_GROUP1_DB_ANALYSIS  # Snowflake database name
+    schema: CONTOSO_SCHEMA        # Snowflake schema name
     tables:
-      - name: Sales
+      - name: Sales                  # Exact table name as shown in Snowflake
         description: "Sales table containing sales data"
     
