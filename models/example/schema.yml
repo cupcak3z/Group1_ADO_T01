@@ -19,3 +19,11 @@ models:
             tests:
                 - unique
                 - not_null
+    - name: ac_testings
+      description: "WFHOGHPJTOP2 TP2TP0PWEJOEWHOIQRGHOIFHDIZHJ"
+      columns:
+          - name: CURRENCYKEY
+            description: "The primary key for this table"
+            tests:
+                - unique
+                - not_null
