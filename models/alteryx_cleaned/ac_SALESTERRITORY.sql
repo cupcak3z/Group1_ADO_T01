@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 select *
-from salesterritory
+from {{ source('ADO_GROUP1_DB_ANALYSIS', 'SALESTERRITORY') }}

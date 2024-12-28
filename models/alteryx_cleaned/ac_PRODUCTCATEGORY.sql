@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 select *
-from productcategory
+from {{ source('ADO_GROUP1_DB_ANALYSIS', 'PRODUCTCATEGORY') }}

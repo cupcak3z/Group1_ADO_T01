@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 select *
-from product
+from {{ source('ADO_GROUP1_DB_ANALYSIS', 'PRODUCT') }}
