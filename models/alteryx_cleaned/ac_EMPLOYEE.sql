@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
-SELECT *
-FROM Employee
+select *
+from employee

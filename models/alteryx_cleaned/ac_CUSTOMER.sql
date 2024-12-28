@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
-SELECT *
-FROM Customer
+select *
+from customer

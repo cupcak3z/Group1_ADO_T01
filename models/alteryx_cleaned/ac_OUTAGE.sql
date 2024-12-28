@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
-SELECT *
-FROM Outage
+select *
+from outage

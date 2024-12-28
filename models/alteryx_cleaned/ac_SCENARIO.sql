@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
-SELECT *
-FROM Scenario
+select *
+from scenario

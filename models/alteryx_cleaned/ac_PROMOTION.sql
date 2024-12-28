@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
-SELECT *
-FROM Promotion
+select *
+from Promotion

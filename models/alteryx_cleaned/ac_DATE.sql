@@ -1,4 +1,9 @@
-{{ config(materialized='table') }}
+{{ config(materialized="incremental") }}
 
-SELECT *
-FROM Date
+select *
+from date as d
+{% if is_incremental() %}
+    where
+        cast(d.datekey as date)
+        >= (select max(cast(this.datekey as date)) from {{ this }} as this)
+{% endif %}

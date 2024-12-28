@@ -1,6 +1,9 @@
--- Ignore this, it is part of testing
+{{ config(materialized="incremental") }}
 
---{{ config(materialized='table') }}
-
---SELECT *
---FROM HONGKAILOVESADOTESTING
+select *
+from hongkailovesadotesting as h
+{% if is_incremental() %}
+    where
+        cast(h.hongkaikey as int)
+        >= (select max(cast(this.hongkaikey as int)) from {{ this }} as this)
+{% endif %}

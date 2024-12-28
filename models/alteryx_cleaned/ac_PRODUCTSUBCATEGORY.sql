@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
-SELECT *
-FROM ProductSubCategory
+select *
+from productsubcategory
