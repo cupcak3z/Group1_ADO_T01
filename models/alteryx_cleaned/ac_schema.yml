@@ -72,6 +72,28 @@ sources:
                   values: [0, 1, null]
                   quote: false
       - name: DATE
+        description: "Date Table"
+        columns:
+          - name: DATEKEY
+            description: "The primary key for the Date table"
+            tests:
+              - unique
+              - not_null
+          - name: CALENDARHALFYEARLABEL
+            description: "Label for the half-year"
+            tests:
+              - accepted_values:
+                  values: ["H1", "H2", null] 
+          - name: CALENDARQUARTERLABEL
+            description: "Label for the quarter"
+            tests:
+              - accepted_values:
+                  values: ["Q1", "Q2", "Q3", "Q4", null]
+          - name: CALENDARMONTHLABEL
+            description: "The name of the month"
+            tests:
+              - accepted_values:
+                  values: [January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", null]
       - name: EMPLOYEE
       - name: ENTITY
       - name: EXCHANGERATE
@@ -81,7 +103,63 @@ sources:
       - name: ITSLA
       - name: MACHINE
       - name: ONLINESALES
+        description: "OnlineSales Table"
+        columns:
+          - name: ONLINESALESKEY
+            description: "The primary key for the OnlineSales table"
+            tests:
+                - unique
+                - not_null
+          - name: DATEKEY
+            description: "Foreign key referencing DATEKEY in the Date table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('DATE')
+                  field: "DATEKEY"
+          - name: STOREKEY
+            description: "Foreign key referencing STOREKEY in the Store table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('STORE')
+                  field: "STOREKEY"
+          - name: PRODUCTKEY
+            description: "Foreign key referencing PRODUCTKEY in the Product table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('PRODUCT')
+                  field: "PRODUCTKEY"
+          - name: PROMOTIONKEY
+            description: "Foreign key referencing PROMOTIONKEY in the Promotion table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('PROMOTION')
+                  field: "PROMOTIONKEY"
+          - name: CURRENCYKEY
+            description: "Foreign key referencing CURRENCYKEY in the Currency table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('CURRENCY')
+                  field: "CURRENCYKEY"
+          - name: CUSTOMERKEY
+            description: "Foreign key referencing CUSTOMERKEY in the Customer table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('CUSTOMER')
+                  field: "CUSTOMERKEY"                  
       - name: OUTAGE
+        description: "Outage Table"
+        columns:
+          - name: OUTAGEKEY
+            description: "The primary key for the Outage table"
+            tests:
+              - unique
+              - not_null
       - name: PRODUCT
         description: "Product Table"
         columns:
@@ -165,5 +243,108 @@ sources:
                   to: ref('EMPLOYEE')
                   field: "EMPLOYEEKEY"
       - name: SCENARIO
+        description: "Scenario Table"
+        columns:
+          - name: SCENARIOKEY
+            description: "The primary key for the Scenario table"
+            tests:
+              - unique
+              - not_null
       - name: STORE
+        description: "Store Table"
+        columns:
+          - name: STOREKEY
+            description: "The primary key for the Store table"
+            tests:
+              - unique
+              - not_null
+          - name: GEOGRAPHYKEY
+            description: "Foreign key referencing GEOGRAPHYKEY in the Geography table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('GEOGRAPHY')
+                  field: "GEOGRAPHYKEY"
+          - name: STOREMANAGER
+            description: "Foreign key referencing EMPLOYEEEKEY in the Employee table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('EMPLOYEE')
+                  field: "EMPLOYEEKEY"
+          - name: OPENDATE
+            description: "Date when the store was opened"
+            tests:
+              - not_null
+          - name: CLOSEDATE
+            description: "Date when the store was closed (if applicable)"
+            tests:
+              - dbt_utils.expression_is_true:
+                  expression: "CLOSEDATE > OPENDATE"
+          - name: ENTITYKEY
+            description: "Foreign key referencing ENTITYKEY in the Entity table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('ENTITY')
+                  field: "ENTITYKEY" 
+          - name: LASTREMODELDATE
+            description: "Date when the store was last remodeled"
+            tests:
+              - dbt_utils.expression_is_true:
+                  expression: "LASTREMODELDATE > OPENDATE"
       - name: STRATEGYPLAN
+        description: "StrategyPlan Table"
+        columns:
+          - name: STRATEGYPLANKEY
+            description: "The primary key for the StrategyPlan table"
+            tests:
+              - unique
+              - not_null
+          - name: DATEKEY
+            description: "Foreign key referencing DATEKEY in the Date table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('DATE')
+                  field: "DATEKEY"
+          - name: ENTITYKEY
+            description: "Foreign key referencing ENTITYKEY in the Entity table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('ENTITY')
+                  field: "ENTITYKEY"
+          - name: SCENARIOKEY
+            description: "Foreign key referencing SCENARIOKEY in the Scenario table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('SCENARIO')
+                  field: "SCENARIOKEY"
+          - name: ACCOUNTKEY
+            description: "Foreign key referencing ACCOUNTKEY in the Account table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('ACCOUNT')
+                  field: "ACCOUNTKEY"
+          - name: CURRENCYKEY
+            description: "Foreign key referencing CURRENCYKEY in the Currency table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('CURRENCY')
+                  field: "CURRENCYKEY"
+          - name: PRODUCTCATEGORYKEY
+            description: "Foreign key referencing PRODUCTCATEGORYKEY in the ProductCategory table"
+            tests:
+              - not_null
+              - relationships:
+                  to: ref('PRODUCTCATEGORY')
+                  field: "PRODUCTCATEGORYKEY"
+          - name: AMOUNT
+            description: "Monetary value or amount relevant to the strategy plan"
+            tests:
+              - dbt_utils.expression_is_true:
+                  expression: "AMOUNT >= 0"
