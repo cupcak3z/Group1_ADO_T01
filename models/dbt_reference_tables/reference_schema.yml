@@ -865,7 +865,7 @@ sources:
           - name: SELLINGAREASIZE
             description: "Size of selling area"
             tests:
-              - nut_null
+              - not_null
               - dbt_utils.expression_is_true:
                   expression: "SELLINGAREASIZE > 0"          
           - name: LASTREMODELDATE
