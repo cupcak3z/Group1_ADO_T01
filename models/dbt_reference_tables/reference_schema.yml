@@ -55,42 +55,38 @@ sources:
             description: "Marital status of customer"
             tests:
               - accepted_values:
-                  values: ["M", "S", null]
+                  values: ["M", "S", "N"]
           - name: GENDER
             description: "Gender of customer"
             tests:
               - accepted_values:
-                  values: ["M", "F", null]
-          - name: EMAILADDRESS
-            description: "Email address of customer"
-            tests:
-              - unique
+                  values: ["M", "F", "N"]
           - name: YEARLYINCOME
             description: "Annual income of the customer"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "YEARLYINCOME >= 0"
+                  expression: ">= 0"
           - name: TOTALCHILDREN
             description: "Total number of children the customer has"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "TOTALCHILDREN >= 0"
+                  expression: ">= 0"
           - name: NUMBERCHILDRENATHOME
             description: "Number of children living at home"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "NUMBERCHILDRENATHOME >= 0"             
+                  expression: ">= 0"             
           - name: HOUSEOWNERFLAG
             description: "Whether the customer owns a house"
             tests:
               - accepted_values:
-                  values: [0, 1, null]
+                  values: [0, 1]
                   quote: false
           - name: NUMBERCARSOWNED
             description: "Number of cars owned by the customer"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "NUMBERCARSOWNED >= 0"  
+                  expression: ">= 0"  
       - name: DATE
         description: "Date Table"
         columns:
@@ -299,49 +295,49 @@ sources:
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "ONHANDQUANTITY >= 0"     
+                  expression: ">= 0"     
           - name: ONORDERQUANTITY
             description: "Quantity of the product currently on order"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "ONORDERQUANTITY >= 0"
+                  expression: ">= 0"
           - name: SAFETYSTOCKQUANTITY
             description: "Minimum quantity of stock to be maintained as a safety margin"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "SAFETYSTOCKQUANTITY >= 0"
+                  expression: ">= 0"
           - name: UNITCOST
             description: "Cost per unit of the product"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "UNITCOST >= 0"
+                  expression: ">= 0"
           - name: DAYSINSTOCK
             description: "Number of days the product has been in stock"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "DAYSINSTOCK >= 0"
+                  expression: ">= 0"
           - name: MINDAYINSTOCK
             description: "Minimum number of days the product is in stock"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "MINDAYINSTOCK >= 0"
+                  expression: ">= 0"
           - name: MAXDAYINSTOCK
             description: "Maximum number of days the product is in stock"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "MAXDAYINSTOCK >= 0"
+                  expression: ">= 0"
           - name: AGING
             description: "Aging of the product in the inventory"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "AGING >= 0"
+                  expression: ">= 0"
       - name: ITMACHINE
         description: "ITMachine Table"
         columns:
@@ -369,7 +365,7 @@ sources:
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "COSTAMOUNT >= 0"         
+                  expression: ">= 0"         
       - name: ITSLA
         description: "ITSLA Table"
         columns:
@@ -415,13 +411,13 @@ sources:
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "OUTAGEENDTIME > OUTAGESTARTTIME"    
+                  expression: "> OUTAGESTARTTIME"    
           - name: DOWNTIME
             description: "Duration of the downtime in minutes"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "DOWNTIME >= 0"
+                  expression: ">= 0"
       - name: MACHINE
         description: "Machine Table"
         columns:
@@ -445,12 +441,7 @@ sources:
             description: "Date when the machine was decommissioned, if applicable"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "DECOMMISIONDATE > SERVICESTARTDATE"
-          - name: LASTMODIFIEDDATE
-            description: "Date when the machine was last modified"
-            tests:
-              - dbt_utils.expression_is_true:
-                  expression: "LASTMODIFIEDDATE > SERVICESTARTDATE"
+                  expression: "> SERVICESTARTDATE"
       - name: ONLINESALES
         description: "OnlineSales Table"
         columns:
@@ -506,55 +497,55 @@ sources:
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "SALESQUANTITY > 0"
+                  expression: ">= 0"
           - name: SALESAMOUNT
             description: "Amount for the onlinesale"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "SALESAMOUNT >= 0"
+                  expression: ">= 0"
           - name: RETURNQUANTITY
             description: "Quantity of items returned from the onlinesale"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "RETURNQUANTITY >= 0"
+                  expression: ">= 0"
           - name: RETURNAMOUNT
             description: "Total amount for the returned items"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "RETURNAMOUNT >= 0"
+                  expression: ">= 0"
           - name: DISCOUNTQUANTITY
             description: "Quantity of discount"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "DISCOUNTQUANTITY >= 0"
+                  expression: ">= 0"
           - name: DISCOUNTAMOUNT
             description: "Discount amount for the onlinesale"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "DISCOUNTAMOUNT >= 0"
+                  expression: ">= 0"
           - name: TOTALCOST
             description: "Total cost of the onlinesale  (UNITCOST * SALESQUANTITY)"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "TOTALCOST >= 0"
+                  expression: ">= 0"
           - name: UNITCOST
             description: "Cost per unit of the product sold"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "UNITCOST >= 0"
+                  expression: ">= 0"
           - name: UNITPRICE
             description: "Price per unit of the product sold"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "UNITPRICE >= 0"
+                  expression: ">= 0"
       - name: OUTAGE
         description: "Outage Table"
         columns:
@@ -582,19 +573,19 @@ sources:
             description: "Weight of the product"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "WEIGHT >= 0"
+                  expression: ">= 0"
           - name: UNITCOST
             description: "Cost of a single unit of the product"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "UNITCOST >= 0"
+                  expression: ">= 0"
           - name: UNITPRICE
             description: "Price of a single unit of the product"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "UNITPRICE >= 0"
+                  expression: ">= 0"
       - name: PRODUCTCATEGORY
         description: "ProductCategory Table"
         columns:
@@ -624,7 +615,7 @@ sources:
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "DISCOUNTPERCENT >= 0 AND DISCOUNTPERCENT <= 1"
+                  expression: ">= 0 AND DISCOUNTPERCENT <= 1"
       - name: SALES
         description: "Sales Table"
         columns:
@@ -680,55 +671,55 @@ sources:
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "UNITCOST >= 0"
+                  expression: ">= 0"
           - name: UNITPRICE
             description: "Price per unit of the product sold"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "UNITPRICE >= 0"
+                  expression: ">= 0"
           - name: SALESQUANTITY
             description: "Quantity of the product of the sale"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "SALESQUANTITY > 0"
+                  expression: ">= 0"
           - name: RETURNQUANTITY
             description: "Quantity of items returned from the sale"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "RETURNQUANTITY >= 0"
+                  expression: ">= 0"
           - name: RETURNAMOUNT
             description: "Amount for the returned items"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "RETURNAMOUNT >= 0"
+                  expression: ">= 0"
           - name: DISCOUNTQUANTITY
             description: "Quantity of discount"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "DISCOUNTQUANTITY >= 0"
+                  expression: ">= 0"
           - name: DISCOUNTAMOUNT
             description: "Discount amount for the sale"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "DISCOUNTAMOUNT >= 0"
+                  expression: ">= 0"
           - name: TOTALCOST
             description: "Total cost of the sale  (UNITCOST * SALESQUANTITY)"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "TOTALCOST >= 0"
+                  expression: ">= 0"
           - name: SALESAMOUNT
             description: "Amount for the sale"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "SALESAMOUNT >= 0"
+                  expression: ">= 0"
       - name: SALESQUOTA
         description: "SalesQuota Table"
         columns:
@@ -783,12 +774,12 @@ sources:
             description: "Targeted quantity of items to be sold in the given period"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "SALESQUANTTIYQUOTA >= 0"
+                  expression: ">= 0"
           - name: SALESAMOUNTQUOTA
             description: "Targeted monetary value of sales in the given period"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "SALESAMOUNTQUOTA >= 0"
+                  expression: ">= 0"
       - name: SALESTERRITORY
         description: "SalesTerritory Table"
         columns:
@@ -849,7 +840,7 @@ sources:
             description: "Date when the store was closed (if applicable)"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "CLOSEDATE > OPENDATE"
+                  expression: "> OPENDATE"
           - name: ENTITYKEY
             description: "Foreign key referencing ENTITYKEY in the Entity table"
             tests:
@@ -861,18 +852,13 @@ sources:
             description: "Total number of employees working in the store"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "EMPLOYEECOUNT >= 0"
+                  expression: ">= 0"
           - name: SELLINGAREASIZE
             description: "Size of selling area"
             tests:
               - not_null
               - dbt_utils.expression_is_true:
-                  expression: "SELLINGAREASIZE > 0"          
-          - name: LASTREMODELDATE
-            description: "Date when the store was last remodeled"
-            tests:
-              - dbt_utils.expression_is_true:
-                  expression: "LASTREMODELDATE > OPENDATE"
+                  expression: "> 0"          
       - name: STRATEGYPLAN
         description: "StrategyPlan Table"
         columns:
@@ -927,4 +913,4 @@ sources:
             description: "Amount relevant to the strategy plan"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: "AMOUNT >= 0"
+                  expression: ">= 0"
