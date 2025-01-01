@@ -41,7 +41,7 @@ models:
     dbt_reference_tables:
       +materialized: table
       +database: ADO_GROUP1_DB_ANALYSIS
-    staging:
-      +materialized: view
-    reporting:
+    marts:         # For final, production-level models
+      +materialized: table
+    example:       # Existing example folder
       +materialized: table
