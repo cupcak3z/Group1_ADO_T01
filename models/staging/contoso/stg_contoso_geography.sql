@@ -6,7 +6,7 @@ source as (
 geography as (
     select
         -- ids
-        cast(GEOGRAPHYKEY as numeric) as GEOGRAPHYKEY_updated,
+        cast(GEOGRAPHYKEY as numeric(38,0)) as GEOGRAPHYKEY_updated,
 
         -- strings
         GEOGRAPHYTYPE,

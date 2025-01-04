@@ -6,8 +6,8 @@ source as (
 machine as (
     select
         -- ids
-        cast(MACHINEKEY as numeric) as MACHINEKEY_updated,
-        cast(STOREKEY as numeric) as STOREKEY_updated,
+        cast(MACHINEKEY as numeric(38,0)) as MACHINEKEY_updated,
+        cast(STOREKEY as numeric(38,0)) as STOREKEY_updated,
 
         -- strings
         MACHINETYPE,
