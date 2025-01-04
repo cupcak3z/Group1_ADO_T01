@@ -6,7 +6,7 @@ source as (
 date as (
     select
         -- ids
-        DATEKEY,
+        cast(DATEKEY as date) as DATEKEY_updated ,
         -- strings
         CALENDARYEARLABEL,
         CALENDARHALFYEARLABEL,
@@ -36,10 +36,10 @@ date as (
            else ASIASEASON
         end as ASIASEASON_UPDATED,
         -- Numbers
-        cast(CALENDARYEAR as numeric) as CALENDARYEAR_UPDATED,
-        cast(FISCALYEAR as numeric) as FISCALYEAR_UPDATED,
-        cast(extract(month from DATEKEY) as numeric) as MONTHNUMBER_UPDATED,
-        cast(extract(dayofweek from DATEKEY) as numeric) as CALENDARDAYOFWEEKNUMBER_UPDATED,
+        cast(CALENDARYEAR as numeric(38,0)) as CALENDARYEAR_UPDATED,
+        cast(FISCALYEAR as numeric(38,0)) as FISCALYEAR_UPDATED,
+        cast(extract(month from DATEKEY) as numeric(38,0)) as MONTHNUMBER_UPDATED,
+        cast(extract(dayofweek from DATEKEY) as numeric(38,0)) as CALENDARDAYOFWEEKNUMBER_UPDATED,
         -- Creation timing
         TO_TIMESTAMP(DATEKEY) as created_at
     from source
