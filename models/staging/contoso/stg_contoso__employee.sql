@@ -48,9 +48,9 @@ employee as (
         end as ISMARRIED,
 
         -- dates
-        HIREDATE,
-        BIRTHDATE,
-        STARTDATE,
+        cast(HIREDATE as date) as HIREDATE_updated,
+        cast(BIRTHDATE as date) as BIRTHDATE_updated,
+        cast(STARTDATE as date) as STARTDATE_updated,
 
         -- numbers
         cast(PAYFREQUENCY as numeric) as PAYFREQUENCY_updated,

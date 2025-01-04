@@ -21,9 +21,9 @@ machine as (
         STATUS,
 
         -- dates
-        SERVICESTARTDATE,
-        DECOMMISSIONDATE,
-        LASTMODIFIEDDATE,
+        cast(SERVICESTARTDATE as date) as SERVICESTARTDATE_updated,
+        cast(DECOMMISSIONDATE as date) as DECOMMISSIONDATE_updated,
+        cast(LASTMODIFIEDDATE as date) as LASTMODIFIEDDATE_updated,
 
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
