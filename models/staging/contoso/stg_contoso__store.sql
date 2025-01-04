@@ -6,9 +6,9 @@ source as(
 store as (
     select
     --ids
-    cast(STOREKEY as numeric) as STOREKEY_updated,
-    cast(GEOGRAPHYKEY as numeric) as GEOGRAPHYKEY_updated,
-    cast(ENTITYKEY as numeric) as ENTITYKEY_updated,
+    cast(STOREKEY as numeric(38,0)) as STOREKEY_updated,
+    cast(GEOGRAPHYKEY as numeric(38,0)) as GEOGRAPHYKEY_updated,
+    cast(ENTITYKEY as numeric(38,0)) as ENTITYKEY_updated,
 
     --strings
     STORETYPE,
@@ -22,12 +22,12 @@ store as (
     end as CLOSEREASON_updated,
 
     --numbers
-    cast(STOREMANAGER as numeric) as STOREMANAGER_updated,
+    cast(STOREMANAGER as numeric(38,0)) as STOREMANAGER_updated,
     case
       when EMPLOYEECOUNT = 'NULL' then 18
-      else cast(EMPLOYEECOUNT as numeric)
+      else cast(EMPLOYEECOUNT as numeric(38,0))
     end as EMPLOYEECOUNT_Updated,
-    cast(SELLINGAREASIZE as numeric) as SELLINGAREASIZE_updated,
+    cast(SELLINGAREASIZE as numeric(38,0)) as SELLINGAREASIZE_updated,
 
     --date
     cast(OPENDATE as date) as OPENDATE_updated,

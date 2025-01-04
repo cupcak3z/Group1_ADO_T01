@@ -6,12 +6,12 @@ source as(
 exchangerate as (
     select
     --ids
-    cast(EXCHANGERATEKEY as numeric) as EXCHANGERATEKEY_updated,
-    cast(CURRENCYKEY as numeric) as CURRENCYKEY_updated,
+    cast(EXCHANGERATEKEY as numeric(38,0)) as EXCHANGERATEKEY_updated,
+    cast(CURRENCYKEY as numeric(38,0)) as CURRENCYKEY_updated,
 
     --numbers
-    cast(AVERAGERATE as numeric) as AVERAGERATE_updated,
-    cast(ENDOFDAYRATE as numeric) as ENDOFDAYRATE_updated,
+    cast(AVERAGERATE as numeric(38,5)) as AVERAGERATE_updated,
+    cast(ENDOFDAYRATE as numeric(38,6)) as ENDOFDAYRATE_updated,
 
     --date
     cast(DATEKEY as date) as DATEKEY_updated,
