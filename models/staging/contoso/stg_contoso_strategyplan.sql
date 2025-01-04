@@ -6,16 +6,16 @@ source as (
 strategyplan as (
     select
         -- IDs
-        STRATEGYPLANKEY,
-        to_char(DATEKEY, 'DD/MM/YYYY') as datekey_updated,
-        ENTITYKEY,
-        SCENARIOKEY,
-        ACCOUNTKEY,
-        CURRENCYKEY,
-        PRODUCTCATEGORYKEY,
+        CAST(STRATEGYPLANKEY AS NUMERIC) as STRATEGYPLANKEY_updated,
+        to_char(DATEKEY) as DATEKEY_updated,
+        CAST(ENTITYKEY AS NUMERIC) as ENTITYKEY_updated,
+        CAST(SCENARIOKEY AS NUMERIC) as SCENARIOKEY_updated,
+        CAST(ACCOUNTKEY AS NUMERIC) as ACCOUNTKEY_updated,
+        CAST(CURRENCYKEY AS NUMERIC) as CURRENCYKEY_updated,
+        CAST(PRODUCTCATEGORYKEY AS NUMERIC) as PRODUCTCATEGORYKEY_updated,
 
-        -- Amounts and Numbers
-        AMOUNT,
+        -- Amounts 
+        CAST(AMOUNT AS NUMERIC) as AMOUNT_updated,
 
         -- Creation Timings
         to_timestamp_ntz(DATEKEY) as created_at  
