@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 select *
-from {{ source('ADO_GROUP1_DB_ANALYSIS', 'ENTITY') }}
+from {{ source('ADO_GROUP1_DB_RAW', 'DIMENTITY_RAW') }}
