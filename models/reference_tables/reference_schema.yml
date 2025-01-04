@@ -1,11 +1,11 @@
 version: 2
 
 sources:
-  - name: ADO_GROUP1_DB_ANALYSIS
-    database: ADO_GROUP1_DB_ANALYSIS
-    schema: PUBLIC
+  - name: ADO_GROUP1_DB_RAW
+    database: ADO_GROUP1_DB_RAW
+    schema: CONTOSO
     tables:
-      - name: ACCOUNT
+      - name: DIMACCOUNT_RAW
         description: "Account Table"
         columns:
           - name: ACCOUNTKEY
@@ -20,7 +20,7 @@ sources:
               - relationships:
                   to: ref('ACCOUNT')
                   field: "ACCOUNTKEY"
-      - name: CHANNEL
+      - name: DIMCHANNEL_RAW
         description: "Channel Table"
         columns:
           - name: CHANNELKEY
@@ -28,7 +28,7 @@ sources:
             tests:
               - unique
               - not_null
-      - name: CURRENCY
+      - name: DIMCURRENCY_RAW
         description: "Currency Table"
         columns:
           - name: CURRENCYKEY
@@ -36,7 +36,7 @@ sources:
             tests:
               - unique
               - not_null
-      - name: CUSTOMER
+      - name: DIMCUSTOMER_RAW
         description: "Customer Table"
         columns:
           - name: CUSTOMERKEY
@@ -87,7 +87,7 @@ sources:
             tests:
               - dbt_utils.expression_is_true:
                   expression: ">= 0"  
-      - name: DATE
+      - name: DIMDATE_RAW
         description: "Date Table"
         columns:
           - name: DATEKEY
@@ -149,7 +149,7 @@ sources:
               - accepted_values:
                   values: [1, 2, 3, 4, 5, 6, 7]
                   quote: false                                                                
-      - name: EMPLOYEE
+      - name: DIMEMPLOYEE_RAW
         description: "Employee Table"
         columns:
           - name: EMPLOYEEKEY
@@ -198,7 +198,7 @@ sources:
               - not_null
               - accepted_values:
                   values: ["Yes", "No"]                                                  
-      - name: ENTITY
+      - name: DIMENTITY_RAW
         description: "Entity Table"
         columns:
           - name: ENTITYKEY
@@ -218,7 +218,7 @@ sources:
             tests:
               - accepted_values:
                   values: ["Store", "State", "Country/Region", "Group"]                  
-      - name: EXCHANGERATE
+      - name: FACTEXCHANGERATE_RAW
         description: "ExchangeRate Table"
         columns:
           - name: EXCHANGERATEKEY
@@ -240,7 +240,7 @@ sources:
               - relationships:
                   to: ref('DATE')
                   field: "DATEKEY"
-      - name: GEOGRAPHY
+      - name: DIMGEOGRAPHY_RAW
         description: "Geography Table"
         columns:
           - name: GEOGRAPHYKEY
@@ -254,7 +254,7 @@ sources:
               - not_null
               - accepted_values:
                   values: ["City", "State/Province", "Country/Region", "Continent"]
-      - name: INVENTORY
+      - name: FACTINVENTORY_RAW
         description: "Inventory Table"
         columns:
           - name: INVENTORYKEY
@@ -338,7 +338,7 @@ sources:
               - not_null
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-      - name: ITMACHINE
+      - name: FACTITMACHINE_RAW
         description: "ITMachine Table"
         columns:
           - name: ITMACHINEKEY
@@ -366,7 +366,7 @@ sources:
               - not_null
               - dbt_utils.expression_is_true:
                   expression: ">= 0"         
-      - name: ITSLA
+      - name: FACTITSLA_RAW
         description: "ITSLA Table"
         columns:
           - name: ITSLAKEY
@@ -418,7 +418,7 @@ sources:
               - not_null
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-      - name: MACHINE
+      - name: DIMMACHINE_RAW
         description: "Machine Table"
         columns:
           - name: MACHINEKEY
@@ -442,7 +442,7 @@ sources:
             tests:
               - dbt_utils.expression_is_true:
                   expression: "> SERVICESTARTDATE"
-      - name: ONLINESALES
+      - name: FACTONLINESALES_RAW
         description: "OnlineSales Table"
         columns:
           - name: ONLINESALESKEY
@@ -546,7 +546,7 @@ sources:
               - not_null
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-      - name: OUTAGE
+      - name: DIMOUTAGE_RAW
         description: "Outage Table"
         columns:
           - name: OUTAGEKEY
@@ -554,7 +554,7 @@ sources:
             tests:
               - unique
               - not_null
-      - name: PRODUCT
+      - name: DIMPRODUCT_RAW
         description: "Product Table"
         columns:
           - name: PRODUCTKEY
@@ -586,7 +586,7 @@ sources:
               - not_null
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-      - name: PRODUCTCATEGORY
+      - name: DIMPRODUCTCATEGORY_RAW
         description: "ProductCategory Table"
         columns:
           - name: PRODUCTCATEGORYKEY
@@ -594,7 +594,7 @@ sources:
             tests:
               - unique
               - not_null
-      - name: PRODUCTSUBCATEGORY
+      - name: DIMPRODUCTSUBCATEGORY_RAW
         description: "ProductSubCategory Table"
         columns:
           - name: PRODUCTSUBCATEGORYKEY
@@ -602,7 +602,7 @@ sources:
             tests:
               - unique
               - not_null
-      - name: PROMOTION
+      - name: DIMPROMOTION_RAW
         description: "Promotion Table"
         columns:
           - name: PROMOTIONKEY
@@ -616,7 +616,7 @@ sources:
               - not_null
               - dbt_utils.expression_is_true:
                   expression: ">= 0 AND DISCOUNTPERCENT <= 1"
-      - name: SALES
+      - name: FACTSALES_RAW
         description: "Sales Table"
         columns:
           - name: SALESKEY
@@ -720,7 +720,7 @@ sources:
               - not_null
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-      - name: SALESQUOTA
+      - name: FACTSALESQUOTA_RAW
         description: "SalesQuota Table"
         columns:
           - name: SALESQUOTAKEY
@@ -780,7 +780,7 @@ sources:
             tests:
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-      - name: SALESTERRITORY
+      - name: DIMSALESTERRITORY_RAW
         description: "SalesTerritory Table"
         columns:
           - name: SALESTERRITORYKEY
@@ -802,7 +802,7 @@ sources:
               - relationships:
                   to: ref('EMPLOYEE')
                   field: "EMPLOYEEKEY"
-      - name: SCENARIO
+      - name: DIMSCENARIO_RAW
         description: "Scenario Table"
         columns:
           - name: SCENARIOKEY
@@ -810,7 +810,7 @@ sources:
             tests:
               - unique
               - not_null
-      - name: STORE
+      - name: DIMSTORE_RAW
         description: "Store Table"
         columns:
           - name: STOREKEY
@@ -859,7 +859,7 @@ sources:
               - not_null
               - dbt_utils.expression_is_true:
                   expression: "> 0"          
-      - name: STRATEGYPLAN
+      - name: FACTSTRATEGYPLAN_RAW
         description: "StrategyPlan Table"
         columns:
           - name: STRATEGYPLANKEY

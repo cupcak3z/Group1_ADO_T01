@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 select *
-from {{ source('ADO_GROUP1_DB_ANALYSIS', 'DATE') }}
+from {{ source('ADO_GROUP1_DB_RAW', 'DIMDATE_RAW') }}

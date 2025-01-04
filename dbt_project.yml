@@ -40,7 +40,7 @@ models:
     # Applies to all files under models/example/
     dbt_reference_tables:
       +materialized: table
-      +database: ADO_GROUP1_DB_ANALYSIS
+      +database: ADO_GROUP1_DB_RAW
     marts:         # For final, production-level models
       +materialized: table
     example:       # Existing example folder
