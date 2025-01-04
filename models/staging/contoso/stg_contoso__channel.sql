@@ -6,7 +6,7 @@ source as (
 channel as (
     select
         -- ids
-        cast(CHANNELKEY as numeric) as CHANNELKEY_updated,
+        cast(CHANNELKEY as numeric(38,0)) as CHANNELKEY_updated,
         -- strings
         CHANNELNAME,
         CHANNELDESCRIPTION,

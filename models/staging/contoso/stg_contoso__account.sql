@@ -6,10 +6,10 @@ source as (
 account as (
     select
         -- ids
-        cast (ACCOUNTKEY as numeric) as ACCOUNTKEY_updated,
+        cast (ACCOUNTKEY as numeric(38,0)) as ACCOUNTKEY_updated,
         case
             when PARENTACCOUNTKEY = 'NULL' then '1'
-            else cast(PARENTACCOUNTKEY as numeric)
+            else cast(PARENTACCOUNTKEY as numeric(38,0))
         end as PARENTACCOUNTKEY_updated,
 
         -- strings
@@ -28,8 +28,7 @@ account as (
         end as VALUETYPE_updated,
 
         -- creation timing
-        Cast(LOADDATE::timestamp_ntz as created_at
-
+        LOADDATE::timestamp_ntz as created_at
     from source
 )
 
