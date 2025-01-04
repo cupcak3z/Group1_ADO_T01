@@ -6,8 +6,8 @@ source as (
 customer as (
     select
         -- ids
-        cast(CUSTOMERKEY as numeric) as CUSTOMERKEY_updated,
-        cast(GEOGRAPHYKEY as numeric) as GEOGRAPHYKEY_updated,
+        cast(CUSTOMERKEY as numeric(38,0)) as CUSTOMERKEY_updated,
+        cast(GEOGRAPHYKEY as numeric(38,0)) as GEOGRAPHYKEY_updated,
         -- strings
         FIRSTNAME,
         LASTNAME, 
@@ -30,11 +30,11 @@ customer as (
            else COMPANYNAME
         end as COMPANYNAME_updated,
         -- Numbers
-        cast(yearlyincome as numeric) as yearlyincome_updated,
-        cast(totalchildren as numeric) as totalchildren_updated,
-        cast(numberchildrenathome as numeric) as numberchildrenathome_updated,
-        cast(houseownerflag as numeric) as houseownerflag_updated,
-        cast(numbercarsowned as numeric) as numbercarsowned_updated,
+        cast(yearlyincome as numeric(10,2)) as yearlyincome_updated,
+        cast(totalchildren as numeric(38,0)) as totalchildren_updated,
+        cast(numberchildrenathome as numeric(38,0)) as numberchildrenathome_updated,
+        cast(houseownerflag as numeric(38,0)) as houseownerflag_updated,
+        cast(numbercarsowned as numeric(38,0)) as numbercarsowned_updated,
         --date
         cast(BIRTHDATE as date) as BIRTHDATE_updated,
         cast(DATEFIRSTPURCHASE as date) as DATEFIRSTPURCHASE_updated,

@@ -6,10 +6,10 @@ source as (
 entity as (
     select
         -- ids
-        cast(ENTITYKEY as numeric) as ENTITYKEY_updated,
+        cast(ENTITYKEY as numeric(38,0)) as ENTITYKEY_updated,
         case
-            when PARENTENTITYKEY = 'NULL' then cast(ENTITYKEY as numeric)
-            else cast(PARENTENTITYKEY as numeric)
+            when PARENTENTITYKEY = 'NULL' then cast(ENTITYKEY as numeric(38,0))
+            else cast(PARENTENTITYKEY as numeric(38,0))
         end as PARENTENTITYKEY_updated,
 
         -- strings

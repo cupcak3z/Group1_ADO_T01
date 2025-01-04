@@ -6,7 +6,7 @@ source as (
 outage as (
     select
         -- ids
-        cast(OUTAGEKEY as numeric) as OUTAGEKEY_updated,
+        cast(OUTAGEKEY as numeric(38,0)) as OUTAGEKEY_updated,
 
         -- strings
         OUTAGENAME,

@@ -6,7 +6,7 @@ source as (
 currency as (
     select
         -- ids
-        cast(CURRENCYKEY as numeric) as CURRENCYKEY_updated,
+        cast(CURRENCYKEY as numeric(38,0)) as CURRENCYKEY_updated,
         -- strings
         CURRENCYNAME,
         CURRENCYDESCRIPTION,

@@ -6,10 +6,10 @@ source as (
 employee as (
     select
         -- ids
-        cast(EMPLOYEEKEY as numeric) as EMPLOYEEKEY_updated,
+        cast(EMPLOYEEKEY as numeric(38,0)) as EMPLOYEEKEY_updated,
         case
             when PARENTEMPLOYEEKEY = 'NULL' then 1 
-            else cast(PARENTEMPLOYEEKEY as numeric)
+            else cast(PARENTEMPLOYEEKEY as numeric(38,0))
         end as PARENTEMPLOYEEKEY_updated,
 
         -- strings
@@ -53,9 +53,9 @@ employee as (
         cast(STARTDATE as date) as STARTDATE_updated,
 
         -- numbers
-        cast(PAYFREQUENCY as numeric) as PAYFREQUENCY_updated,
-        cast(BASERATE as numeric) as BASERATE_updated,
-        cast(VACATIONHOURS as numeric) as VACATIONHOURS_updated,
+        cast(PAYFREQUENCY as numeric(38,0)) as PAYFREQUENCY_updated,
+        cast(BASERATE as numeric(38,2)) as BASERATE_updated,
+        cast(VACATIONHOURS as numeric(38,0)) as VACATIONHOURS_updated,
 
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
