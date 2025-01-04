@@ -1,4 +1,4 @@
 {{ config(materialized='table') }}
 
 select *
-from {{ source('ADO_GROUP1_DB_ANALYSIS', 'ITSLA') }}
+from {{ source('ADO_GROUP1_DB_RAW', 'FACTITSLA_RAW') }}
