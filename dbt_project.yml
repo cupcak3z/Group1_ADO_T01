@@ -38,10 +38,10 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   group1_ado_t01:
     # Applies to all files under models/example/
-    alteryx_cleaned:
+    dbt_reference_tables:
       +materialized: table
-      +database: ADO_GROUP1_DB_ANALYSIS
-    staging:
-      +materialized: view
-    reporting:
+      +database: ADO_GROUP1_DB_RAW
+    marts:         # For final, production-level models
+      +materialized: table
+    example:       # Existing example folder
       +materialized: table
