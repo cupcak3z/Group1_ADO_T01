@@ -36,8 +36,8 @@ customer as (
         cast(houseownerflag as numeric) as houseownerflag_updated,
         cast(numbercarsowned as numeric) as numbercarsowned_updated,
         --date
-        BIRTHDATE,
-        DATEFIRSTPURCHASE,
+        cast(BIRTHDATE as date) as BIRTHDATE_updated,
+        cast(DATEFIRSTPURCHASE as date) as DATEFIRSTPURCHASE_updated,
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
 
