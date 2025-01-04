@@ -7,8 +7,9 @@ itsla as (
     select
         -- IDs
         CAST(ITSLAKEY AS NUMERIC) as ITSLAKEY_updated,
-        to_char(DATEKEY) as DATEKEY_updated,
         CAST(STOREKEY AS NUMERIC) as STOREKEY_updated,
+        to_timestamp(DATEKEY, 'DD/MM/YYYY HH24:MI') as DATEKEY_updated,
+        -- CAST(DATEKEY AS DATE) as DATEKEY_updated,
         CAST(MACHINEKEY AS NUMERIC) as MACHINEKEY_updated,
         CAST(OUTAGEKEY AS NUMERIC) as OUTAGEKEY_updated,
         
@@ -16,11 +17,11 @@ itsla as (
         CAST(DOWNTIME AS NUMERIC) as DOWNTIME_updated,
 
         -- Dates
-        to_char(OUTAGESTARTTIME) as OUTAGESTARTTIME_updated,
-        to_char(OUTAGEENDTIME) as OUTAGEENDTIME_updated,
+        to_timestamp(OUTAGESTARTTIME, 'DD/MM/YYYY HH24:MI') as OUTAGESTARTTIME_updated,
+        to_timestamp(OUTAGEENDTIME, 'DD/MM/YYYY HH24:MI') as OUTAGEENDTIME_updated,
 
         -- Creation Timings
-        DATEKEY as created_at  
+        to_timestamp(DATEKEY, 'DD/MM/YYYY HH24:MI') as created_at 
     
 
     from source
