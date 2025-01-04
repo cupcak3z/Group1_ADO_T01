@@ -6,15 +6,15 @@ source as(
 exchangerate as (
     select
     --ids
-    cast(EXCHANGERATEKEY as numeric) as EXCHANGERATEKEY_Updated,
-    cast(CURRENCYKEY as numeric) as CURRENCYKEY_Updated,
+    cast(EXCHANGERATEKEY as numeric) as EXCHANGERATEKEY_updated,
+    cast(CURRENCYKEY as numeric) as CURRENCYKEY_updated,
 
     --numbers
-    cast(AVERAGERATE as numeric) as AVERAGERATE_Updated,
-    cast(ENDOFDAYRATE as numeric) as ENDOFDAYRATE_Updated,
+    cast(AVERAGERATE as numeric) as AVERAGERATE_updated,
+    cast(ENDOFDAYRATE as numeric) as ENDOFDAYRATE_updated,
 
     --date
-    to_char(DATEKEY,'DD/MM/YYYY') as DATEKEY_updated,
+    cast(DATEKEY as date) as DATEKEY_updated,
 
     --creation timing
     to_timestamp(DATEKEY) as created_at

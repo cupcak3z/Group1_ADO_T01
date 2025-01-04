@@ -6,22 +6,22 @@ source as(
 inventory as (
     select
     --ids
-    cast(INVENTORYKEY as numeric) as INVENTORYKEY_Updated,
-    cast(STOREKEY as numeric) as STOREKEY_Updated,
-    cast(CURRENCYKEY as numeric) as CURRENCYKEY_Updated,
+    cast(INVENTORYKEY as numeric) as INVENTORYKEY_updated,
+    cast(STOREKEY as numeric) as STOREKEY_updated,
+    cast(CURRENCYKEY as numeric) as CURRENCYKEY_updated,
 
     --numbers
-    cast(ONHANDQUANTITY as numeric) as ONHANDQUANTITY_Updated,
-    cast(ONORDERQUANTITY as numeric) as ONORDERQUANTITY_Updated,
-    cast(SAFETYSTOCKQUANTITY as numeric) as SAFETYSTOCKQUANTITY_Updated,
-    cast(UNITCOST as numeric) as UNITCOST_Updated,
-    cast(DAYSINSTOCK as numeric) as DAYSINSTOCK_Updated,
-    cast(MINDAYINSTOCK as numeric) as MINDAYINSTOCK_Updated,
-    cast(MAXDAYINSTOCK as numeric) as MAXDAYINSTOCK_Updated,
-    cast(AGING as numeric) as AGING_Updated,
+    cast(ONHANDQUANTITY as numeric) as ONHANDQUANTITY_updated,
+    cast(ONORDERQUANTITY as numeric) as ONORDERQUANTITY_updated,
+    cast(SAFETYSTOCKQUANTITY as numeric) as SAFETYSTOCKQUANTITY_updated,
+    cast(UNITCOST as numeric) as UNITCOST_updated,
+    cast(DAYSINSTOCK as numeric) as DAYSINSTOCK_updated,
+    cast(MINDAYINSTOCK as numeric) as MINDAYINSTOCK_updated,
+    cast(MAXDAYINSTOCK as numeric) as MAXDAYINSTOCK_updated,
+    cast(AGING as numeric) as AGING_updated,
 
     --date
-    to_char(DATEKEY,'DD/MM/YYYY') as DATEKEY_updated,
+    cast(DATEKEY as date) as DATEKEY_updated,
 
     --creation date
     to_timestamp(DATEKEY) as created_at
