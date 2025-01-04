@@ -39,7 +39,7 @@ models:
   group1_ado_t01:
     dbt_reference_tables:
       +materialized: table
-      +database: ADO_GROUP1_DB_ANALYSIS
+      +database: ADO_GROUP1_DB_RAW
     staging:                # For staging tables
       +materialized: view
     intermediate:           # For intermediate transformations
