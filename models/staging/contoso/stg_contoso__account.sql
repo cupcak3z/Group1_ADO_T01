@@ -28,7 +28,7 @@ account as (
         end as VALUETYPE_updated,
 
         -- creation timing
-        LOADDATE::timestamp_ntz as created_at
+        Cast(LOADDATE::timestamp_ntz as created_at
 
     from source
 )
