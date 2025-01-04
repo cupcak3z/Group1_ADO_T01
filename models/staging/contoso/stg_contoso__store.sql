@@ -26,7 +26,7 @@ store as (
     --numbers
     cast(STOREMANAGER as numeric) as STOREMANAGER_Updated,
     case
-      when EMPLOYEECOUNT = 'NULL' then '18'
+      when EMPLOYEECOUNT = 'NULL' then 18
       else cast(EMPLOYEECOUNT as numeric)
     end as EMPLOYEECOUNT_Updated,
     cast(SELLINGAREASIZE as numeric) as SELLINGAREASIZE_Updated,
