@@ -37,16 +37,11 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   group1_ado_t01:
+    # Applies to all files under models/example/
     dbt_reference_tables:
       +materialized: table
       +database: ADO_GROUP1_DB_RAW
-    staging:                # For staging tables
-      +materialized: view
-    intermediate:           # For intermediate transformations
-      +materialized: ephemeral
-      +schema: intermediate
-    marts:                  # For final, production-level models
+    marts:         # For final, production-level models
       +materialized: table
-    utilities:              # Utility queries like date generation
-      +materialized: view
-      +schema: utilities
+    example:       # Existing example folder
+      +materialized: table
