@@ -10,12 +10,12 @@ productsubcategory as (
 ),
 productinformation as (
     select
-        products.*,
-        category.PRODUCTCATEGORYNAME,
-        subcategory.PRODUCTSUBCATEGORYNAME
-    from product products
-    left join productsubcategory subcategory on products.PRODUCTSUBCATEGORYKEY_updated = subcategory.PRODUCTSUBCATEGORYKEY_updated
-    left join productcategory category on subcategory.PRODUCTCATEGORYKEY_updated = category.PRODUCTCATEGORYKEY_updated
+        p.*,
+        c.PRODUCTCATEGORYNAME,
+        s.PRODUCTSUBCATEGORYNAME
+    from product p
+    left join productsubcategory s on p.PRODUCTSUBCATEGORYKEY_updated = s.PRODUCTSUBCATEGORYKEY_updated
+    left join productcategory c on s.PRODUCTCATEGORYKEY_updated = c.PRODUCTCATEGORYKEY_updated
 )
 
 select * from productinformation
