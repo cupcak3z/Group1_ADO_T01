@@ -26,20 +26,20 @@ date as (
         case 
            when EUROPESEASON = 'NULL' then 'No Season'
            else EUROPESEASON
-        end as EUROPESEASON_UPDATED,
+        end as EUROPESEASON_updated,
         case 
            when NORTHAMERICASEASON = 'NULL' then 'No Season'
            else NORTHAMERICASEASON
-        end as NORTHAMERICASEASON_UPDATED,
+        end as NORTHAMERICASEASON_updated,
         case 
            when ASIASEASON = 'NULL' then 'No Season'
            else ASIASEASON
-        end as ASIASEASON_UPDATED,
+        end as ASIASEASON_updated,
         -- Numbers
-        cast(CALENDARYEAR as numeric(38,0)) as CALENDARYEAR_UPDATED,
-        cast(FISCALYEAR as numeric(38,0)) as FISCALYEAR_UPDATED,
-        cast(extract(month from DATEKEY) as numeric(38,0)) as MONTHNUMBER_UPDATED,
-        cast(extract(dayofweek from DATEKEY) as numeric(38,0)) as CALENDARDAYOFWEEKNUMBER_UPDATED,
+        cast(CALENDARYEAR as numeric(38,0)) as CALENDARYEAR_updated,
+        cast(FISCALYEAR as numeric(38,0)) as FISCALYEAR_updated,
+        cast(extract(month from DATEKEY) as numeric(38,0)) as MONTHNUMBER_updated,
+        cast(extract(dayofweek from DATEKEY) as numeric(38,0)) as CALENDARDAYOFWEEKNUMBER_updated,
         -- Creation timing
         TO_TIMESTAMP(DATEKEY) as created_at
     from source
