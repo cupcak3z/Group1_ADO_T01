@@ -6,7 +6,21 @@ sales as (
 
 aggregated_sales as (
     select
-        date_trunc('month', created_at) as month,
+        extract(month from created_at) as month_number, 
+        CASE 
+            WHEN extract(month from created_at) = 1 THEN 'January'
+            WHEN extract(month from created_at) = 2 THEN 'February'
+            WHEN extract(month from created_at) = 3 THEN 'March'
+            WHEN extract(month from created_at) = 4 THEN 'April'
+            WHEN extract(month from created_at) = 5 THEN 'May'
+            WHEN extract(month from created_at) = 6 THEN 'June'
+            WHEN extract(month from created_at) = 7 THEN 'July'
+            WHEN extract(month from created_at) = 8 THEN 'August'
+            WHEN extract(month from created_at) = 9 THEN 'September'
+            WHEN extract(month from created_at) = 10 THEN 'October'
+            WHEN extract(month from created_at) = 11 THEN 'November'
+            WHEN extract(month from created_at) = 12 THEN 'December'
+        END as month_name,
         sum(SALESAMOUNT_updated) as total_sales,
         avg(SALESAMOUNT_updated) as avg_sales,
         sum(SALESQUANTITY_updated) as total_quantity,
@@ -15,9 +29,16 @@ aggregated_sales as (
         sum(TOTAL_PROFIT) as total_profit
     from sales
     group by 
-        date_trunc('month', created_at)
+        extract(month from created_at)
 )
 
-select *
+select 
+    month_name,
+    total_sales,
+    avg_sales,
+    total_quantity,
+    avg_quantity,
+    total_net_sales,
+    total_profit
 from aggregated_sales
-order by month
+order by month_number

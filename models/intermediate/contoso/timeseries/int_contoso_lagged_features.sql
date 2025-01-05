@@ -53,6 +53,18 @@ lagged_features as (
     from aggregated_sales
 )
 
-select *
+select 
+    month_name,
+    total_sales,
+    avg_sales,
+    total_quantity,
+    avg_quantity,
+    total_net_sales,
+    total_profit,
+    lag_total_sales,
+    lag_total_quantity,
+    lag_total_profit,
+    lag_avg_sales,
+    lag_avg_quantity
 from lagged_features
 order by month_number
