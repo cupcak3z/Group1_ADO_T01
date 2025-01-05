@@ -45,3 +45,8 @@ models:
       +materialized: table
     example:       # Existing example folder
       +materialized: table
+    staging:
+      +materialized: view
+      +database: ADO_GROUP1_DB_RAW
+    intermediate:
+      +materialized: table
