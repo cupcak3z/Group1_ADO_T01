@@ -31,6 +31,10 @@ onlinesales as (
     --date
     cast(DATEKEY as date) as DATEKEY_updated,
 
+    -- Derived Columns
+    CAST(SALESAMOUNT - DISCOUNTAMOUNT AS NUMERIC(38,4)) as NET_SALES_AMOUNT,
+    CAST((UNITPRICE - UNITCOST) * SALESQUANTITY AS NUMERIC(38,2)) as TOTAL_PROFIT,
+
     --creation date
     to_timestamp(DATEKEY) as created_at
 
