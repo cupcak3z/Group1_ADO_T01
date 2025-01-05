@@ -6,7 +6,7 @@ source as(
 scenario as (
     select
     --ids
-    cast(SCENARIOKEY as numeric) as SCENARIOKEY_updated,
+    cast(SCENARIOKEY as numeric(38,0)) as SCENARIOKEY_updated,
 
     --strings
     SCENARIONAME,

@@ -6,19 +6,19 @@ source as(
 inventory as (
     select
     --ids
-    cast(INVENTORYKEY as numeric) as INVENTORYKEY_updated,
-    cast(STOREKEY as numeric) as STOREKEY_updated,
-    cast(CURRENCYKEY as numeric) as CURRENCYKEY_updated,
+    cast(INVENTORYKEY as numeric(38,0)) as INVENTORYKEY_updated,
+    cast(STOREKEY as numeric(38,0)) as STOREKEY_updated,
+    cast(CURRENCYKEY as numeric(38,0)) as CURRENCYKEY_updated,
 
     --numbers
-    cast(ONHANDQUANTITY as numeric) as ONHANDQUANTITY_updated,
-    cast(ONORDERQUANTITY as numeric) as ONORDERQUANTITY_updated,
-    cast(SAFETYSTOCKQUANTITY as numeric) as SAFETYSTOCKQUANTITY_updated,
-    cast(UNITCOST as numeric) as UNITCOST_updated,
-    cast(DAYSINSTOCK as numeric) as DAYSINSTOCK_updated,
-    cast(MINDAYINSTOCK as numeric) as MINDAYINSTOCK_updated,
-    cast(MAXDAYINSTOCK as numeric) as MAXDAYINSTOCK_updated,
-    cast(AGING as numeric) as AGING_updated,
+    cast(ONHANDQUANTITY as numeric(38,0)) as ONHANDQUANTITY_updated,
+    cast(ONORDERQUANTITY as numeric(38,0)) as ONORDERQUANTITY_updated,
+    cast(SAFETYSTOCKQUANTITY as numeric(38,0)) as SAFETYSTOCKQUANTITY_updated,
+    cast(UNITCOST as numeric(38,2)) as UNITCOST_updated,
+    cast(DAYSINSTOCK as numeric(38,0)) as DAYSINSTOCK_updated,
+    cast(MINDAYINSTOCK as numeric(38,0)) as MINDAYINSTOCK_updated,
+    cast(MAXDAYINSTOCK as numeric(38,0)) as MAXDAYINSTOCK_updated,
+    cast(AGING as numeric(38,0)) as AGING_updated,
 
     --date
     cast(DATEKEY as date) as DATEKEY_updated,
