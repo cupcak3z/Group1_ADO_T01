@@ -1,3 +1,4 @@
+
 with
 source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMCUSTOMER_RAW')}}
@@ -30,14 +31,35 @@ customer as (
            else COMPANYNAME
         end as COMPANYNAME_updated,
         -- Numbers
-        cast(yearlyincome as numeric(10,2)) as yearlyincome_updated,
-        cast(totalchildren as numeric(38,0)) as totalchildren_updated,
-        cast(numberchildrenathome as numeric(38,0)) as numberchildrenathome_updated,
-        cast(houseownerflag as numeric(38,0)) as houseownerflag_updated,
-        cast(numbercarsowned as numeric(38,0)) as numbercarsowned_updated,
-        --date
-        cast(BIRTHDATE as date) as BIRTHDATE_updated,
-        cast(DATEFIRSTPURCHASE as date) as DATEFIRSTPURCHASE_updated,
+        case
+           when yearlyincome IS NULL then null
+           else cast(yearlyincome as numeric(10,2))
+        end as yearlyincome_updated,
+        case
+           when totalchildren = 'NULL' then null
+           else cast(totalchildren as numeric(38,0))
+        end as totalchildren_updated,
+        case
+           when numberchildrenathome = 'NULL' then null
+           else cast(numberchildrenathome as numeric(38,0))
+        end as numberchildrenathome_updated,
+        case 
+           when houseownerflag = 'NULL' then null
+           else cast(houseownerflag as numeric(38,0))
+        end as houseownerflag_updated,
+        case
+           when numbercarsowned = 'NULL' then null
+           else cast(numbercarsowned as numeric(38,0))
+        end as numbercarsowned_updated,
+        -- date
+        case
+           when BIRTHDATE = 'NULL' or BIRTHDATE IS NULL then null
+           else cast(BIRTHDATE as date)
+        end as BIRTHDATE_updated,
+        case
+            when DATEFIRSTPURCHASE = 'NULL' or DATEFIRSTPURCHASE IS NULL then null
+            else cast(DATEFIRSTPURCHASE as date)
+        end as DATEFIRSTPURCHASE_updated,
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
 
