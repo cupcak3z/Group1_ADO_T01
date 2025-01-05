@@ -11,8 +11,8 @@ customer_derivedmetrics as (
 
         -- strings
         cast(FIRSTNAME as string) || ' ' || cast(LASTNAME as string) as FULLNAME,
-        MARITALSTATUS_Updated,
-        GENDER_updated
+        MARITALSTATUS_UPDATED,
+        GENDER_UPDATED,
         EDUCATION,
         OCCUPATION,
         ADDRESSLINE1,
@@ -25,8 +25,14 @@ customer_derivedmetrics as (
         NUMBERCHILDRENATHOME_UPDATED,
         HOUSEOWNERFLAG_UPDATED,
         NUMBERCARSOWNED_UPDATED,
-        datediff('year', BIRTHDATE_UPDATED, cast('2009-10-01' as date)) as CUSTOMERAGE,
-        datediff('year', DATEFIRSTPURCHASE_UPDATED, cast('2009-10-01' as date)) as YEARSSINCEFIRSTPURCHASE,
+        case
+            when BIRTHDATE_UPDATED is null then null
+            else datediff('year', BIRTHDATE_UPDATED, cast('2009-10-01' as date)) 
+        end as CUSTOMERAGE,
+        case
+            when DATEFIRSTPURCHASE_UPDATED is null then null
+           else datediff('day', DATEFIRSTPURCHASE_UPDATED, cast('2009-10-01' as date)) 
+        end as DAYSSINCEFIRSTPURCHASE, 
 
         -- creation timing
         CREATED_AT        
