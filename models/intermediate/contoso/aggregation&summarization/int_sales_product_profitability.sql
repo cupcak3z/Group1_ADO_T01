@@ -16,16 +16,3 @@ select
     row_number() over (order by sum(SALESAMOUNT_UPDATED) - sum(UNITCOST_UPDATED * SALESQUANTITY_UPDATED) desc) as profit_rank  -- Row number (no gaps)
 from salesproductgeography
 group by PRODUCTNAME, CLASSNAME, REGIONCOUNTRYNAME
-
-
-
-
-
-
-
-
-
-
-
-
-
