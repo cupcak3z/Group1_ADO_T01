@@ -8,7 +8,7 @@ employee as (
         -- ids
         cast(EMPLOYEEKEY as numeric(38,0)) as EMPLOYEEKEY_updated,
         case
-            when PARENTEMPLOYEEKEY = 'NULL' then 1 
+            when PARENTEMPLOYEEKEY = 'NULL' then cast(EMPLOYEEKEY as numeric(38,0))
             else cast(PARENTEMPLOYEEKEY as numeric(38,0))
         end as PARENTEMPLOYEEKEY_updated,
 
@@ -20,7 +20,6 @@ employee as (
         PHONE,
         EMERGENCYCONTACTNAME,
         EMERGENCYCONTACTPHONE,
-        GENDER,
         case
             when GENDER = 'M' then 'Male'
             else 'Female'
