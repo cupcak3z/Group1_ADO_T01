@@ -17,24 +17,24 @@ product as (
         CLASSNAME,
         STYLENAME,
         COLORNAME,
-        WEIGHTUNITMEASUREID,
+        WEIGHTUNITMEASUREID as WEIGHTUNITMEASURENAME,
         UNITOFMEASUREID,
-        UNITOFMEASURENAME,
+        UNITOFMEASURENAME as LENGTHUNITMEASURENAME,
         STOCKTYPENAME,
         case 
-            when STATUS = 'NULL' THEN 'Off'
+            when STATUS = 'NULL' then 'Off'
             else STATUS
         end as STATUS_updated,
         
         -- numbers
         cast(CLASSID as numeric(38,0)) as CLASSID_updated,
         case
-            when STYLEID = 'NULL' THEN 1
+            when STYLEID = 'NULL' then 1
             else cast(STYLEID as numeric(38,0))       
         end as STYLEID_updated,
         cast(COLORID as numeric(38,0)) as COLORID_updated,
         case
-            when WEIGHT = 'NULL' THEN 0
+            when WEIGHT = 'NULL' then 0
             else cast(WEIGHT as numeric(10, 2)) 
         end as WEIGHT_updated,
         cast(STOCKTYPEID as numeric(38,0)) as STOCKTYPEID_updated,
