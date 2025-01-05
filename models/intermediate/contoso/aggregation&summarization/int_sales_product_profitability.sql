@@ -13,9 +13,15 @@ select
     round(sum(SALESAMOUNT_UPDATED) - sum(UNITCOST_UPDATED * SALESQUANTITY_UPDATED), 2) as total_profit,  -- Total profit
     round(((sum(SALESAMOUNT_UPDATED) - sum(UNITCOST_UPDATED * SALESQUANTITY_UPDATED)) / sum(SALESAMOUNT_UPDATED)) * 100, 2) as profit_margin,  -- Profit margin
     round(((sum(SALESAMOUNT_UPDATED) - sum(UNITCOST_UPDATED * SALESQUANTITY_UPDATED)) / sum(UNITCOST_UPDATED * SALESQUANTITY_UPDATED)) * 100, 2) as roi,  -- ROI
-    rank() over (order by sum(SALESAMOUNT_UPDATED) - sum(UNITCOST_UPDATED * SALESQUANTITY_UPDATED) desc) as profit_rank  -- Rank by profit
+    row_number() over (order by sum(SALESAMOUNT_UPDATED) - sum(UNITCOST_UPDATED * SALESQUANTITY_UPDATED) desc) as profit_rank  -- Row number (no gaps)
 from salesproductgeography
 group by PRODUCTNAME, CLASSNAME, REGIONCOUNTRYNAME
+
+
+
+
+
+
 
 
 
