@@ -27,5 +27,3 @@ int_sales_product_profitability as (
 )
 
 select * from int_sales_product_profitability
-
-
