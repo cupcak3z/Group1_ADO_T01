@@ -24,6 +24,8 @@ date as (
     select
         DATEKEY_updated as DATEKEY,
         CALENDARYEAR_UPDATED as CALENDARYEAR,
+        CALENDARQUARTERLABEL,
+        CALENDARMONTHLABEL
     from {{ ref('stg_contoso__date') }}
 ),
 
@@ -49,6 +51,8 @@ onlinesales_with_product_date as (
         spc.NET_SALES_AMOUNT,
         spc.TOTAL_PROFIT,
         d.CALENDARYEAR,
+        d.CALENDARQUARTERLABEL,
+        d.CALENDARMONTHLABEL
     from onlinesales_with_product spc
     left join date d
         on spc.DATEKEY = d.DATEKEY
