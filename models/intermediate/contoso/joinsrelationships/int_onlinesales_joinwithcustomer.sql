@@ -8,7 +8,7 @@ online_sales as (
 
 customers as (
 
-    select * from {{ ref('int_customer_fullname_datecalculation') }}
+    select FULLNAME from {{ ref('int_customer_fullname_datecalculation') }}
 
 ),
 
