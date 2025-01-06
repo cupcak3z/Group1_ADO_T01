@@ -14,7 +14,7 @@ customer as (
         case 
            when MARITALSTATUS ='M' then 'Married'
            else 'Single'
-        end as MARITALSTATUS_Updated,
+        end as MARITALSTATUS_updated,
         case
            when GENDER ='M' then 'Male'
            else 'Female'
@@ -60,13 +60,14 @@ customer as (
             else cast(DATEFIRSTPURCHASE as date)
         end as DATEFIRSTPURCHASE_updated,
         case
-            when BIRTHDATE_UPDATED is null then null
-            else datediff('year', BIRTHDATE_UPDATED, cast('2009-10-01' as date)) 
+            when BIRTHDATE_updated is null then null
+            else datediff('year', BIRTHDATE_updated, cast('2009-10-01' as date)) 
         end as CUSTOMERAGE,
         case
-            when DATEFIRSTPURCHASE_UPDATED is null then null
-           else datediff('day', DATEFIRSTPURCHASE_UPDATED, cast('2009-10-01' as date)) 
-        end as DAYSSINCEFIRSTPURCHASE, 
+            when DATEFIRSTPURCHASE_updated is null then null
+           else datediff('day', DATEFIRSTPURCHASE_updated, cast('2009-10-01' as date)) 
+        end as DAYSSINCEFIRSTPURCHASE,
+         
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
 
