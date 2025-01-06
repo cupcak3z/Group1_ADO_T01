@@ -13,8 +13,7 @@ employee as (
         end as PARENTEMPLOYEEKEY_updated,
 
         -- strings
-        FIRSTNAME,
-        LASTNAME,
+        cast(FIRSTNAME as string) || ' ' || cast(LASTNAME as string) as FULLNAME,
         TITLE,
         EMAILADDRESS,
         PHONE,
@@ -55,6 +54,9 @@ employee as (
         cast(PAYFREQUENCY as numeric(38,0)) as PAYFREQUENCY_updated,
         cast(BASERATE as numeric(38,2)) as BASERATE_updated,
         cast(VACATIONHOURS as numeric(38,0)) as VACATIONHOURS_updated,
+        datediff('year', HIREDATE_UPDATED, cast('2009-10-01' as date)) as YEARSSINCEHIRED,
+        datediff('year', BIRTHDATE_UPDATED, cast('2009-10-01' as date)) as EMPLOYEEAGE,
+        datediff('day', HIREDATE_UPDATED, STARTDATE_UPDATED) as DAYSTOONBOARD,
 
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
