@@ -10,8 +10,7 @@ customer as (
         cast(CUSTOMERKEY as numeric(38,0)) as CUSTOMERKEY_updated,
         cast(GEOGRAPHYKEY as numeric(38,0)) as GEOGRAPHYKEY_updated,
         -- strings
-        FIRSTNAME,
-        LASTNAME, 
+        cast(FIRSTNAME as string) || ' ' || cast(LASTNAME as string) as FULLNAME,
         case 
            when MARITALSTATUS ='M' then 'Married'
            else 'Single'
@@ -60,6 +59,14 @@ customer as (
             when DATEFIRSTPURCHASE = 'NULL' or DATEFIRSTPURCHASE IS NULL then null
             else cast(DATEFIRSTPURCHASE as date)
         end as DATEFIRSTPURCHASE_updated,
+        case
+            when BIRTHDATE_UPDATED is null then null
+            else datediff('year', BIRTHDATE_UPDATED, cast('2009-10-01' as date)) 
+        end as CUSTOMERAGE,
+        case
+            when DATEFIRSTPURCHASE_UPDATED is null then null
+           else datediff('day', DATEFIRSTPURCHASE_UPDATED, cast('2009-10-01' as date)) 
+        end as DAYSSINCEFIRSTPURCHASE, 
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
 
