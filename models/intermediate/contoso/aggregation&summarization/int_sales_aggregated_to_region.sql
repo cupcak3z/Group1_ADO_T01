@@ -1,3 +1,5 @@
+--Regional Sales Performance Analysis
+
 with
 salesregiondata as (
     select * from {{ ref('int_sales_joinregiondata') }}  -- Referencing the join model
