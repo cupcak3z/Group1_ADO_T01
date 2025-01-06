@@ -40,8 +40,8 @@ store as (
     LASTREMODELDATE,
 
     -- additional
-    datediff('year', OPENDATE_UPDATED, cast('2009-10-01' as date)) as YEARSSINCEOPEN,
-    datediff('year', OPENDATE_UPDATED, CLOSEDATE_UPDATED) as YEARSLEFT,
+    datediff('year', OPENDATE_updated, cast('2009-10-01' as date)) as YEARSSINCEOPEN,
+    datediff('year', OPENDATE_updated, CLOSEDATE_updated) as YEARSLEFT,
     datediff('day', LASTREMODELDATE, cast('2009-10-01' as date)) as DAYSSINCELASTREMODEL,
 
     --creation date
