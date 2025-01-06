@@ -6,6 +6,7 @@ sales as (
 
 aggregated_sales as (
     select
+        extract(year from created_at) as year_number,
         extract(month from created_at) as month_number, 
         CASE 
             WHEN extract(month from created_at) = 1 THEN 'January'
@@ -29,6 +30,7 @@ aggregated_sales as (
         sum(TOTAL_PROFIT) as total_profit
     from sales
     group by 
+        extract(year from created_at), 
         extract(month from created_at)
 ),
 
@@ -36,24 +38,25 @@ lagged_features as (
     select
         *,
         lag(total_sales) over (
-            order by month_number
+            order by year_number, month_number
         ) as lag_total_sales,
         lag(total_quantity) over (
-            order by month_number
+            order by year_number, month_number
         ) as lag_total_quantity,
         lag(total_profit) over (
-            order by month_number
+            order by year_number, month_number
         ) as lag_total_profit,
         lag(avg_sales) over (
-            order by month_number
+            order by year_number, month_number
         ) as lag_avg_sales,
         lag(avg_quantity) over (
-            order by month_number
+            order by year_number, month_number
         ) as lag_avg_quantity
     from aggregated_sales
 )
 
 select 
+    year_number,
     month_name,
     total_sales,
     avg_sales,
@@ -67,4 +70,4 @@ select
     lag_avg_sales,
     lag_avg_quantity
 from lagged_features
-order by month_number
+order by year_number, month_number
