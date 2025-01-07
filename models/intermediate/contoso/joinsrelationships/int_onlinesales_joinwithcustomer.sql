@@ -8,7 +8,7 @@ online_sales as (
 
 customers as (
 
-    select * from {{ ref('stg_contoso__onlinesales') }}
+    select FULLNAME from {{ ref('stg_contoso__customer') }}
 
 ),
 
