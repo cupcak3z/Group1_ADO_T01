@@ -27,6 +27,14 @@ salesterritory as (
             else cast(ENDDATE as date)
         end as ENDDATE_updated,
         
+        -- additional
+        case
+            when cast('2009-10-01' as date) < STARTDATE_updated then 
+                -datediff('day', cast('2009-10-01' as date), STARTDATE_updated)
+        else
+            datediff('day', STARTDATE_updated, cast('2009-10-01' as date))
+        end as YEARSSINCESALESTERRITORYSTART,           
+
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
 

@@ -41,11 +41,18 @@ product as (
         cast(UNITCOST as numeric(10, 2)) as UNITCOST_updated,
         cast(UNITPRICE as numeric(10, 2)) as UNITPRICE_updated,
 
-        -- dates
+        -- additional
         case
             when AVAILABLEFORSALEDATE = 'NULL' then cast('2005-05-03T00:00:00' as timestamp_ntz)
             else cast(AVAILABLEFORSALEDATE as timestamp_ntz)
         end as AVAILABLEFORSALEDATE_updated,
+        cast(((UNITPRICE_updated - UNITCOST_updated) / UNITCOST_updated) as numeric(3,2)) AS MARKUP,
+        case
+            when cast('2009-10-01' as date) < AVAILABLEFORSALEDATE_updated then 
+                -datediff('day', cast('2009-10-01' as date), AVAILABLEFORSALEDATE_updated)
+        else
+            datediff('day', AVAILABLEFORSALEDATE_updated, cast('2009-10-01' as date))
+        end as DAYSSINCEAVAILABLEFORSALE,
         
         -- creation timing
         LOADDATE::timestamp_ntz as created_at

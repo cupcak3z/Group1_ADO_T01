@@ -39,6 +39,11 @@ store as (
     --TIMESTAMP_NTZ
     LASTREMODELDATE,
 
+    -- additional
+    datediff('year', OPENDATE_updated, cast('2009-10-01' as date)) as YEARSSINCEOPEN,
+    datediff('year', OPENDATE_updated, CLOSEDATE_updated) as YEARSLEFT,
+    datediff('day', LASTREMODELDATE, cast('2009-10-01' as date)) as DAYSSINCELASTREMODEL,
+
     --creation date
     LOADDATE::timestamp_ntz as created_at
 

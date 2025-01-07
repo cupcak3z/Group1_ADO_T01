@@ -19,6 +19,15 @@ promotion as (
         -- dates
         cast(STARTDATE as date) as STARTDATE_updated,
         cast(ENDDATE as date) as ENDDATE_updated,
+
+        -- additional
+        datediff('day', STARTDATE_updated, ENDDATE_updated) as DAYSPROMOTIONDURATION,
+        case
+            when cast('2009-10-01' as date) < STARTDATE_updated then 
+                -datediff('day', cast('2009-10-01' as date), STARTDATE_updated)
+        else
+            datediff('day', STARTDATE_updated, cast('2009-10-01' as date))
+        end as DAYSSINCEPROMOTIONSTART,
         
         -- creation timing
         LOADDATE::timestamp_ntz as created_at
