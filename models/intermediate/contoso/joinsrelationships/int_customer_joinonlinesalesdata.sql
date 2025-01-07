@@ -13,8 +13,7 @@ geography AS (
 int_onlinesales_customer AS (
     SELECT
         os.CUSTOMERKEY_UPDATED,
-        c.FIRSTNAME,
-        c.LASTNAME,
+        c.FULLNAME,
         c.GENDER_UPDATED,
         g.REGIONCOUNTRYNAME,  -- From geography table
         c.MARITALSTATUS_UPDATED,
