@@ -1,117 +1,73 @@
 with 
--- Reference the enriched online sales data
-onlinesales_with_product_date as (
+sales as (
     select * 
-    from {{ ref('int_product_joinsalesanddatedata') }}
+    from {{ ref('stg_contoso__sales') }}
 ),
 
 aggregated_sales as (
     select
-        CALENDARYEAR as year_number,
-        case 
-            when CALENDARQUARTERLABEL = 'Q1' then 1
-            when CALENDARQUARTERLABEL = 'Q2' then 2
-            when CALENDARQUARTERLABEL = 'Q3' then 3
-            when CALENDARQUARTERLABEL = 'Q4' then 4
-        end as quarter_number,
-        case 
-            when CALENDARMONTHLABEL = 'January' then 1
-            when CALENDARMONTHLABEL = 'February' then 2
-            when CALENDARMONTHLABEL = 'March' then 3
-            when CALENDARMONTHLABEL = 'April' then 4
-            when CALENDARMONTHLABEL = 'May' then 5
-            when CALENDARMONTHLABEL = 'June' then 6
-            when CALENDARMONTHLABEL = 'July' then 7
-            when CALENDARMONTHLABEL = 'August' then 8
-            when CALENDARMONTHLABEL = 'September' then 9
-            when CALENDARMONTHLABEL = 'October' then 10
-            when CALENDARMONTHLABEL = 'November' then 11
-            when CALENDARMONTHLABEL = 'December' then 12
-        end as month_number,
-        CALENDARMONTHLABEL as month_name,
-        sum(NET_SALES_AMOUNT) as total_sales,
-        avg(NET_SALES_AMOUNT) as avg_sales,
+        extract(year from created_at) as year_number,
+        extract(month from created_at) as month_number, 
+        CASE 
+            WHEN extract(month from created_at) = 1 THEN 'January'
+            WHEN extract(month from created_at) = 2 THEN 'February'
+            WHEN extract(month from created_at) = 3 THEN 'March'
+            WHEN extract(month from created_at) = 4 THEN 'April'
+            WHEN extract(month from created_at) = 5 THEN 'May'
+            WHEN extract(month from created_at) = 6 THEN 'June'
+            WHEN extract(month from created_at) = 7 THEN 'July'
+            WHEN extract(month from created_at) = 8 THEN 'August'
+            WHEN extract(month from created_at) = 9 THEN 'September'
+            WHEN extract(month from created_at) = 10 THEN 'October'
+            WHEN extract(month from created_at) = 11 THEN 'November'
+            WHEN extract(month from created_at) = 12 THEN 'December'
+        END as month_name,
+        sum(SALESAMOUNT_updated) as total_sales,
+        avg(SALESAMOUNT_updated) as avg_sales,
+        sum(SALESQUANTITY_updated) as total_quantity,
+        avg(SALESQUANTITY_updated) as avg_quantity,
+        sum(NET_SALES_AMOUNT) as total_net_sales,
         sum(TOTAL_PROFIT) as total_profit
-    from onlinesales_with_product_date
+    from sales
     group by 
-        CALENDARYEAR,
-        case 
-            when CALENDARQUARTERLABEL = 'Q1' then 1
-            when CALENDARQUARTERLABEL = 'Q2' then 2
-            when CALENDARQUARTERLABEL = 'Q3' then 3
-            when CALENDARQUARTERLABEL = 'Q4' then 4
-        end,
-        case 
-            when CALENDARMONTHLABEL = 'January' then 1
-            when CALENDARMONTHLABEL = 'February' then 2
-            when CALENDARMONTHLABEL = 'March' then 3
-            when CALENDARMONTHLABEL = 'April' then 4
-            when CALENDARMONTHLABEL = 'May' then 5
-            when CALENDARMONTHLABEL = 'June' then 6
-            when CALENDARMONTHLABEL = 'July' then 7
-            when CALENDARMONTHLABEL = 'August' then 8
-            when CALENDARMONTHLABEL = 'September' then 9
-            when CALENDARMONTHLABEL = 'October' then 10
-            when CALENDARMONTHLABEL = 'November' then 11
-            when CALENDARMONTHLABEL = 'December' then 12
-        end,
-        CALENDARMONTHLABEL
+        extract(year from created_at), 
+        extract(month from created_at)
 ),
 
 lagged_features as (
     select
         *,
-        -- Lagged features for year
         lag(total_sales) over (
-            order by year_number
-        ) as lag_total_sales_year,
-        lag(avg_sales) over (
-            order by year_number
-        ) as lag_avg_sales_year,
+            order by year_number, month_number
+        ) as lag_total_sales,
+        lag(total_quantity) over (
+            order by year_number, month_number
+        ) as lag_total_quantity,
         lag(total_profit) over (
-            order by year_number
-        ) as lag_total_profit_year,
-
-        -- Lagged features for quarter
-        lag(total_sales) over (
-            order by year_number, quarter_number
-        ) as lag_total_sales_quarter,
+            order by year_number, month_number
+        ) as lag_total_profit,
         lag(avg_sales) over (
-            order by year_number, quarter_number
-        ) as lag_avg_sales_quarter,
-        lag(total_profit) over (
-            order by year_number, quarter_number
-        ) as lag_total_profit_quarter,
-
-        -- Lagged features for month
-        lag(total_sales) over (
-            order by year_number, quarter_number, month_number
-        ) as lag_total_sales_month,
-        lag(avg_sales) over (
-            order by year_number, quarter_number, month_number
-        ) as lag_avg_sales_month,
-        lag(total_profit) over (
-            order by year_number, quarter_number, month_number
-        ) as lag_total_profit_month
+            order by year_number, month_number
+        ) as lag_avg_sales,
+        lag(avg_quantity) over (
+            order by year_number, month_number
+        ) as lag_avg_quantity
     from aggregated_sales
 )
 
 select 
     year_number,
-    quarter_number,
-    month_number,
     month_name,
     total_sales,
     avg_sales,
+    total_quantity,
+    avg_quantity,
+    total_net_sales,
     total_profit,
-    lag_total_sales_year,
-    lag_avg_sales_year,
-    lag_total_profit_year,
-    lag_total_sales_quarter,
-    lag_avg_sales_quarter,
-    lag_total_profit_quarter,
-    lag_total_sales_month,
-    lag_avg_sales_month,
-    lag_total_profit_month
+    lag_total_sales,
+    lag_total_quantity,
+    lag_total_profit,
+    lag_avg_sales,
+    lag_avg_quantity
 from lagged_features
-order by year_number, quarter_number, month_number
+order by year_number, month_number
