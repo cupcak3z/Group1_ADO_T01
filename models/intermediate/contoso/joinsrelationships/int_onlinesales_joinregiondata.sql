@@ -3,10 +3,19 @@ onlinesales as (
     select * from {{ ref('stg_contoso__onlinesales') }}
 ),
 store as (
-    select * from {{ ref('stg_contoso__store') }}
+    select
+        STORENAME,
+        STORETYPE,
+        STATUS
+    from {{ ref('stg_contoso__store') }}
 ),
 geography as (
-    select * from {{ ref('stg_contoso__geography') }}
+    select 
+        REGIONCOUNTRYNAME,
+        STATEPROVINCENAME,
+        CITYNAME,
+        CONTINENTNAME
+    from {{ ref('stg_contoso__geography') }}
 ),
 
 onlinesalesregiondata as (
