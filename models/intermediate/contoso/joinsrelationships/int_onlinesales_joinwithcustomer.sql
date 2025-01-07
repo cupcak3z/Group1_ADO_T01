@@ -8,11 +8,7 @@ online_sales as (
 
 customers as (
 
-<<<<<<< HEAD
-    select FULLNAME from {{ ref('int_customer_fullname_datecalculation') }}
-=======
-    select * from {{ ref('stg_contoso__onlinesales') }}
->>>>>>> 676447eecd7411a19acc56f94074c5f1bb5866f9
+    select FULLNAME from {{ ref('stg_contoso__customer') }}
 
 ),
 
