@@ -6,7 +6,7 @@ customer AS (
     SELECT * FROM {{ ref('stg_contoso__customer') }}
 ),
 geography AS (
-    SELECT * FROM {{ ref('stg_contoso__geography') }}  -- Geography table reference
+    SELECT * FROM {{ ref('stg_contoso__geography') }}
 ),
 
 -- Join onlinesales, customer, and geography data
@@ -16,7 +16,7 @@ int_onlinesales_customer AS (
         c.FIRSTNAME,
         c.LASTNAME,
         c.GENDER_UPDATED,
-        g.REGIONCOUNTRYNAME,  -- From geography table
+        g.REGIONCOUNTRYNAME,
         c.MARITALSTATUS_UPDATED,
         c.EMAILADDRESS,
         c.OCCUPATION,
