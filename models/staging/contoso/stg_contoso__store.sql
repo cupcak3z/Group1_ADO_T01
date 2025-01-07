@@ -26,7 +26,7 @@ store as (
     case
       when EMPLOYEECOUNT = 'NULL' then 18
       else cast(EMPLOYEECOUNT as numeric(38,0))
-    end as EMPLOYEECOUNT_Updated,
+    end as EMPLOYEECOUNT_updated,
     cast(SELLINGAREASIZE as numeric(38,0)) as SELLINGAREASIZE_updated,
 
     --date
