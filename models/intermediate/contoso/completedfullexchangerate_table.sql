@@ -38,10 +38,8 @@ date as (
 
 joined_data as (
     select 
-        -- e.CURRENCYKEY_UPDATED as exchange_currencykey,
         e.AVERAGERATE_UPDATED,
         e.ENDOFDAYRATE_UPDATED,
-        -- e.DATEKEY_UPDATED as datekey_date,
         c.CURRENCYNAME,
         c.CURRENCYDESCRIPTION,
         d.*
