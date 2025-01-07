@@ -37,11 +37,19 @@ date as (
 ),
 
 joined_data as (
-    select *
-    from exchange_rate
-    left join currency on currency.CURRENCYKEY_UPDATED = exchange_rate.CURRENCYKEY_UPDATED
-    left join date on date.DATEKEY_updated = exchange_rate.DATEKEY_updated
+    select 
+        -- e.CURRENCYKEY_UPDATED as exchange_currencykey,
+        e.AVERAGERATE_UPDATED,
+        e.ENDOFDAYRATE_UPDATED,
+        -- e.DATEKEY_UPDATED as datekey_date,
+        c.CURRENCYNAME,
+        c.CURRENCYDESCRIPTION,
+        d.*
+    from exchange_rate e
+    left join currency c on c.CURRENCYKEY_UPDATED = e.CURRENCYKEY_UPDATED
+    left join date d on d.DATEKEY_updated = e.DATEKEY_UPDATED
 )
+
 
 select *
 from joined_data
