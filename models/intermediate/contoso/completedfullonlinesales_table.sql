@@ -11,12 +11,12 @@ with online_sales as (
         SALESQUANTITY_updated,
         DISCOUNTQUANTITY_updated,
         RETURNQUANTITY_updated,
-        UNITCOST_UPDATED 
+        UNITCOST_UPDATED as online_sales_unitcost, -- Alias to avoid conflict
         UNITPRICE_updated,
         TOTALCOST_updated,
         NET_SALES_AMOUNT,
         TOTAL_PROFIT
-    from ADO_GROUP1_DB_RAW.raw_schema_yohtih.stg_contoso__onlinesales
+    from {{ ref('stg_contoso__onlinesales') }}
 ),
 
 date as (
@@ -33,7 +33,7 @@ date as (
         EUROPESEASON_updated,
         NORTHAMERICASEASON_updated,
         ASIASEASON_updated
-    from ADO_GROUP1_DB_RAW.raw_schema_yohtih.stg_contoso__date
+    from {{ ref('stg_contoso__date') }}
 ),
 
 geography as (
@@ -44,7 +44,7 @@ geography as (
         CITYNAME,
         STATEPROVINCENAME,
         REGIONCOUNTRYNAME
-    from ADO_GROUP1_DB_RAW.raw_schema_yohtih.stg_contoso__geography
+    from {{ ref('stg_contoso__geography') }}
 ),
 
 store as (
@@ -61,10 +61,10 @@ store as (
         OPENDATE_UPDATED,
         CLOSEDATE_UPDATED,
         LASTREMODELDATE
-    from ADO_GROUP1_DB_RAW.raw_schema_yohtih.stg_contoso__store
+    from {{ ref('stg_contoso__store') }}
 ),
 
-product as (
+product_information as (
     select 
         PRODUCTKEY_UPDATED as product_table_productkey,
         PRODUCTSUBCATEGORYKEY_UPDATED as product_subcategorykey,
@@ -73,22 +73,9 @@ product as (
         BRANDNAME,
         CLASSNAME,
         COLORNAME,
-    from ADO_GROUP1_DB_RAW.raw_schema_yohtih.stg_contoso__product
-),
-
-product_category as (
-    select 
-        PRODUCTCATEGORYKEY_UPDATED as product_categorykey,
-        PRODUCTCATEGORYNAME
-    from ADO_GROUP1_DB_RAW.raw_schema_yohtih.stg_contoso__productcategory
-),
-
-product_subcategory as (
-    select 
-        PRODUCTSUBCATEGORYKEY_UPDATED as subcategory_table_subcategorykey,
-        PRODUCTCATEGORYKEY_UPDATED as subcategory_categorykey,
+        PRODUCTCATEGORYNAME,
         PRODUCTSUBCATEGORYNAME
-    from ADO_GROUP1_DB_RAW.raw_schema_yohtih.stg_contoso__productsubcategory
+    from {{ ref('int_product_jointogether') }}
 ),
 
 customer as (
@@ -109,7 +96,7 @@ customer as (
         HOUSEOWNERFLAG_UPDATED,
         NUMBERCARSOWNED_UPDATED,
         BIRTHDATE_UPDATED
-    from ADO_GROUP1_DB_RAW.raw_schema_yohtih.stg_contoso__customer
+    from {{ ref('stg_contoso__customer') }}
 ),
 
 joined_data as (
@@ -119,16 +106,12 @@ joined_data as (
         s.*,
         g.*,
         p.*, 
-        ps.*,
-        pc.*,
         c.*
     from online_sales os
     left join date d on os.online_sales_datekey = d.date_table_datekey
     left join store s on os.online_sales_storekey = s.store_table_storekey
     left join geography g on s.store_geographykey = g.geography_table_geographykey
-    left join product p on os.PRODUCTKEY_updated = p.product_table_productkey
-    left join product_subcategory ps on p.product_subcategorykey = ps.subcategory_table_subcategorykey
-    left join product_category pc on ps.subcategory_categorykey = pc.product_categorykey
+    left join product_information p on os.PRODUCTKEY_updated = p.product_table_productkey
     left join customer c on os.CUSTOMERKEY_updated = c.customer_table_customerkey
 )
 
