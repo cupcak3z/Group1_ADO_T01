@@ -7,7 +7,6 @@ salesdata as (
         PRODUCTKEY_updated,
         PROMOTIONKEY_updated,
         CHANNELKEY_updated,
-        CURRENCYKEY_updated,
         SALESAMOUNT_updated,
         DISCOUNTAMOUNT_updated,
         RETURNAMOUNT_updated,
