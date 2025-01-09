@@ -7,7 +7,6 @@ salesdata as (
         PRODUCTKEY_updated,
         PROMOTIONKEY_updated,
         CHANNELKEY_updated,
-        CURRENCYKEY_updated,
         SALESAMOUNT_updated,
         DISCOUNTAMOUNT_updated,
         RETURNAMOUNT_updated,
@@ -103,13 +102,6 @@ channeldata as (
     from {{ ref('stg_contoso__channel') }}
 ),
 
-currencydata as (
-    select
-        CURRENCYKEY_updated,
-        CURRENCYNAME
-    from {{ ref('stg_contoso__currency') }}
-),
-
 completedsalesdata as (
     select
         sales.SALESKEY_updated,
@@ -118,7 +110,6 @@ completedsalesdata as (
         sales.PRODUCTKEY_updated,
         sales.PROMOTIONKEY_updated,
         sales.CHANNELKEY_updated,
-        sales.CURRENCYKEY_updated,
         sales.SALESAMOUNT_updated,
         sales.DISCOUNTAMOUNT_updated,
         sales.RETURNAMOUNT_updated,
@@ -171,8 +162,7 @@ completedsalesdata as (
         promo.PROMOTIONCATEGORY,
         promo.DISCOUNTPERCENT_updated,
         promo.DAYSPROMOTIONDURATION,
-        chan.CHANNELNAME,
-        curr.CURRENCYNAME
+        chan.CHANNELNAME
     from salesdata sales
     left join datedata dates on sales.DATEKEY_updated = dates.DATEKEY_updated
     left join storedata store on sales.STOREKEY_updated = store.STOREKEY_updated
@@ -180,7 +170,6 @@ completedsalesdata as (
     left join productdata prod on sales.PRODUCTKEY_updated = prod.PRODUCTKEY_updated
     left join promotiondata promo on sales.PROMOTIONKEY_updated = promo.PROMOTIONKEY_updated
     left join channeldata chan on sales.CHANNELKEY_updated = chan.CHANNELKEY_updated
-    left join currencydata curr on sales.CURRENCYKEY_updated = curr.CURRENCYKEY_updated
 )
 
 select * from completedsalesdata

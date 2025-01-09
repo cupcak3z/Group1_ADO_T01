@@ -1,0 +1,1 @@
+select * from {{ ref('completedfullsales_table') }}
