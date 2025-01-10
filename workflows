@@ -1,4 +1,4 @@
-name: Snowflake & dbt CI/CD
+name: dbt CI/CD
 
 on:
   push:
@@ -9,7 +9,6 @@ on:
       - cupcak3z-patch-1
       - tan-hongkai-patch-1
       - ssashimiiii-patch-1
-
 
 jobs:
   dbt_build:
