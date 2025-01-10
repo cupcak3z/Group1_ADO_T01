@@ -2,13 +2,7 @@ name: dbt CI/CD
 
 on:
   push:
-    branches:
-      - main
-      - SenderosAng-patch-1
-      - Yxhith-patch-2
-      - cupcak3z-patch-1
-      - tan-hongkai-patch-1
-      - ssashimiiii-patch-1
+    branches: [main]
 
 jobs:
   dbt_build:
