@@ -47,3 +47,4 @@ models:
     intermediate:
       +schema: intermediate # Write intermediate models to a new schema
       +materialized: view
+# TESTING TESTING TESTING HONG KAI
