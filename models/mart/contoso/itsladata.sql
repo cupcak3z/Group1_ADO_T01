@@ -1,1 +1,1 @@
-\select * from {{ ref('completedfullitsla_table') }}
+select * from {{ ref('completedfullitsla_table') }}
