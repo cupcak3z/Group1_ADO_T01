@@ -38,9 +38,12 @@ models:
   group1_ado_t01:
     # Applies to all files under models/example/
     mart:         # For final, production-level models
+      +schema: analytics  # Write mart models to a new schema
       +materialized: table
     staging:
+      +schema: staging    # Write staging models to a new schema
       +materialized: view
       +database: ADO_GROUP1_DB_RAW
     intermediate:
+      +schema: intermediate # Write intermediate models to a new schema
       +materialized: view
