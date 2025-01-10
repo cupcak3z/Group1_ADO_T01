@@ -37,8 +37,8 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   group1_ado_t01:
     # Applies to all files under models/example/
-    marts:         # For final, production-level models
-      +materialized: incremental
+    mart:         # For final, production-level models
+      +materialized: table
     staging:
       +materialized: view
       +database: ADO_GROUP1_DB_RAW
