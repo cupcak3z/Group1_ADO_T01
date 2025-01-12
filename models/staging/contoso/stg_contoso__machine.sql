@@ -27,7 +27,7 @@ machine as (
 
         -- additional
         datediff('year', SERVICESTARTDATE_UPDATED, DECOMMISSIONDATE_UPDATED) as YEARSSERVICELIFE,
-        datediff('day', LASTMODIFIEDDATE_UPDATED, cast('2009-10-01' as date)) as DAYSSINCELASTMODIFICATION,
+        datediff('day', LASTMODIFIEDDATE_UPDATED, cast('2009-12-31' as date)) as DAYSSINCELASTMODIFICATION,
 
         -- creation timing
         LOADDATE::timestamp_ntz as created_at

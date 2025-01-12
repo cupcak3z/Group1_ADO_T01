@@ -23,10 +23,10 @@ promotion as (
         -- additional
         datediff('day', STARTDATE_updated, ENDDATE_updated) as DAYSPROMOTIONDURATION,
         case
-            when cast('2009-10-01' as date) < STARTDATE_updated then 
-                -datediff('day', cast('2009-10-01' as date), STARTDATE_updated)
+            when cast('2009-12-31' as date) < STARTDATE_updated then 
+                -datediff('day', cast('2009-12-31' as date), STARTDATE_updated)
         else
-            datediff('day', STARTDATE_updated, cast('2009-10-01' as date))
+            datediff('day', STARTDATE_updated, cast('2009-12-31' as date))
         end as DAYSSINCEPROMOTIONSTART,
         
         -- creation timing

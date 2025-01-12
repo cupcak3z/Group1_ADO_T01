@@ -61,11 +61,11 @@ customer as (
         end as DATEFIRSTPURCHASE_updated,
         case
             when BIRTHDATE_updated is null then null
-            else datediff('year', BIRTHDATE_updated, cast('2009-10-01' as date)) 
+            else datediff('year', BIRTHDATE_updated, cast('2009-12-31' as date)) 
         end as CUSTOMERAGE,
         case
             when DATEFIRSTPURCHASE_updated is null then null
-           else datediff('day', DATEFIRSTPURCHASE_updated, cast('2009-10-01' as date)) 
+           else datediff('day', DATEFIRSTPURCHASE_updated, cast('2009-12-31' as date)) 
         end as DAYSSINCEFIRSTPURCHASE,
          
         -- creation timing
