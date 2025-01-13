@@ -1,11 +1,10 @@
 version: 2
-
 sources:
   - name: ADO_GROUP1_DB_RAW
     database: ADO_GROUP1_DB_RAW
     schema: RAW_SCHEMA_STAGING
     tables:
-      - name: STG_CONTOSO_ACCOUNT
+      - name: stg_contoso__account
         description: "Account Staging Table"
         columns:
           - name: ACCOUNTKEY_UPDATED
@@ -87,10 +86,10 @@ sources:
             tests:
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-      - name: DIMDATE_RAW
+      - name: STG_CONTOSO_DATE
         description: "Date Table"
         columns:
-          - name: DATEKEY
+          - name: DATEKEY_UPDATED
             description: "The primary key for the Date table"
             tests:
               - unique
@@ -130,19 +129,19 @@ sources:
             tests:
               - accepted_values:
                   values: ["WorkDay", "WeekEnd", null]
-          - name: ISHOLIDAY
+          - name: ISHOLIDAY_UPDATED
             description: "Indicates whether it is a holiday"
             tests:
               - accepted_values:
                   values: ["Yes", "No", null]
-          - name: MONTHNUMBER
+          - name: MONTHNUMBER_UPDATED
             description: "Numeric representation of the month"
             tests:
               - not_null
               - accepted_values:
                   values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
                   quote: false
-          - name: CALENDARDAYOFWEEKNUMBER
+          - name: CALENDARDAYOFWEEKNUMBER_UPDATED
             description: "Numeric representation of the day of the week"
             tests:
               - not_null
