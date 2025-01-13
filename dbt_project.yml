@@ -48,3 +48,5 @@ models:
       +schema: intermediate # Write intermediate models to a new schema
       +materialized: view
 # TESTING MMMMM
+
+# COMMENTS 

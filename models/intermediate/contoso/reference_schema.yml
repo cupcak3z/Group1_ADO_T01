@@ -1,96 +1,95 @@
 version: 2
-
 sources:
   - name: ADO_GROUP1_DB_RAW
     database: ADO_GROUP1_DB_RAW
-    schema: CONTOSO
+    schema: RAW_SCHEMA_STAGING
     tables:
-      - name: DIMACCOUNT_RAW
-        description: "Account Table"
+      - name: stg_contoso__account
+        description: "Account Staging Table"
         columns:
-          - name: ACCOUNTKEY
+          - name: ACCOUNTKEY_UPDATED
             description: "The primary key for Account table"
             tests:
               - unique
               - not_null
-          - name: PARENTACCOUNTKEY
+          - name: PARENTACCOUNTKEY_UPDATED
             description: "Foreign key referencing ACCOUNTKEY in the Account table"
             tests:
               - not_null
               - relationships:
                   to: ref('ACCOUNT')
-                  field: "ACCOUNTKEY"
-      - name: DIMCHANNEL_RAW
+                  field: "ACCOUNTKEY_UPDATED"
+      - name: STG_CONTOSO_CHANNEL
         description: "Channel Table"
         columns:
-          - name: CHANNELKEY
+          - name: CHANNELKEY_UPDATED
             description: "The primary key for the Channel table"
             tests:
               - unique
               - not_null
-      - name: DIMCURRENCY_RAW
+      - name: STG_CONTOSO_CURRENCY
         description: "Currency Table"
         columns:
-          - name: CURRENCYKEY
+          - name: CURRENCYKEY_UPDATED
             description: "The primary key for the Currency table"
             tests:
               - unique
               - not_null
-      - name: DIMCUSTOMER_RAW
+      - name: STG_CONTOSO_CUSTOMER
         description: "Customer Table"
         columns:
-          - name: CUSTOMERKEY
+          - name: CUSTOMERKEY_UPDATED
             description: "The primary key for the Customer table"
             tests:
               - unique
               - not_null
-          - name: GEOGRAPHYKEY
+          - name: GEOGRAPHYKEY_UPDATED
             description: "Foreign key referencing GEOGRAPHYKEY in the Geography table"
             tests:
               - not_null
               - relationships:
                   to: ref('GEOGRAPHY')
-                  field: "GEOGRAPHYKEY"
-          - name: MARITALSTATUS
+                  field: "GEOGRAPHYKEY_UPDATED"
+          - name: MARITALSTATUS_UPDATED
             description: "Marital status of customer"
             tests:
               - accepted_values:
                   values: ["M", "S", "N"]
-          - name: GENDER
+          - name: GENDER_UPDATED
             description: "Gender of customer"
             tests:
               - accepted_values:
                   values: ["M", "F", "N"]
-          - name: YEARLYINCOME
+          - name: YEARLYINCOME_UPDATED
             description: "Annual income of the customer"
             tests:
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-          - name: TOTALCHILDREN
+          - name: TOTALCHILDREN_UPDATED
             description: "Total number of children the customer has"
             tests:
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
-          - name: NUMBERCHILDRENATHOME
+          - name: NUMBERCHILDRENATHOME_UPDATED
             description: "Number of children living at home"
             tests:
               - dbt_utils.expression_is_true:
                   expression: ">= 0"             
-          - name: HOUSEOWNERFLAG
+          - name: HOUSEOWNERFLAG_UPDATED
             description: "Whether the customer owns a house"
             tests:
               - accepted_values:
                   values: [0, 1]
                   quote: false
-          - name: NUMBERCARSOWNED
+          - name: NUMBERCARSOWNED_UPDATED
             description: "Number of cars owned by the customer"
             tests:
               - dbt_utils.expression_is_true:
-                  expression: ">= 0"  
-      - name: DIMDATE_RAW
+                  expression: ">= 0"
+      - name: STG_CONTOSO_DATE
         description: "Date Table"
         columns:
-          - name: DATEKEY
+          - name: DATEKEY_UPDATED
             description: "The primary key for the Date table"
             tests:
               - unique
@@ -130,19 +129,19 @@ sources:
             tests:
               - accepted_values:
                   values: ["WorkDay", "WeekEnd", null]
-          - name: ISHOLIDAY
+          - name: ISHOLIDAY_UPDATED
             description: "Indicates whether it is a holiday"
             tests:
               - accepted_values:
                   values: ["Yes", "No", null]
-          - name: MONTHNUMBER
+          - name: MONTHNUMBER_UPDATED
             description: "Numeric representation of the month"
             tests:
               - not_null
               - accepted_values:
                   values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
                   quote: false
-          - name: CALENDARDAYOFWEEKNUMBER
+          - name: CALENDARDAYOFWEEKNUMBER_UPDATED
             description: "Numeric representation of the day of the week"
             tests:
               - not_null
