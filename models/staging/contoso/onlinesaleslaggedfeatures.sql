@@ -1,1 +1,0 @@
-select * from {{ ref('int_onlinesales_lagged_features') }}
