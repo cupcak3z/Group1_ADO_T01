@@ -17,7 +17,7 @@ itmachine as (
         cast(COSTAMOUNT as numeric(38,0)) as COSTAMOUNT_updated,
 
         -- Creation Timings
-        to_timestamp_ntz(DATEKEY) as created_at  
+        LOADDATE::timestamp_ntz as created_at  
 
     from source
 )

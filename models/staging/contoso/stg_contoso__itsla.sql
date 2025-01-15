@@ -20,9 +20,8 @@ itsla as (
         to_timestamp(OUTAGEENDTIME, 'DD/MM/YYYY HH24:MI') as OUTAGEENDTIME_updated,
 
         -- Creation Timings
-        to_timestamp(DATEKEY, 'DD/MM/YYYY HH24:MI') as created_at 
-    
-
+        LOADDATE::timestamp_ntz as created_at  
+        
     from source
 )
 

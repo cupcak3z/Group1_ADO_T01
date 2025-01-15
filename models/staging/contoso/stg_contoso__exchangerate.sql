@@ -17,7 +17,7 @@ exchangerate as (
     cast(DATEKEY as date) as DATEKEY_updated,
 
     --creation timing
-    to_timestamp(DATEKEY) as created_at
+    LOADDATE::timestamp_ntz as created_at  
 
     from source
 )
