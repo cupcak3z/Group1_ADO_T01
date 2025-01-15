@@ -1,7 +1,7 @@
 with 
 sales as (
     select * 
-    from {{ ref('stg_contoso__sales') }}
+    from {{ ref('fact_onlinesales') }}
 ),
 
 aggregated_sales as (

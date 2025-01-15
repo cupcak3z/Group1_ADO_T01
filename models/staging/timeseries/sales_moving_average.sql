@@ -1,7 +1,7 @@
 with 
 sales as (
     select * 
-    from {{ ref('stg_contoso__sales') }}
+    from {{ ref('fact_sales') }}
 ),
 
 aggregated_sales as (
@@ -23,35 +23,35 @@ aggregated_sales as (
             WHEN extract(month from created_at) = 12 THEN 'December'
         END as month_name,
         sum(SALESAMOUNT_updated) as total_sales,
-        avg(SALESAMOUNT_updated) as avg_sales,
         sum(SALESQUANTITY_updated) as total_quantity,
-        avg(SALESQUANTITY_updated) as avg_quantity,
         sum(NET_SALES_AMOUNT) as total_net_sales,
         sum(TOTAL_PROFIT) as total_profit
     from sales
     group by 
-        extract(year from created_at), 
+        extract(year from created_at),
         extract(month from created_at)
 ),
 
-lagged_features as (
+moving_averages as (
     select
         *,
-        lag(total_sales) over (
+        -- Moving average of sales over 2 months (including current and previous)
+        avg(total_sales) over (
             order by year_number, month_number
-        ) as lag_total_sales,
-        lag(total_quantity) over (
+            rows between 1 preceding and current row
+        ) as moving_avg_sales_2m,
+        avg(total_quantity) over (
             order by year_number, month_number
-        ) as lag_total_quantity,
-        lag(total_profit) over (
+            rows between 1 preceding and current row
+        ) as moving_avg_quantity_2m,
+        avg(total_net_sales) over (
             order by year_number, month_number
-        ) as lag_total_profit,
-        lag(avg_sales) over (
+            rows between 1 preceding and current row
+        ) as moving_avg_net_sales_2m,
+        avg(total_profit) over (
             order by year_number, month_number
-        ) as lag_avg_sales,
-        lag(avg_quantity) over (
-            order by year_number, month_number
-        ) as lag_avg_quantity
+            rows between 1 preceding and current row
+        ) as moving_avg_profit_2m
     from aggregated_sales
 )
 
@@ -59,15 +59,12 @@ select
     year_number,
     month_name,
     total_sales,
-    avg_sales,
     total_quantity,
-    avg_quantity,
     total_net_sales,
     total_profit,
-    lag_total_sales,
-    lag_total_quantity,
-    lag_total_profit,
-    lag_avg_sales,
-    lag_avg_quantity
-from lagged_features
+    moving_avg_sales_2m,
+    moving_avg_quantity_2m,
+    moving_avg_net_sales_2m,
+    moving_avg_profit_2m
+from moving_averages
 order by year_number, month_number
