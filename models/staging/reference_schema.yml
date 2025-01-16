@@ -1,3 +1,921 @@
+<<<<<<< HEAD
+# version: 2
+
+# sources:
+#   - name: ADO_GROUP1_DB_RAW
+#     database: ADO_GROUP1_DB_RAW
+#     schema: RAW_SCHEMA_FINAL
+#     tables:
+#       - name: DIMACCOUNT
+#         description: "Account Table"
+#         columns:
+#           - name: ACCOUNTKEY_UPDATED
+#             description: "The primary key for Account table"
+#             tests:
+#               - unique
+#               - not_null
+#           - name: PARENTACCOUNTKEY_UPDATED
+#             description: "Foreign key referencing ACCOUNTKEY in the Account table"
+#             tests:
+#               - not_null
+#               - relationships:
+#                   to: ref('ACCOUNT')
+#                   field: "ACCOUNTKEY_UPDATED"
+#       - name: DIMCHANNEL
+#         description: "Channel Table"
+#         columns:
+#           - name: CHANNELKEY_UPDATED
+#             description: "The primary key for the Channel table"
+#             tests:
+#               - unique
+#               - not_null
+#       - name: DIMCURRENCY
+#         description: "Currency Table"
+#         columns:
+#           - name: CURRENCYKEY_UPDATED
+#             description: "The primary key for the Currency table"
+#             tests:
+#               - unique
+#               - not_null
+#       - name: DIMCUSTOMER
+#         description: "Customer Table"
+#         columns:
+#           - name: CUSTOMERKEY_UPDATED
+#             description: "The primary key for the Customer table"
+#             tests:
+#               - unique
+#               - not_null
+#           - name: GEOGRAPHYKEY_UPDATED
+#             description: "Foreign key referencing GEOGRAPHYKEY in the Geography table"
+#             tests:
+#               - not_null
+#               - relationships:
+#                   to: ref('GEOGRAPHY')
+#                   field: "GEOGRAPHYKEY_UPDATED"
+#           - name: MARITALSTATUS_UPDATED
+#             description: "Marital status of customer"
+#             tests:
+#               - accepted_values:
+#                   values: ["M", "S", "N"]
+#           - name: GENDER_UPDATED
+#             description: "Gender of customer"
+#             tests:
+#               - accepted_values:
+#                   values: ["M", "F", "N"]
+#           - name: YEARLYINCOME_UPDATED
+#             description: "Annual income of the customer"
+#             tests:
+#               - dbt_utils.expression_is_true:
+#                   expression: ">= 0"
+#           - name: TOTALCHILDREN_UPDATED
+#             description: "Total number of children the customer has"
+#             tests:
+#               - dbt_utils.expression_is_true:
+#                   expression: ">= 0"
+#           - name: NUMBERCHILDRENATHOME_UPDATED
+#             description: "Number of children living at home"
+#             tests:
+#               - dbt_utils.expression_is_true:
+#                   expression: ">= 0"             
+#           - name: HOUSEOWNERFLAG_UPDATED
+#             description: "Whether the customer owns a house"
+#             tests:
+#               - accepted_values:
+#                   values: [0, 1]
+#                   quote: false
+#           - name: NUMBERCARSOWNED_UPDATED
+#             description: "Number of cars owned by the customer"
+#             tests:
+#               - dbt_utils.expression_is_true:
+#                   expression: ">= 0"  
+#       # - name: DIMDATE_RAW
+#       #   description: "Date Table"
+#       #   columns:
+#       #     - name: DATEKEY
+#       #       description: "The primary key for the Date table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: CALENDARHALFYEARLABEL
+#       #       description: "Label for the half-year"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["H1", "H2", null] 
+#       #     - name: CALENDARQUARTERLABEL
+#       #       description: "Label for the quarter"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["Q1", "Q2", "Q3", "Q4", null]
+#       #     - name: CALENDARMONTHLABEL
+#       #       description: "The name of the month"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", null]
+#       #     - name: CALENDARDAYOFWEEKLABEL
+#       #       description: "Label for the day of the week"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday", null]
+#       #     - name: FISCALHALFYEARLABEL
+#       #       description: "Label for the fiscal half-year"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["H1", "H2", null]
+#       #     - name: FISCALQUARTERLABEL
+#       #       description: "Label for the fiscal quarter"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["Q1", "Q2", "Q3", "Q4", null]
+#       #     - name: ISWORKDAY
+#       #       description: "Indicates whether it is a workday or weekend"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["WorkDay", "WeekEnd", null]
+#       #     - name: ISHOLIDAY
+#       #       description: "Indicates whether it is a holiday"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["Yes", "No", null]
+#       #     - name: MONTHNUMBER
+#       #       description: "Numeric representation of the month"
+#       #       tests:
+#       #         - not_null
+#       #         - accepted_values:
+#       #             values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+#       #             quote: false
+#       #     - name: CALENDARDAYOFWEEKNUMBER
+#       #       description: "Numeric representation of the day of the week"
+#       #       tests:
+#       #         - not_null
+#       #         - accepted_values:
+#       #             values: [1, 2, 3, 4, 5, 6, 7]
+#       #             quote: false                                                                
+#       # - name: DIMEMPLOYEE_RAW
+#       #   description: "Employee Table"
+#       #   columns:
+#       #     - name: EMPLOYEEKEY
+#       #       description: "The primary key for the Employee table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: PARENTEMPLOYEEKEY
+#       #       description: "Foreign key referencing EMPLOYEEKEY in the Employee table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('EMPLOYEE')
+#       #             field: "EMPLOYEEKEY"
+#       #     - name: EMAILADDRESS
+#       #       description: "Employee's email address"
+#       #       tests:
+#       #         - unique
+#       #     - name: GENDER
+#       #       description: "Gender of employee"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["Male", "Female", null]
+#       #     - name: PAYFREQUENCY
+#       #       description: "Frequency of pay"
+#       #       tests:
+#       #         - not_null
+#       #         - accepted_values:
+#       #             values: [1, 2]
+#       #             quote: false
+#       #     - name: SALARYSTATUS
+#       #       description: "Employee's salary status"
+#       #       tests:
+#       #         - not_null
+#       #         - accepted_values:
+#       #             values: ["Salaried", "Not Salaried"]
+#       #     - name: ISSALESPERSON
+#       #       description: "Indicates if the employee is in sales"
+#       #       tests:
+#       #         - not_null
+#       #         - accepted_values:
+#       #             values: ["Yes", "No"]
+#       #     - name: ISMARRIED
+#       #       description: "Indicates if the employee is married"
+#       #       tests:
+#       #         - not_null
+#       #         - accepted_values:
+#       #             values: ["Yes", "No"]                                                  
+#       # - name: DIMENTITY_RAW
+#       #   description: "Entity Table"
+#       #   columns:
+#       #     - name: ENTITYKEY
+#       #       description: "The primary key for the Entity table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: PARENTENTITYKEY
+#       #       description: "Foreign key referencing ENTITYKEY in the Entity table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('ENTTIY')
+#       #             field: "ENTITYKEY"
+#       #     - name: ENTITYTYPE
+#       #       description: "Type of entity"
+#       #       tests:
+#       #         - accepted_values:
+#       #             values: ["Store", "State", "Country/Region", "Group"]                  
+#       # - name: FACTEXCHANGERATE_RAW
+#       #   description: "ExchangeRate Table"
+#       #   columns:
+#       #     - name: EXCHANGERATEKEY
+#       #       description: "The primary key for the ExchangeRate table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: CURRENCYKEY
+#       #       description: "Foreign key referencing CURRENCYKEY in the Currency table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CURRENCY')
+#       #             field: "CURRENCYKEY"
+#       #     - name: DATEKEY
+#       #       description: "Foreign key referencing DATEKEY in the Date table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('DATE')
+#       #             field: "DATEKEY"
+#       # - name: DIMGEOGRAPHY_RAW
+#       #   description: "Geography Table"
+#       #   columns:
+#       #     - name: GEOGRAPHYKEY
+#       #       description: "The primary key for the Geography table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: GEOGRAPHYTYPE
+#       #       description: "Type of geography"
+#       #       tests:
+#       #         - not_null
+#       #         - accepted_values:
+#       #             values: ["City", "State/Province", "Country/Region", "Continent"]
+#       # - name: FACTINVENTORY_RAW
+#       #   description: "Inventory Table"
+#       #   columns:
+#       #     - name: INVENTORYKEY
+#       #       description: "The primary key for the Inventory table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: DATEKEY
+#       #       description: "Foreign key referencing DATEKEY in the Date table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('DATE')
+#       #             field: "DATEKEY"
+#       #     - name: STOREKEY
+#       #       description: "Foreign key referencing STOREKEY in the Store table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('STORE')
+#       #             field: "STOREKEY"
+#       #     - name: PRODUCTKEY
+#       #       description: "Foreign key referencing PRODUCTKEY in the Product table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('PRODUCT')
+#       #             field: "PRODUCTKEY"
+#       #     - name: CURRENCYKEY
+#       #       description: "Foreign key referencing CURRENCYKEY in the Currency table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CURRENCY')
+#       #             field: "CURRENCYKEY"
+#       #     - name: ONHANDQUANTITY
+#       #       description: "Quantity of the product available in the store"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"     
+#       #     - name: ONORDERQUANTITY
+#       #       description: "Quantity of the product currently on order"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: SAFETYSTOCKQUANTITY
+#       #       description: "Minimum quantity of stock to be maintained as a safety margin"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: UNITCOST
+#       #       description: "Cost per unit of the product"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: DAYSINSTOCK
+#       #       description: "Number of days the product has been in stock"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: MINDAYINSTOCK
+#       #       description: "Minimum number of days the product is in stock"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: MAXDAYINSTOCK
+#       #       description: "Maximum number of days the product is in stock"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: AGING
+#       #       description: "Aging of the product in the inventory"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       # - name: FACTITMACHINE_RAW
+#       #   description: "ITMachine Table"
+#       #   columns:
+#       #     - name: ITMACHINEKEY
+#       #       description: "The primary key for the ITMachine table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: MACHINEKEY
+#       #       description: "Foreign key referencing MACHINEKEY in the Machine table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('MACHINE')
+#       #             field: "MACHINEKEY"
+#       #     - name: DATEKEY
+#       #       description: "Foreign key referencing DATEKEY in the Date table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('DATE')
+#       #             field: "DATEKEY"
+#       #     - name: COSTAMOUNT
+#       #       description: "Amount of cost incurred"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"         
+#       # - name: FACTITSLA_RAW
+#       #   description: "ITSLA Table"
+#       #   columns:
+#       #     - name: ITSLAKEY
+#       #       description: "The primary key for the ITSLA table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: DATEKEY
+#       #       description: "Foreign key referencing DATEKEY in the Date table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('DATE')
+#       #             field: "DATEKEY"
+#       #     - name: STOREKEY
+#       #       description: "Foreign key referencing STOREKEY in the Store table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('STORE')
+#       #             field: "STOREKEY"
+#       #     - name: MACHINEKEY
+#       #       description: "Foreign key referencing MACHINEKEY in the Machine table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('MACHINE')
+#       #             field: "MACHINEKEY"
+#       #     - name: OUTAGEKEY
+#       #       description: "Foreign key referencing OUTAGEKEY in the Outage table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('OUTAGE')
+#       #             field: "OUTAGEKEY"
+#       #     - name: OUTAGESTARTTIME
+#       #       description: "Start time of the outage"
+#       #       tests:
+#       #         - not_null 
+#       #     - name: OUTAGEENDTIME
+#       #       description: "End time of the outage"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: "> OUTAGESTARTTIME"    
+#       #     - name: DOWNTIME
+#       #       description: "Duration of the downtime in minutes"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       # - name: DIMMACHINE_RAW
+#       #   description: "Machine Table"
+#       #   columns:
+#       #     - name: MACHINEKEY
+#       #       description: "The primary key for the Machine table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: STOREKEY
+#       #       description: "Foreign key referencing STOREKEY in the Store table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('STORE')
+#       #             field: "STOREKEY"
+#       #     - name: SERVICESTARTDATE
+#       #       description: "Date when the machine was first serviced"
+#       #       tests:
+#       #         - not_null
+#       #     - name: DECOMMISSIONDATE
+#       #       description: "Date when the machine was decommissioned, if applicable"
+#       #       tests:
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: "> SERVICESTARTDATE"
+#       # - name: FACTONLINESALES_RAW
+#       #   description: "OnlineSales Table"
+#       #   columns:
+#       #     - name: ONLINESALESKEY
+#       #       description: "The primary key for the OnlineSales table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: DATEKEY
+#       #       description: "Foreign key referencing DATEKEY in the Date table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('DATE')
+#       #             field: "DATEKEY"
+#       #     - name: STOREKEY
+#       #       description: "Foreign key referencing STOREKEY in the Store table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('STORE')
+#       #             field: "STOREKEY"
+#       #     - name: PRODUCTKEY
+#       #       description: "Foreign key referencing PRODUCTKEY in the Product table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('PRODUCT')
+#       #             field: "PRODUCTKEY"
+#       #     - name: PROMOTIONKEY
+#       #       description: "Foreign key referencing PROMOTIONKEY in the Promotion table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('PROMOTION')
+#       #             field: "PROMOTIONKEY"
+#       #     - name: CURRENCYKEY
+#       #       description: "Foreign key referencing CURRENCYKEY in the Currency table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CURRENCY')
+#       #             field: "CURRENCYKEY"
+#       #     - name: CUSTOMERKEY
+#       #       description: "Foreign key referencing CUSTOMERKEY in the Customer table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CUSTOMER')
+#       #             field: "CUSTOMERKEY"
+#       #     - name: SALESQUANTITY
+#       #       description: "Quantity of the product of the onlinesale"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: SALESAMOUNT
+#       #       description: "Amount for the onlinesale"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: RETURNQUANTITY
+#       #       description: "Quantity of items returned from the onlinesale"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: RETURNAMOUNT
+#       #       description: "Total amount for the returned items"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: DISCOUNTQUANTITY
+#       #       description: "Quantity of discount"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: DISCOUNTAMOUNT
+#       #       description: "Discount amount for the onlinesale"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: TOTALCOST
+#       #       description: "Total cost of the onlinesale  (UNITCOST * SALESQUANTITY)"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: UNITCOST
+#       #       description: "Cost per unit of the product sold"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: UNITPRICE
+#       #       description: "Price per unit of the product sold"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       # - name: DIMOUTAGE_RAW
+#       #   description: "Outage Table"
+#       #   columns:
+#       #     - name: OUTAGEKEY
+#       #       description: "The primary key for the Outage table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       # - name: DIMPRODUCT_RAW
+#       #   description: "Product Table"
+#       #   columns:
+#       #     - name: PRODUCTKEY
+#       #       description: "The primary key for the Product table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: PRODUCTSUBCATEGORYKEY
+#       #       description: "Foreign key referencing PRODUCTSUBCATEGORYKEY in the ProductSubCategory table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('PRODUCTSUBCATEGORY')
+#       #             field: "PRODUCTSUBCATEGORYKEY"
+#       #     - name: WEIGHT
+#       #       description: "Weight of the product"
+#       #       tests:
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: UNITCOST
+#       #       description: "Cost of a single unit of the product"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: UNITPRICE
+#       #       description: "Price of a single unit of the product"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       # - name: DIMPRODUCTCATEGORY_RAW
+#       #   description: "ProductCategory Table"
+#       #   columns:
+#       #     - name: PRODUCTCATEGORYKEY
+#       #       description: "The primary key for the ProductCategory table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       # - name: DIMPRODUCTSUBCATEGORY_RAW
+#       #   description: "ProductSubCategory Table"
+#       #   columns:
+#       #     - name: PRODUCTSUBCATEGORYKEY
+#       #       description: "The primary key for the ProductSubCategory table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       # - name: DIMPROMOTION_RAW
+#       #   description: "Promotion Table"
+#       #   columns:
+#       #     - name: PROMOTIONKEY
+#       #       description: "The primary key for the Promotion table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: DISCOUNTPERCENT
+#       #       description: "Discount percentage for the promotion"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0 AND DISCOUNTPERCENT <= 1"
+#       # - name: FACTSALES_RAW
+#       #   description: "Sales Table"
+#       #   columns:
+#       #     - name: SALESKEY
+#       #       description: "The primary key for the Sales table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: DATEKEY
+#       #       description: "Foreign key referencing DATEKEY in the Date table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('DATE')
+#       #             field: "DATEKEY"
+#       #     - name: CHANNELKEY
+#       #       description: "Foreign key referencing CHANNELKEY in the Channel table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CHANNEL')
+#       #             field: "CHANNELKEY"
+#       #     - name: STOREKEY
+#       #       description: "Foreign key referencing STOREKEY in the Store table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('STORE')
+#       #             field: "STOREKEY"
+#       #     - name: PRODUCTKEY
+#       #       description: "Foreign key referencing PRODUCTKEY in the Product table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('PRODUCT')
+#       #             field: "PRODUCTKEY"
+#       #     - name: PROMOTIONKEY
+#       #       description: "Foreign key referencing PROMOTIONKEY in the Promotion table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('PROMOTION')
+#       #             field: "PROMOTIONKEY"
+#       #     - name: CURRENCYKEY
+#       #       description: "Foreign key referencing CURRENCYKEY in the Currency table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CURRENCY')
+#       #             field: "CURRENCYKEY"
+#       #     - name: UNITCOST
+#       #       description: "Cost per unit of the product sold"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: UNITPRICE
+#       #       description: "Price per unit of the product sold"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: SALESQUANTITY
+#       #       description: "Quantity of the product of the sale"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: RETURNQUANTITY
+#       #       description: "Quantity of items returned from the sale"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: RETURNAMOUNT
+#       #       description: "Amount for the returned items"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: DISCOUNTQUANTITY
+#       #       description: "Quantity of discount"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: DISCOUNTAMOUNT
+#       #       description: "Discount amount for the sale"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: TOTALCOST
+#       #       description: "Total cost of the sale  (UNITCOST * SALESQUANTITY)"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: SALESAMOUNT
+#       #       description: "Amount for the sale"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       # - name: FACTSALESQUOTA_RAW
+#       #   description: "SalesQuota Table"
+#       #   columns:
+#       #     - name: SALESQUOTAKEY
+#       #       description: "The primary key for the SalesQuota table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: CHANNELKEY
+#       #       description: "Foreign key referencing CHANNELKEY in the Channel table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CHANNEL')
+#       #             field: "CHANNELKEY"     
+#       #     - name: STOREKEY
+#       #       description: "Foreign key referencing STOREKEY in the Store table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('STORE')
+#       #             field: "STOREKEY"
+#       #     - name: PRODUCTKEY
+#       #       description: "Foreign key referencing PRODUCTKEY in the Product table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('PRODUCT')
+#       #             field: "PRODUCTKEY"
+#       #     - name: DATEKEY
+#       #       description: "Foreign key referencing DATEKEY in the Date table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('DATE')
+#       #             field: "DATEKEY"
+#       #     - name: CURRENCYKEY
+#       #       description: "Foreign key referencing CURRENCYKEY in the Currency table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CURRENCY')
+#       #             field: "CURRENCYKEY"                  
+#       #     - name: SCENARIOKEY
+#       #       description: "Foreign key referencing SCENARIOKEY in the Scenario table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('SCENARIO')
+#       #             field: "SCENARIOKEY"
+#       #     - name: SALESQUANTITYQUOTA
+#       #       description: "Targeted quantity of items to be sold in the given period"
+#       #       tests:
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: SALESAMOUNTQUOTA
+#       #       description: "Targeted monetary value of sales in the given period"
+#       #       tests:
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       # - name: DIMSALESTERRITORY_RAW
+#       #   description: "SalesTerritory Table"
+#       #   columns:
+#       #     - name: SALESTERRITORYKEY
+#       #       description: "The primary key for the SalesTerritory table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: GEOGRAPHYKEY
+#       #       description: "Foreign key referencing GEOGRAPHYKEY in the Geography table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('GEOGRAPHY')
+#       #             field: "GEOGRAPHYKEY"
+#       #     - name: SALESTERRITORYMANAGER
+#       #       description: "Foreign key referencing EMPLOYEEEKEY in the Employee table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('EMPLOYEE')
+#       #             field: "EMPLOYEEKEY"
+#       # - name: DIMSCENARIO_RAW
+#       #   description: "Scenario Table"
+#       #   columns:
+#       #     - name: SCENARIOKEY
+#       #       description: "The primary key for the Scenario table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       # - name: DIMSTORE_RAW
+#       #   description: "Store Table"
+#       #   columns:
+#       #     - name: STOREKEY
+#       #       description: "The primary key for the Store table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: GEOGRAPHYKEY
+#       #       description: "Foreign key referencing GEOGRAPHYKEY in the Geography table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('GEOGRAPHY')
+#       #             field: "GEOGRAPHYKEY"
+#       #     - name: STOREMANAGER
+#       #       description: "Foreign key referencing EMPLOYEEEKEY in the Employee table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('EMPLOYEE')
+#       #             field: "EMPLOYEEKEY"
+#       #     - name: OPENDATE
+#       #       description: "Date when the store was opened"
+#       #       tests:
+#       #         - not_null
+#       #     - name: CLOSEDATE
+#       #       description: "Date when the store was closed (if applicable)"
+#       #       tests:
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: "> OPENDATE"
+#       #     - name: ENTITYKEY
+#       #       description: "Foreign key referencing ENTITYKEY in the Entity table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('ENTITY')
+#       #             field: "ENTITYKEY"
+#       #     - name: EMPLOYEECOUNT
+#       #       description: "Total number of employees working in the store"
+#       #       tests:
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+#       #     - name: SELLINGAREASIZE
+#       #       description: "Size of selling area"
+#       #       tests:
+#       #         - not_null
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: "> 0"          
+#       # - name: FACTSTRATEGYPLAN_RAW
+#       #   description: "StrategyPlan Table"
+#       #   columns:
+#       #     - name: STRATEGYPLANKEY
+#       #       description: "The primary key for the StrategyPlan table"
+#       #       tests:
+#       #         - unique
+#       #         - not_null
+#       #     - name: DATEKEY
+#       #       description: "Foreign key referencing DATEKEY in the Date table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('DATE')
+#       #             field: "DATEKEY"
+#       #     - name: ENTITYKEY
+#       #       description: "Foreign key referencing ENTITYKEY in the Entity table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('ENTITY')
+#       #             field: "ENTITYKEY"
+#       #     - name: SCENARIOKEY
+#       #       description: "Foreign key referencing SCENARIOKEY in the Scenario table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('SCENARIO')
+#       #             field: "SCENARIOKEY"
+#       #     - name: ACCOUNTKEY
+#       #       description: "Foreign key referencing ACCOUNTKEY in the Account table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('ACCOUNT')
+#       #             field: "ACCOUNTKEY"
+#       #     - name: CURRENCYKEY
+#       #       description: "Foreign key referencing CURRENCYKEY in the Currency table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('CURRENCY')
+#       #             field: "CURRENCYKEY"
+#       #     - name: PRODUCTCATEGORYKEY
+#       #       description: "Foreign key referencing PRODUCTCATEGORYKEY in the ProductCategory table"
+#       #       tests:
+#       #         - not_null
+#       #         - relationships:
+#       #             to: ref('PRODUCTCATEGORY')
+#       #             field: "PRODUCTCATEGORYKEY"
+#       #     - name: AMOUNT
+#       #       description: "Amount relevant to the strategy plan"
+#       #       tests:
+#       #         - dbt_utils.expression_is_true:
+#       #             expression: ">= 0"
+=======
 version: 2
 
 sources:
@@ -914,3 +1832,4 @@ sources:
             tests:
               - dbt_utils.expression_is_true:
                   expression: ">= 0"
+>>>>>>> 1e75d32549ac3f556b86fee7669cf87c8cd4aa13
