@@ -16,7 +16,7 @@ geography as (
         REGIONCOUNTRYNAME,
 
         -- creation timing
-        to_timestamp(LOADDATE, 'DD/MM/YYYY HH24:MI') as created_at
+        to_timestamp(LOADDATE) as created_at
 
     from source
 )
