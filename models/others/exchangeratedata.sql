@@ -1,1 +1,0 @@
-select * from {{ ref('completedfullexchangerate_table') }}

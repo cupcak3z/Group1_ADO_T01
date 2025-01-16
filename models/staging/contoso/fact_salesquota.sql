@@ -10,7 +10,7 @@ salesquota as (
         CAST(CHANNELKEY AS NUMERIC(38,0)) as CHANNELKEY_updated,
         CAST(STOREKEY AS NUMERIC(38,0)) as STOREKEY_updated,
         CAST(PRODUCTKEY AS NUMERIC(38,0)) as PRODUCTKEY_updated,
-        to_char(DATEKEY) as DATEKEY_updated,
+        cast(DATEKEY as DATE) as DATEKEY_updated,
         CAST(CURRENCYKEY AS NUMERIC(38,0)) as CURRENCYKEY_updated,
         CAST(SCENARIOKEY AS NUMERIC(38,0)) as SCENARIOKEY_updated,
 

@@ -8,7 +8,7 @@ sales as (
         -- IDs
         CAST(SALESKEY AS NUMERIC(38,0)) as SALESKEY_updated,
         CAST(STOREKEY AS NUMERIC(38,0)) as STOREKEY_updated,
-        to_char(DATEKEY) as DATEKEY_updated,
+        cast(DATEKEY as date) as DATEKEY_updated,
         CAST(PRODUCTKEY AS NUMERIC(38,0)) as PRODUCTKEY_updated,
         CAST(PROMOTIONKEY AS NUMERIC(38,0)) as PROMOTIONKEY_updated,
         CAST(CHANNELKEY AS NUMERIC(38,0)) as CHANNELKEY_updated,
