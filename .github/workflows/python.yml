@@ -6,10 +6,10 @@ jobs:
     name: python-lint
     steps:
       - name: checkout source repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
       
       - name: python linting
-        uses: cupcak3z/Group1_ADO_T01@v2
+        uses: cupcak3z/Group1_ADO_T01@main
         with:
           python-root: '../../'
           flake8-flags: '--count --select=E,W,F --ignore=E501,W503 --show-source --statistics'
