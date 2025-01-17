@@ -8,7 +8,7 @@ itmachine as (
         -- IDs
         cast(ITMACHINEKEY as numeric(38,0)) as ITMACHINEKEY_updated,
         cast(MACHINEKEY as numeric(38,0)) as MACHINEKEY_updated,
-        to_char(DATEKEY) as DATEKEY_updated,
+        cast(DATEKEY as date) as DATEKEY_updated,
         
         -- String
         COSTTYPE,
