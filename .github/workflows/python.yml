@@ -1,29 +1,30 @@
-on: [push]
+name: Python Linter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
 
 jobs:
-  python-lint:
+  lint:
     runs-on: ubuntu-latest
-    name: python-lint
-    steps:
-      - name: checkout source repo
-        uses: actions/checkout@main
-      
-      - name: python linting
-        uses: ./.github/actions/python-lint
-        with:
-          python-root: '../../'
-          flake8-flags: '--count --select=E,W,F --ignore=E501,W503 --show-source --statistics'
-          mypy-flags: ''
-          fail-on-isort: false
 
-      - name: commit isort changes
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "Github Action"
-          git add -A && git diff-index --cached --quiet HEAD || git commit -m 'isort'
-      
-      - name: push isort changes
-        uses: ad-m/github-push-action@master
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          python-version: "3.x"
+
+      # Install flake8 linter
+      - name: Install flake8
+        run: pip install flake8
+
+      # Run flake8 linter
+      - name: Run flake8
+        run: flake8 .
