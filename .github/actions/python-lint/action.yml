@@ -24,11 +24,14 @@ runs:
     - run: |
         echo "Running flake8 with flags: ${{ inputs.flake8-flags }}"
         flake8 ${{ inputs.python-root }} ${{ inputs.flake8-flags }}
+      shell: bash
     - run: |
         echo "Running mypy with flags: ${{ inputs.mypy-flags }}"
         mypy ${{ inputs.python-root }} ${{ inputs.mypy-flags }}
+      shell: bash
     - run: |
         echo "Running isort"
         isort ${{ inputs.python-root }}
         if [ "${{ inputs.fail-on-isort }}" == "true" ]; then
           git diff --exit-code || exit 1
+      shell: bash
