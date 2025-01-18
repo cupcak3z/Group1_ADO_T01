@@ -27,6 +27,7 @@ runs:
         source venv/bin/activate
         pip install --upgrade pip
         pip install flake8 mypy isort
+        echo "source venv/bin/activate" >> $GITHUB_ENV
       shell: bash
 
     - name: Run flake8
