@@ -1,0 +1,34 @@
+name: "Python Linter"
+description: "Runs Python linting tools like flake8, mypy, and isort"
+
+inputs:
+  python-root:
+    description: "Path to the Python project root"
+    required: true
+  flake8-flags:
+    description: "Flags to pass to flake8"
+    required: false
+    default: "--count --select=E,W,F --ignore=E501,W503 --show-source --statistics"
+  mypy-flags:
+    description: "Flags to pass to mypy"
+    required: false
+    default: ""
+  fail-on-isort:
+    description: "Whether to fail if isort changes are made"
+    required: false
+    default: false
+
+runs:
+  using: "composite"
+  steps:
+    - run: |
+        echo "Running flake8 with flags: ${{ inputs.flake8-flags }}"
+        flake8 ${{ inputs.python-root }} ${{ inputs.flake8-flags }}
+    - run: |
+        echo "Running mypy with flags: ${{ inputs.mypy-flags }}"
+        mypy ${{ inputs.python-root }} ${{ inputs.mypy-flags }}
+    - run: |
+        echo "Running isort"
+        isort ${{ inputs.python-root }}
+        if [ "${{ inputs.fail-on-isort }}" == "true" ]; then
+          git diff --exit-code || exit 1

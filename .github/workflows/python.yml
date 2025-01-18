@@ -9,7 +9,7 @@ jobs:
         uses: actions/checkout@main
       
       - name: python linting
-        uses: cupcak3z/Group1_ADO_T01@main
+        uses: ./.github/actions/python-lint
         with:
           python-root: '../../'
           flake8-flags: '--count --select=E,W,F --ignore=E501,W503 --show-source --statistics'
