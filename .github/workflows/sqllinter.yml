@@ -1,4 +1,4 @@
-name: SQL Linter
+name: SQL Linter for dbt Models and SnowSQL
 
 on:
   push:
@@ -15,20 +15,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Set up Python environment (sqlfluff is a Python package)
+      # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.x"
 
-      # Install sqlfluff
+      # Install sqlfluff with dbt plugin
       - name: Install sqlfluff
-        run: pip install sqlfluff
+        run: pip install sqlfluff sqlfluff-templater-dbt
 
-      # Run sqlfluff linter
-      - name: Lint SQL files
-        run: sqlfluff lint . --dialect snowflake
+      # Lint SQL files
+      - name: Lint dbt SQL models and SnowSQL files
+        run: sqlfluff lint .
 
-      # Fix SQL Issues Automatically
+      # Fix SQL issues (optional)
       - name: Fix SQL issues
-        run: sqlfluff fix . --dialect snowflake
+        run: sqlfluff fix .
