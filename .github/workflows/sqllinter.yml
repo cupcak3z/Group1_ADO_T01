@@ -28,3 +28,7 @@ jobs:
       # Run sqlfluff linter
       - name: Run sqlfluff
         run: sqlfluff lint .
+
+      # Fix SQL Issues Automatically
+      - name: Fix SQL issues
+        run: sqlfluff fix .
