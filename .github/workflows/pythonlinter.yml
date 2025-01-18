@@ -27,4 +27,4 @@ jobs:
 
       # Run flake8 linter
       - name: Run flake8
-        run: flake8 --verbose
+        run: flake8
