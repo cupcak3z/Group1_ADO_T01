@@ -1,14 +1,15 @@
+---
 name: Python Linter
 
 on:
   push:
     branches:
       - main
-  pull_request:
+  pull_request: {}
 
 jobs:
   lint:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       # Checkout the code from the repository
@@ -28,3 +29,6 @@ jobs:
       # Run flake8 linter
       - name: Run flake8
         run: flake8
+    
+    # Ensure there is a blank line at the end
+    
