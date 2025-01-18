@@ -21,15 +21,28 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: |
+    - name: Set up Python
+      run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install --upgrade pip
+        pip install flake8 mypy isort
+      shell: bash
+
+    - name: Run flake8
+      run: |
         echo "Running flake8 with flags: ${{ inputs.flake8-flags }}"
         flake8 ${{ inputs.python-root }} ${{ inputs.flake8-flags }}
       shell: bash
-    - run: |
+
+    - name: Run mypy
+      run: |
         echo "Running mypy with flags: ${{ inputs.mypy-flags }}"
         mypy ${{ inputs.python-root }} ${{ inputs.mypy-flags }}
       shell: bash
-    - run: |
+
+    - name: Run isort
+      run: |
         echo "Running isort"
         isort ${{ inputs.python-root }}
         if [ "${{ inputs.fail-on-isort }}" == "true" ]; then
