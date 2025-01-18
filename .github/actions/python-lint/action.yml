@@ -27,23 +27,25 @@ runs:
         source venv/bin/activate
         pip install --upgrade pip
         pip install flake8 mypy isort
-        echo "source venv/bin/activate" >> $GITHUB_ENV
       shell: bash
 
     - name: Run flake8
       run: |
+        source venv/bin/activate
         echo "Running flake8 with flags: ${{ inputs.flake8-flags }}"
         flake8 ${{ inputs.python-root }} ${{ inputs.flake8-flags }}
       shell: bash
 
     - name: Run mypy
       run: |
+        source venv/bin/activate
         echo "Running mypy with flags: ${{ inputs.mypy-flags }}"
         mypy ${{ inputs.python-root }} ${{ inputs.mypy-flags }}
       shell: bash
 
     - name: Run isort
       run: |
+        source venv/bin/activate
         echo "Running isort"
         isort ${{ inputs.python-root }}
         if [ "${{ inputs.fail-on-isort }}" == "true" ]; then
