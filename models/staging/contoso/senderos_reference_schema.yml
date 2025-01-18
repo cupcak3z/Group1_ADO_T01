@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: dim_account
+    description: "Account table"
+    columns:
+      - name: ACCOUNTKEY_UPDATED
+        description: "The primary key for Account table"
+        tests:
+          - not_null
+          - unique
+      - name: PARENTACCOUNTKEY_UPDATED
+        description: "Foreign key referencing ACCOUNTKEY in the Account table"
+        tests:
+        - not_null
+        - relationships:
+        # to: ref('ACCOUNT')
+        # field: "ACCOUNTKEY_UPDATED"
