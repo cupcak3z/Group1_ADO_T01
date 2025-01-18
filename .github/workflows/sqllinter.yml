@@ -26,9 +26,9 @@ jobs:
         run: pip install sqlfluff
 
       # Run sqlfluff linter
-      - name: Run sqlfluff
-        run: sqlfluff lint .
+      - name: Lint SQL files
+        run: sqlfluff lint . --dialect snowflake
 
       # Fix SQL Issues Automatically
       - name: Fix SQL issues
-        run: sqlfluff fix .
+        run: sqlfluff fix . --dialect snowflake
