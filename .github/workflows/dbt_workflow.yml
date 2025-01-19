@@ -18,7 +18,8 @@ jobs:
           DBT_ACCOUNT_ID: ${{ secrets.DBT_ACCOUNT_ID }}
           DBT_JOB_ID: ${{ secrets.DBT_JOB_ID }}
         run: |
-          curl -X POST https://cloud.getdbt.com/api/v2/accounts/$DBT_ACCOUNT_ID/jobs/$DBT_JOB_ID/run/ \
-          -H "Authorization: Bearer $DBT_CLOUD_API_TOKEN" \
+          curl -X POST "https://cloud.getdbt.com/api/v2/accounts/${DBT_ACCOUNT_ID}/jobs/${DBT_JOB_ID}/run/" \
+          -H "Authorization: Bearer ${DBT_CLOUD_API_TOKEN}" \
           -H "Content-Type: application/json" \
           -d '{"cause": "Triggered via GitHub Actions"}'
+'
