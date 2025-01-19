@@ -22,4 +22,3 @@ jobs:
           -H "Authorization: Bearer ${DBT_CLOUD_API_TOKEN}" \
           -H "Content-Type: application/json" \
           -d '{"cause": "Triggered via GitHub Actions"}'
-'
