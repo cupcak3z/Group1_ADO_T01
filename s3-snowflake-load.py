@@ -1,5 +1,5 @@
 import snowflake.connector
-from datetime import datetime, timedelta
+from datetime import datetime
 
 # Setting up snowflake connection
 conn = snowflake.connector.connect(
@@ -1785,6 +1785,777 @@ else:
             source.DATEKEY,
             source.COSTAMOUNT,
             source.COSTTYPE,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+
+#ITSLA
+file_path = f"@STG_ITSLA_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for ITSLA")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADITSLA_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO FACTITSLA_RAW AS target
+    USING LOADITSLA_STAGE AS source
+    ON target.ITSLAKEY = source.ITSLAKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            ITSLAKEY = source.ITSLAKEY,
+            DATEKEY = source.DATEKEY,
+            STOREKEY = source.STOREKEY,
+            MACHINEKEY = source.MACHINEKEY,
+            OUTAGEKEY = source.OUTAGEKEY,
+            OUTAGESTARTTIME = source.OUTAGESTARTTIME,
+            OUTAGEENDTIME = source.OUTAGEENDTIME,
+            DOWNTIME = source.DOWNTIME,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            ITSLAKEY,
+            DATEKEY,
+            STOREKEY,
+            MACHINEKEY,
+            OUTAGEKEY,
+            OUTAGESTARTTIME,
+            OUTAGEENDTIME,
+            DOWNTIME,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.ITSLAKEY,
+            source.DATEKEY,
+            source.STOREKEY,
+            source.MACHINEKEY,
+            source.OUTAGEKEY,
+            source.OUTAGESTARTTIME,
+            source.OUTAGEENDTIME,
+            source.DOWNTIME,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+        
+#Machine
+file_path = f"@STG_MACHINE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for MACHINE")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADMACHINE_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMMACHINE_RAW AS target
+    USING LOADMACHINE_STAGE AS source
+    ON target.MACHINEKEY = source.MACHINEKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            MACHINEKEY = source.MACHINEKEY,
+            MACHINELABEL = source.MACHINELABEL,
+            STOREKEY = source.STOREKEY,
+            MACHINETYPE = source.MACHINETYPE,
+            MACHINENAME = source.MACHINENAME,
+            MACHINEDESCRIPTION = source.MACHINEDESCRIPTION,
+            VENDORNAME = source.VENDORNAME,
+            MACHINEOS = source.MACHINEOS,
+            MACHINESOURCE = source.MACHINESOURCE,
+            MACHINEHARDWARE = source.MACHINEHARDWARE,
+            MACHINESOFTWARE = source.MACHINESOFTWARE,
+            STATUS = source.STATUS,
+            SERVICESTARTDATE = source.SERVICESTARTDATE,
+            DECOMMISSIONDATE = source.DECOMMISSIONDATE,
+            LASTMODIFIEDDATE = source.LASTMODIFIEDDATE,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            MACHINEKEY,
+            MACHINELABEL,
+            STOREKEY,
+            MACHINETYPE,
+            MACHINENAME,
+            MACHINEDESCRIPTION,
+            VENDORNAME,
+            MACHINEOS,
+            MACHINESOURCE,
+            MACHINEHARDWARE,
+            MACHINESOFTWARE,
+            STATUS,
+            SERVICESTARTDATE,
+            DECOMMISSIONDATE,
+            LASTMODIFIEDDATE,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.MACHINEKEY,
+            source.MACHINELABEL,
+            source.STOREKEY,
+            source.MACHINETYPE,
+            source.MACHINENAME,
+            source.MACHINEDESCRIPTION,
+            source.VENDORNAME,
+            source.MACHINEOS,
+            source.MACHINESOURCE,
+            source.MACHINEHARDWARE,
+            source.MACHINESOFTWARE,
+            source.STATUS,
+            source.SERVICESTARTDATE,
+            source.DECOMMISSIONDATE,
+            source.LASTMODIFIEDDATE,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+
+#OnlineSales
+file_path = f"@STG_ONLINESALES_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for ONLINESALES")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADONLINESALES_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO FACTONLINESALES_RAW AS target
+    USING LOADONLINESALES_STAGE AS source
+    ON target.ONLINESALESKEY = source.ONLINESALESKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            ONLINESALESKEY = source.ONLINESALESKEY,
+            DATEKEY = source.DATEKEY,
+            STOREKEY = source.STOREKEY,
+            PRODUCTKEY = source.PRODUCTKEY,
+            PROMOTIONKEY = source.PROMOTIONKEY,
+            CURRENCYKEY = source.CURRENCYKEY,
+            CUSTOMERKEY = source.CUSTOMERKEY,
+            SALESORDERNUMBER = source.SALESORDERNUMBER,
+            SALESORDERLINENUMBER = source.SALESORDERLINENUMBER,
+            SALESQUANTITY = source.SALESQUANTITY,
+            SALESAMOUNT = source.SALESAMOUNT,
+            RETURNQUANTITY = source.RETURNQUANTITY,
+            RETURNAMOUNT = source.RETURNAMOUNT,
+            DISCOUNTQUANTITY = source.DISCOUNTQUANTITY,
+            DISCOUNTAMOUNT = source.DISCOUNTAMOUNT,
+            TOTALCOST = source.TOTALCOST,
+            UNITCOST = source.UNITCOST,
+            UNITPRICE = source.UNITPRICE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            ONLINESALESKEY,
+            DATEKEY,
+            STOREKEY,
+            PRODUCTKEY,
+            PROMOTIONKEY,
+            CURRENCYKEY,
+            CUSTOMERKEY,
+            SALESORDERNUMBER,
+            SALESORDERLINENUMBER,
+            SALESQUANTITY,
+            SALESAMOUNT,
+            RETURNQUANTITY,
+            RETURNAMOUNT,
+            DISCOUNTQUANTITY,
+            DISCOUNTAMOUNT,
+            TOTALCOST,
+            UNITCOST,
+            UNITPRICE
+        )
+        VALUES (
+            source.ONLINESALESKEY,
+            source.DATEKEY,
+            source.STOREKEY,
+            source.PRODUCTKEY,
+            source.PROMOTIONKEY,
+            source.CURRENCYKEY,
+            source.CUSTOMERKEY,
+            source.SALESORDERNUMBER,
+            source.SALESORDERLINENUMBER,
+            source.SALESQUANTITY,
+            source.SALESAMOUNT,
+            source.RETURNQUANTITY,
+            source.RETURNAMOUNT,
+            source.DISCOUNTQUANTITY,
+            source.DISCOUNTAMOUNT,
+            source.TOTALCOST,
+            source.UNITCOST,
+            source.UNITPRICE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+
+#Outage
+file_path = f"@STG_OUTAGE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for OUTAGE")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADOUTAGE_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMOUTAGE_RAW AS target
+    USING LOADOUTAGE_STAGE AS source
+    ON target.OUTAGEKEY = source.OUTAGEKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            OUTAGEKEY = source.OUTAGEKEY,
+            OUTAGELABEL = source.OUTAGELABEL,
+            OUTAGENAME = source.OUTAGENAME,
+            OUTAGEDESCRIPTION = source.OUTAGEDESCRIPTION,
+            OUTAGETYPE = source.OUTAGETYPE,
+            OUTAGETYPEDESCRIPTION = source.OUTAGETYPEDESCRIPTION,
+            OUTAGESUBTYPE = source.OUTAGESUBTYPE,
+            OUTAGESUBTYPEDESCRIPTION = source.OUTAGESUBTYPEDESCRIPTION,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            OUTAGEKEY,
+            OUTAGELABEL,
+            OUTAGENAME,
+            OUTAGEDESCRIPTION,
+            OUTAGETYPE,
+            OUTAGETYPEDESCRIPTION,
+            OUTAGESUBTYPE,
+            OUTAGESUBTYPEDESCRIPTION,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.OUTAGEKEY,
+            source.OUTAGELABEL,
+            source.OUTAGENAME,
+            source.OUTAGEDESCRIPTION,
+            source.OUTAGETYPE,
+            source.OUTAGETYPEDESCRIPTION,
+            source.OUTAGESUBTYPE,
+            source.OUTAGESUBTYPEDESCRIPTION,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+        
+#Product
+file_path = f"@STG_PRODUCT_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for PRODUCT")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADPRODUCT_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMPRODUCT_RAW AS target
+    USING LOADPRODUCT_STAGE AS source
+    ON target.PRODUCTKEY = source.PRODUCTKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            PRODUCTKEY = source.PRODUCTKEY,
+            PRODUCTLABEL = source.PRODUCTLABEL,
+            PRODUCTNAME = source.PRODUCTNAME,
+            PRODUCTDESCRIPTION = source.PRODUCTDESCRIPTION,
+            PRODUCTSUBCATEGORYKEY = source.PRODUCTSUBCATEGORYKEY,
+            MANUFACTURER = source.MANUFACTURER,
+            BRANDNAME = source.BRANDNAME,
+            CLASSID = source.CLASSID,
+            CLASSNAME = source.CLASSNAME,
+            STYLEID = source.STYLEID,
+            STYLENAME = source.STYLENAME,
+            COLORID = source.COLORID,
+            COLORNAME = source.COLORNAME,
+            SIZE = source.SIZE,
+            SIZERANGE = source.SIZERANGE,
+            SIZEUNITMEASUREID = source.SIZEUNITMEASUREID,
+            WEIGHT = source.WEIGHT,
+            WEIGHTUNITMEASUREID = source.WEIGHTUNITMEASUREID,
+            UNITOFMEASUREID = source.UNITOFMEASUREID,
+            UNITOFMEASURENAME = source.UNITOFMEASURENAME,
+            STOCKTYPEID = source.STOCKTYPEID,
+            STOCKTYPENAME = source.STOCKTYPENAME,
+            UNITCOST = source.UNITCOST,
+            UNITPRICE = source.UNITPRICE,
+            AVAILABLEFORSALEDATE = source.AVAILABLEFORSALEDATE,
+            STOPSALEDATE = source.STOPSALEDATE,
+            STATUS = source.STATUS,
+            IMAGEURL = source.IMAGEURL,
+            PRODUCTURL = source.PRODUCTURL,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            PRODUCTKEY,
+            PRODUCTLABEL,
+            PRODUCTNAME,
+            PRODUCTDESCRIPTION,
+            PRODUCTSUBCATEGORYKEY,
+            MANUFACTURER,
+            BRANDNAME,
+            CLASSID,
+            CLASSNAME,
+            STYLEID,
+            STYLENAME,
+            COLORID,
+            COLORNAME,
+            SIZE,
+            SIZERANGE,
+            SIZEUNITMEASUREID,
+            WEIGHT,
+            WEIGHTUNITMEASUREID,
+            UNITOFMEASUREID,
+            UNITOFMEASURENAME,
+            STOCKTYPEID,
+            STOCKTYPENAME,
+            UNITCOST,
+            UNITPRICE,
+            AVAILABLEFORSALEDATE,
+            STOPSALEDATE,
+            STATUS,
+            IMAGEURL,
+            PRODUCTURL,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.PRODUCTKEY,
+            source.PRODUCTLABEL,
+            source.PRODUCTNAME,
+            source.PRODUCTDESCRIPTION,
+            source.PRODUCTSUBCATEGORYKEY,
+            source.MANUFACTURER,
+            source.BRANDNAME,
+            source.CLASSID,
+            source.CLASSNAME,
+            source.STYLEID,
+            source.STYLENAME,
+            source.COLORID,
+            source.COLORNAME,
+            source.SIZE,
+            source.SIZERANGE,
+            source.SIZEUNITMEASUREID,
+            source.WEIGHT,
+            source.WEIGHTUNITMEASUREID,
+            source.UNITOFMEASUREID,
+            source.UNITOFMEASURENAME,
+            source.STOCKTYPEID,
+            source.STOCKTYPENAME,
+            source.UNITCOST,
+            source.UNITPRICE,
+            source.AVAILABLEFORSALEDATE,
+            source.STOPSALEDATE,
+            source.STATUS,
+            source.IMAGEURL,
+            source.PRODUCTURL,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+
+#Product
+file_path = f"@STG_PRODUCT_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for PRODUCT")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADPRODUCT_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMPRODUCT_RAW AS target
+    USING LOADPRODUCT_STAGE AS source
+    ON target.PRODUCTKEY = source.PRODUCTKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            PRODUCTKEY = source.PRODUCTKEY,
+            PRODUCTLABEL = source.PRODUCTLABEL,
+            PRODUCTNAME = source.PRODUCTNAME,
+            PRODUCTDESCRIPTION = source.PRODUCTDESCRIPTION,
+            PRODUCTSUBCATEGORYKEY = source.PRODUCTSUBCATEGORYKEY,
+            MANUFACTURER = source.MANUFACTURER,
+            BRANDNAME = source.BRANDNAME,
+            CLASSID = source.CLASSID,
+            CLASSNAME = source.CLASSNAME,
+            STYLEID = source.STYLEID,
+            STYLENAME = source.STYLENAME,
+            COLORID = source.COLORID,
+            COLORNAME = source.COLORNAME,
+            SIZE = source.SIZE,
+            SIZERANGE = source.SIZERANGE,
+            SIZEUNITMEASUREID = source.SIZEUNITMEASUREID,
+            WEIGHT = source.WEIGHT,
+            WEIGHTUNITMEASUREID = source.WEIGHTUNITMEASUREID,
+            UNITOFMEASUREID = source.UNITOFMEASUREID,
+            UNITOFMEASURENAME = source.UNITOFMEASURENAME,
+            STOCKTYPEID = source.STOCKTYPEID,
+            STOCKTYPENAME = source.STOCKTYPENAME,
+            UNITCOST = source.UNITCOST,
+            UNITPRICE = source.UNITPRICE,
+            AVAILABLEFORSALEDATE = source.AVAILABLEFORSALEDATE,
+            STOPSALEDATE = source.STOPSALEDATE,
+            STATUS = source.STATUS,
+            IMAGEURL = source.IMAGEURL,
+            PRODUCTURL = source.PRODUCTURL,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            PRODUCTKEY,
+            PRODUCTLABEL,
+            PRODUCTNAME,
+            PRODUCTDESCRIPTION,
+            PRODUCTSUBCATEGORYKEY,
+            MANUFACTURER,
+            BRANDNAME,
+            CLASSID,
+            CLASSNAME,
+            STYLEID,
+            STYLENAME,
+            COLORID,
+            COLORNAME,
+            SIZE,
+            SIZERANGE,
+            SIZEUNITMEASUREID,
+            WEIGHT,
+            WEIGHTUNITMEASUREID,
+            UNITOFMEASUREID,
+            UNITOFMEASURENAME,
+            STOCKTYPEID,
+            STOCKTYPENAME,
+            UNITCOST,
+            UNITPRICE,
+            AVAILABLEFORSALEDATE,
+            STOPSALEDATE,
+            STATUS,
+            IMAGEURL,
+            PRODUCTURL,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.PRODUCTKEY,
+            source.PRODUCTLABEL,
+            source.PRODUCTNAME,
+            source.PRODUCTDESCRIPTION,
+            source.PRODUCTSUBCATEGORYKEY,
+            source.MANUFACTURER,
+            source.BRANDNAME,
+            source.CLASSID,
+            source.CLASSNAME,
+            source.STYLEID,
+            source.STYLENAME,
+            source.COLORID,
+            source.COLORNAME,
+            source.SIZE,
+            source.SIZERANGE,
+            source.SIZEUNITMEASUREID,
+            source.WEIGHT,
+            source.WEIGHTUNITMEASUREID,
+            source.UNITOFMEASUREID,
+            source.UNITOFMEASURENAME,
+            source.STOCKTYPEID,
+            source.STOCKTYPENAME,
+            source.UNITCOST,
+            source.UNITPRICE,
+            source.AVAILABLEFORSALEDATE,
+            source.STOPSALEDATE,
+            source.STATUS,
+            source.IMAGEURL,
+            source.PRODUCTURL,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+
+#ProductCategory
+file_path = f"@STG_PRODUCTCATEGORY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for PRODUCTCATEGORY")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADPRODUCTCATEGORY_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMPRODUCTCATEGORY_RAW AS target
+    USING LOADPRODUCTCATEGORY_STAGE AS source
+    ON target.PRODUCTCATEGORYKEY = source.PRODUCTCATEGORYKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            PRODUCTCATEGORYKEY = source.PRODUCTCATEGORYKEY,
+            PRODUCTCATEGORYLABEL = source.PRODUCTCATEGORYLABEL,
+            PRODUCTCATEGORYNAME = source.PRODUCTCATEGORYNAME,
+            PRODUCTCATEGORYDESCRIPTION = source.PRODUCTCATEGORYDESCRIPTION,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            PRODUCTCATEGORYKEY,
+            PRODUCTCATEGORYLABEL,
+            PRODUCTCATEGORYNAME,
+            PRODUCTCATEGORYDESCRIPTION,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.PRODUCTCATEGORYKEY,
+            source.PRODUCTCATEGORYLABEL,
+            source.PRODUCTCATEGORYNAME,
+            source.PRODUCTCATEGORYDESCRIPTION,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+
+#ProductSubCategory
+file_path = f"@STG_PRODUCTSUBCATEGORY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for PRODUCTSUBCATEGORY")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADPRODUCTSUBCATEGORY_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMPRODUCTSUBCATEGORY_RAW AS target
+    USING LOADPRODUCTSUBCATEGORY_STAGE AS source
+    ON target.PRODUCTSUBCATEGORYKEY = source.PRODUCTSUBCATEGORYKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            PRODUCTSUBCATEGORYKEY = source.PRODUCTSUBCATEGORYKEY,
+            PRODUCTSUBCATEGORYLABEL = source.PRODUCTSUBCATEGORYLABEL,
+            PRODUCTSUBCATEGORYNAME = source.PRODUCTSUBCATEGORYNAME,
+            PRODUCTSUBCATEGORYDESCRIPTION = source.PRODUCTSUBCATEGORYDESCRIPTION,
+            PRODUCTCATEGORYKEY = source.PRODUCTCATEGORYKEY,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            PRODUCTSUBCATEGORYKEY,
+            PRODUCTSUBCATEGORYLABEL,
+            PRODUCTSUBCATEGORYNAME,
+            PRODUCTSUBCATEGORYDESCRIPTION,
+            PRODUCTCATEGORYKEY,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.PRODUCTSUBCATEGORYKEY,
+            source.PRODUCTSUBCATEGORYLABEL,
+            source.PRODUCTSUBCATEGORYNAME,
+            source.PRODUCTSUBCATEGORYDESCRIPTION,
+            source.PRODUCTCATEGORYKEY,
             source.ETLLOADID,
             source.LOADDATE,
             source.UPDATEDATE
