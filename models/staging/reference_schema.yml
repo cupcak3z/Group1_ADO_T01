@@ -18,7 +18,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('ACCOUNT')
+                  to: ref('DIMACCOUNT_RAW')
                   field: ACCOUNTKEY
       - name: DIMCHANNEL_RAW
         description: Channel Table
@@ -49,7 +49,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('GEOGRAPHY')
+                  to: ref('DIMGEOGRAPHY_RAW')
                   field: GEOGRAPHYKEY
           - name: MARITALSTATUS
             description: Marital status of customer
@@ -184,7 +184,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('EMPLOYEE')
+                  to: ref('DIMEMPLOYEE_RAW')
                   field: EMPLOYEEKEY
           - name: EMAILADDRESS
             description: Employee's email address
@@ -236,7 +236,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('ENTTIY')
+                  to: ref('DIMENTTIY_RAW')
                   field: ENTITYKEY
           - name: ENTITYTYPE
             description: Type of entity
@@ -267,7 +267,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('DATE')
+                  to: ref('DIMDATE_RAW')
                   field: DATEKEY
       - name: DIMGEOGRAPHY_RAW
         description: Geography Table
@@ -300,7 +300,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('DATE')
+                  to: ref('DIMDATE_RAW')
                   field: DATEKEY
           - name: STOREKEY
             description: Foreign key referencing STOREKEY in the Store table
@@ -314,14 +314,14 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('PRODUCT')
+                  to: ref('DIMPRODUCT_RAW')
                   field: PRODUCTKEY
           - name: CURRENCYKEY
             description: Foreign key referencing CURRENCYKEY in the Currency table
             tests:
               - not_null
               - relationships:
-                  to: ref('CURRENCY')
+                  to: ref('DIMCURRENCY_RAW')
                   field: CURRENCYKEY
           - name: ONHANDQUANTITY
             description: Quantity of the product available in the store
@@ -384,14 +384,14 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('MACHINE')
+                  to: ref('DIMMACHINE_RAW')
                   field: MACHINEKEY
           - name: DATEKEY
             description: Foreign key referencing DATEKEY in the Date table
             tests:
               - not_null
               - relationships:
-                  to: ref('DATE')
+                  to: ref('DIMDATE_RAW')
                   field: DATEKEY
           - name: COSTAMOUNT
             description: Amount of cost incurred
@@ -412,28 +412,28 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('DATE')
+                  to: ref('DIMDATE_RAW')
                   field: DATEKEY
           - name: STOREKEY
             description: Foreign key referencing STOREKEY in the Store table
             tests:
               - not_null
               - relationships:
-                  to: ref('STORE')
+                  to: ref('DIMSTORE_RAW')
                   field: STOREKEY
           - name: MACHINEKEY
             description: Foreign key referencing MACHINEKEY in the Machine table
             tests:
               - not_null
               - relationships:
-                  to: ref('MACHINE')
+                  to: ref('DIMMACHINE_RAW')
                   field: MACHINEKEY
           - name: OUTAGEKEY
             description: Foreign key referencing OUTAGEKEY in the Outage table
             tests:
               - not_null
               - relationships:
-                  to: ref('OUTAGE')
+                  to: ref('DIMOUTAGE_RAW')
                   field: OUTAGEKEY
           - name: OUTAGESTARTTIME
             description: Start time of the outage
@@ -464,7 +464,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('STORE')
+                  to: ref('DIMSTORE_RAW')
                   field: STOREKEY
           - name: SERVICESTARTDATE
             description: Date when the machine was first serviced
@@ -488,42 +488,42 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('DATE')
+                  to: ref('DIMDATE_RAW')
                   field: DATEKEY
           - name: STOREKEY
             description: Foreign key referencing STOREKEY in the Store table
             tests:
               - not_null
               - relationships:
-                  to: ref('STORE')
+                  to: ref('DIMSTORE_RAW')
                   field: STOREKEY
           - name: PRODUCTKEY
             description: Foreign key referencing PRODUCTKEY in the Product table
             tests:
               - not_null
               - relationships:
-                  to: ref('PRODUCT')
+                  to: ref('DIMPRODUCT_RAW')
                   field: PRODUCTKEY
           - name: PROMOTIONKEY
             description: Foreign key referencing PROMOTIONKEY in the Promotion table
             tests:
               - not_null
               - relationships:
-                  to: ref('PROMOTION')
+                  to: ref('DIMPROMOTION_RAW')
                   field: PROMOTIONKEY
           - name: CURRENCYKEY
             description: Foreign key referencing CURRENCYKEY in the Currency table
             tests:
               - not_null
               - relationships:
-                  to: ref('CURRENCY')
+                  to: ref('DIMCURRENCY_RAW')
                   field: CURRENCYKEY
           - name: CUSTOMERKEY
             description: Foreign key referencing CUSTOMERKEY in the Customer table
             tests:
               - not_null
               - relationships:
-                  to: ref('CUSTOMER')
+                  to: ref('DIMCUSTOMER_RAW')
                   field: CUSTOMERKEY
           - name: SALESQUANTITY
             description: Quantity of the product of the onlinesale
@@ -601,7 +601,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('PRODUCTSUBCATEGORY')
+                  to: ref('DIMPRODUCTSUBCATEGORY_RAW')
                   field: PRODUCTSUBCATEGORYKEY
           - name: UNITCOST
             description: Cost of a single unit of the product
@@ -658,42 +658,42 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('DATE')
+                  to: ref('DIMDATE_RAW')
                   field: DATEKEY
           - name: CHANNELKEY
             description: Foreign key referencing CHANNELKEY in the Channel table
             tests:
               - not_null
               - relationships:
-                  to: ref('CHANNEL')
+                  to: ref('DIMCHANNEL_RAW')
                   field: CHANNELKEY
           - name: STOREKEY
             description: Foreign key referencing STOREKEY in the Store table
             tests:
               - not_null
               - relationships:
-                  to: ref('STORE')
+                  to: ref('DIMSTORE_RAW')
                   field: STOREKEY
           - name: PRODUCTKEY
             description: Foreign key referencing PRODUCTKEY in the Product table
             tests:
               - not_null
               - relationships:
-                  to: ref('PRODUCT')
+                  to: ref('DIMPRODUCT_RAW')
                   field: PRODUCTKEY
           - name: PROMOTIONKEY
             description: Foreign key referencing PROMOTIONKEY in the Promotion table
             tests:
               - not_null
               - relationships:
-                  to: ref('PROMOTION')
+                  to: ref('DIMPROMOTION_RAW')
                   field: PROMOTIONKEY
           - name: CURRENCYKEY
             description: Foreign key referencing CURRENCYKEY in the Currency table
             tests:
               - not_null
               - relationships:
-                  to: ref('CURRENCY')
+                  to: ref('DIMCURRENCY_RAW')
                   field: CURRENCYKEY
           - name: UNITCOST
             description: Cost per unit of the product sold
@@ -762,42 +762,42 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('CHANNEL')
+                  to: ref('DIMCHANNEL_RAW')
                   field: CHANNELKEY
           - name: STOREKEY
             description: Foreign key referencing STOREKEY in the Store table
             tests:
               - not_null
               - relationships:
-                  to: ref('STORE')
+                  to: ref('DIMSTORE_RAW')
                   field: STOREKEY
           - name: PRODUCTKEY
             description: Foreign key referencing PRODUCTKEY in the Product table
             tests:
               - not_null
               - relationships:
-                  to: ref('PRODUCT')
+                  to: ref('DIMPRODUCT_RAW')
                   field: PRODUCTKEY
           - name: DATEKEY
             description: Foreign key referencing DATEKEY in the Date table
             tests:
               - not_null
               - relationships:
-                  to: ref('DATE')
+                  to: ref('DIMDATE_RAW')
                   field: DATEKEY
           - name: CURRENCYKEY
             description: Foreign key referencing CURRENCYKEY in the Currency table
             tests:
               - not_null
               - relationships:
-                  to: ref('CURRENCY')
+                  to: ref('DIMCURRENCY_RAW')
                   field: CURRENCYKEY
           - name: SCENARIOKEY
             description: Foreign key referencing SCENARIOKEY in the Scenario table
             tests:
               - not_null
               - relationships:
-                  to: ref('SCENARIO')
+                  to: ref('DIMSCENARIO_RAW')
                   field: SCENARIOKEY
           - name: SALESQUANTITYQUOTA
             description: Targeted quantity of items to be sold in the given period
@@ -822,14 +822,14 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('GEOGRAPHY')
+                  to: ref('DIMGEOGRAPHY_RAW')
                   field: GEOGRAPHYKEY
           - name: SALESTERRITORYMANAGER
             description: Foreign key referencing EMPLOYEEEKEY in the Employee table
             tests:
               - not_null
               - relationships:
-                  to: ref('EMPLOYEE')
+                  to: ref('DIMEMPLOYEE_RAW')
                   field: EMPLOYEEKEY
       - name: DIMSCENARIO_RAW
         description: Scenario Table
@@ -852,14 +852,14 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('GEOGRAPHY')
+                  to: ref('DIMGEOGRAPHY_RAW')
                   field: GEOGRAPHYKEY
           - name: STOREMANAGER
             description: Foreign key referencing EMPLOYEEEKEY in the Employee table
             tests:
               - not_null
               - relationships:
-                  to: ref('EMPLOYEE')
+                  to: ref('DIMEMPLOYEE_RAW')
                   field: EMPLOYEEKEY
           - name: OPENDATE
             description: Date when the store was opened
@@ -875,7 +875,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('ENTITY')
+                  to: ref('DIMENTITY_RAW')
                   field: ENTITYKEY
           - name: SELLINGAREASIZE
             description: Size of selling area
@@ -896,35 +896,35 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('DATE')
+                  to: ref('DIMDATE_RAW')
                   field: DATEKEY
           - name: ENTITYKEY
             description: Foreign key referencing ENTITYKEY in the Entity table
             tests:
               - not_null
               - relationships:
-                  to: ref('ENTITY')
+                  to: ref('DIMENTITY_RAW')
                   field: ENTITYKEY
           - name: SCENARIOKEY
             description: Foreign key referencing SCENARIOKEY in the Scenario table
             tests:
               - not_null
               - relationships:
-                  to: ref('SCENARIO')
+                  to: ref('DIMSCENARIO_RAW')
                   field: SCENARIOKEY
           - name: ACCOUNTKEY
             description: Foreign key referencing ACCOUNTKEY in the Account table
             tests:
               - not_null
               - relationships:
-                  to: ref('ACCOUNT')
+                  to: ref('DIMACCOUNT_RAW')
                   field: ACCOUNTKEY
           - name: CURRENCYKEY
             description: Foreign key referencing CURRENCYKEY in the Currency table
             tests:
               - not_null
               - relationships:
-                  to: ref('CURRENCY')
+                  to: ref('DIMCURRENCY_RAW')
                   field: CURRENCYKEY
           - name: PRODUCTCATEGORYKEY
             description: Foreign key referencing PRODUCTCATEGORYKEY in the ProductCategory
@@ -932,7 +932,7 @@ sources:
             tests:
               - not_null
               - relationships:
-                  to: ref('PRODUCTCATEGORY')
+                  to: ref('DIMPRODUCTCATEGORY_RAW')
                   field: PRODUCTCATEGORYKEY
           - name: AMOUNT
             description: Amount relevant to the strategy plan
