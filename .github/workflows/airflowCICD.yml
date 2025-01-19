@@ -1,0 +1,40 @@
+name: Airflow CI/CD
+
+on:
+  push:
+    paths:
+      - 'dags/**' # Trigger only if DAG files are modified
+
+jobs:
+  validate-and-deploy-dags:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install flake8 pytest pytest-airflow
+
+      # Lint DAGs
+      - name: Lint DAG code
+        run: flake8 dags/
+
+      # Validate DAGs
+      - name: Test DAGs
+        run: |
+          airflow dags test <dag_id> <execution_date> # Replace with actual DAG ID and execution date
+
+      # Deploy DAGs to Airflow
+      - name: Deploy DAGs to Airflow
+        run: |
+          scp -r dags/ user@your-airflow-instance:/path/to/dags/
