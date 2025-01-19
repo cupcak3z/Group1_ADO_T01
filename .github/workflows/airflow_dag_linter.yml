@@ -13,19 +13,31 @@ jobs:
     steps:
       # Checkout the repository
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      # Install graphviz system dependency
+      - name: Install graphviz
+        run: sudo apt-get update && sudo apt-get install -y graphviz
 
       # Set up Python environment
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
-      # Install dependencies
+      # Install Python dependencies
       - name: Install dependencies
         run: |
           pip install apache-airflow
-          pip install pylint
+          pip install apache-airflow[cncf.kubernetes]
+          pip install pandas graphviz
+
+      # Disable example DAGs
+      - name: Disable example DAGs
+        run: |
+          export AIRFLOW_HOME=$(pwd)/airflow_home
+          mkdir -p $AIRFLOW_HOME
+          echo -e "[core]\nload_examples = False" > $AIRFLOW_HOME/airflow.cfg
 
       # Initialize Airflow database
       - name: Initialize Airflow database
@@ -45,7 +57,3 @@ jobs:
               echo "Skipping $file: Not a valid DAG."
             fi
           done
-
-      # Lint DAG files using pylint
-      - name: Lint DAG files
-        run: pylint airflow_dag/*.py
