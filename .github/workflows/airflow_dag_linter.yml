@@ -1,0 +1,44 @@
+name: Airflow DAG Linter
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          pip install apache-airflow
+          pip install pylint
+
+      # Validate DAG files
+      - name: Validate DAG files
+        run: |
+          for file in airflow_dag/*.py; do
+            if python -c "import os; from airflow import models; from importlib import import_module; import_module(os.path.splitext('$file')[0].replace('/', '.'))"; then
+              echo "Validating $(basename $file)"
+              airflow dags test $(basename $file .py) 2023-01-01
+            else
+              echo "Skipping $file: Not a valid DAG."
+            fi
+          done
+
+      # Lint DAG files using pylint
+      - name: Lint DAG files
+        run: pylint airflow_dag/*.py
