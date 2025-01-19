@@ -27,9 +27,16 @@ jobs:
           pip install apache-airflow
           pip install pylint
 
+      # Initialize Airflow database
+      - name: Initialize Airflow database
+        run: |
+          export AIRFLOW_HOME=$(pwd)/airflow_home
+          airflow db init
+
       # Validate DAG files
       - name: Validate DAG files
         run: |
+          export AIRFLOW_HOME=$(pwd)/airflow_home
           for file in airflow_dag/*.py; do
             if python -c "import os; from airflow import models; from importlib import import_module; import_module(os.path.splitext('$file')[0].replace('/', '.'))"; then
               echo "Validating $(basename $file)"
