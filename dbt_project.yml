@@ -40,4 +40,4 @@ models:
     staging:
       +schema: final    # Write staging models to a new schema
       +materialized: table
-#      +database: ADO_GROUP1_DB_RAW
+#      +database: ADO_GROUP1_DB_RAW TESTING CI/CD
