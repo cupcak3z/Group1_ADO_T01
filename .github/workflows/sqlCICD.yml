@@ -21,9 +21,11 @@ jobs:
         with:
           python-version: "3.x"
 
-      # Install sqlfluff with dbt plugin
-      - name: Install sqlfluff
-        run: pip install sqlfluff sqlfluff-templater-dbt
+      # Install sqlfluff with dbt and dbt-snowflake
+      - name: Install sqlfluff and dbt-snowflake
+        run: |
+          pip install sqlfluff sqlfluff-templater-dbt
+          pip install dbt-snowflake
 
       # Dynamically create profiles.yml
       - name: Create profiles.yml
