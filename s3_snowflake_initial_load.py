@@ -1,5 +1,4 @@
 import snowflake.connector
-from datetime import datetime
 
 # Setting up snowflake connection
 conn = snowflake.connector.connect(
