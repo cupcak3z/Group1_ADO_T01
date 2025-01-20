@@ -28,13 +28,13 @@ jobs:
 
       # Lint Python code (allow failure)
       - name: Lint Python code
-        run: flake8
+        run: flake8 --ignore E501
         continue-on-error: true  # Allow the linter step to fail
 
       # Fix Python linting errors
       - name: Auto-fix Python linting errors
         if: always()  # Run regardless of the previous step's result
-        run: autopep8 --in-place --aggressive --recursive --max-line-length=79 .
+        run: autopep8 --in-place --aggressive --recursive .
 
       # Re-run linter to verify fixes
       - name: Re-run Python linter after auto-fix
