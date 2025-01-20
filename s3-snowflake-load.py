@@ -839,7 +839,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -927,7 +928,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -997,7 +999,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1067,7 +1070,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1203,7 +1207,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1339,7 +1344,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1469,7 +1475,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1557,7 +1564,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1627,7 +1635,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1703,7 +1712,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1791,7 +1801,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1864,7 +1875,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1946,7 +1958,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2049,7 +2062,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2152,7 +2166,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2234,7 +2249,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2379,7 +2395,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2524,7 +2541,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2594,7 +2612,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2667,7 +2686,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2758,7 +2778,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2855,7 +2876,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2934,7 +2956,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")  
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3028,7 +3051,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3097,7 +3121,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3221,7 +3246,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+        error_limit, errors_seen, first_error_details)""") 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
