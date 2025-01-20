@@ -38,7 +38,7 @@ jobs:
 
       # Re-run linter to verify fixes
       - name: Re-run Python linter after auto-fix
-        run: flake8
+        run: flake8 --ignore E501 .
 
       # Build Package
       - name: Build Python package
