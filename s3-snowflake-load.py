@@ -1574,7 +1574,7 @@ else:
         print(f"COPY INTO Result: {row}")
 
     cursor.execute("""
-    MERGE INTO DIMEXCHANGERATE_RAW AS target
+    MERGE INTO FACTEXCHANGERATE_RAW AS target
     USING LOADEXCHANGERATE_STAGE AS source
     ON target.EXCHANGERATEKEY = source.EXCHANGERATEKEY
     WHEN MATCHED THEN
