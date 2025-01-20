@@ -826,7 +826,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for ACCOUNT")
+    print("No incremental data file found for ACCOUNT")
 else:
     cursor.execute(f"""
     COPY INTO LOADACCOUNT_STAGE
@@ -910,7 +910,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for ACCOUNT")
+    print("No incremental data file found for ACCOUNT")
 else:
     cursor.execute(f"""
     COPY INTO LOADCHANNEL_STAGE
@@ -976,7 +976,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for CURRENCY")
+    print("No incremental data file found for CURRENCY")
 else:
     cursor.execute(f"""
     COPY INTO LOADCURRENCY_STAGE
@@ -1042,7 +1042,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for CUSTOMER")
+    print("No incremental data file found for CUSTOMER")
 else:
     cursor.execute(f"""
     COPY INTO LOADCUSTOMER_STAGE
@@ -1174,7 +1174,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for DATE")
+    print("No incremental data file found for DATE")
 else:
     cursor.execute(f"""
     COPY INTO LOADDATE_STAGE
@@ -1306,7 +1306,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for EMPLOYEE")
+    print("No incremental data file found for EMPLOYEE")
 else:
     cursor.execute(f"""
     COPY INTO LOADEMPLOYEE_STAGE
@@ -1432,7 +1432,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for ENTITY")
+    print("No incremental data file found for ENTITY")
 else:
     cursor.execute(f"""
     COPY INTO LOADENTITY_STAGE
@@ -1516,7 +1516,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for EXCHANGERATE")
+    print("No incremental data file found for EXCHANGERATE")
 else:
     cursor.execute(f"""
     COPY INTO LOADEXCHANGERATE_STAGE
@@ -1582,7 +1582,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for GEOGRAPHY")
+    print("No incremental data file found for GEOGRAPHY")
 else:
     cursor.execute(f"""
     COPY INTO LOADGEOGRAPHY_STAGE
@@ -1654,7 +1654,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for INVENTORY")
+    print("No incremental data file found for INVENTORY")
 else:
     cursor.execute(f"""
     COPY INTO LOADINVENTORY_STAGE
@@ -1738,7 +1738,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for ITMACHINE")
+    print("No incremental data file found for ITMACHINE")
 else:
     cursor.execute(f"""
     COPY INTO LOADITMACHINE_STAGE
@@ -1807,7 +1807,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for ITSLA")
+    print("No incremental data file found for ITSLA")
 else:
     cursor.execute(f"""
     COPY INTO LOADITSLA_STAGE
@@ -1885,7 +1885,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for MACHINE")
+    print("No incremental data file found for MACHINE")
 else:
     cursor.execute(f"""
     COPY INTO LOADMACHINE_STAGE
@@ -1984,7 +1984,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for ONLINESALES")
+    print("No incremental data file found for ONLINESALES")
 else:
     cursor.execute(f"""
     COPY INTO LOADONLINESALES_STAGE
@@ -2083,7 +2083,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for OUTAGE")
+    print("No incremental data file found for OUTAGE")
 else:
     cursor.execute(f"""
     COPY INTO LOADOUTAGE_STAGE
@@ -2161,7 +2161,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for PRODUCT")
+    print("No incremental data file found for PRODUCT")
 else:
     cursor.execute(f"""
     COPY INTO LOADPRODUCT_STAGE
@@ -2302,7 +2302,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for PRODUCT")
+    print("No incremental data file found for PRODUCT")
 else:
     cursor.execute(f"""
     COPY INTO LOADPRODUCT_STAGE
@@ -2443,7 +2443,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for PRODUCTCATEGORY")
+    print("No incremental data file found for PRODUCTCATEGORY")
 else:
     cursor.execute(f"""
     COPY INTO LOADPRODUCTCATEGORY_STAGE
@@ -2509,7 +2509,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for PRODUCTSUBCATEGORY")
+    print("No incremental data file found for PRODUCTSUBCATEGORY")
 else:
     cursor.execute(f"""
     COPY INTO LOADPRODUCTSUBCATEGORY_STAGE

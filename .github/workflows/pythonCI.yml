@@ -34,7 +34,7 @@ jobs:
       # Fix Python linting errors
       - name: Auto-fix Python linting errors
         if: always()  # Run regardless of the previous step's result
-        run: autopep8 --in-place --aggressive --recursive .
+        run: autopep8 --in-place --aggressive --recursive --max-line-length=79 .
 
       # Re-run linter to verify fixes
       - name: Re-run Python linter after auto-fix
