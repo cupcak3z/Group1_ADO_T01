@@ -24,7 +24,7 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: |
-          pip install flake8 autopep8
+          pip install flake8 autopep8 build
 
       # Lint Python code (allow failure)
       - name: Lint Python code
@@ -38,7 +38,7 @@ jobs:
 
       # Re-run linter to verify fixes
       - name: Re-run Python linter after auto-fix
-        run: flake8 --ignore E501 .
+        run: flake8 --ignore E501 
 
       # Build Package
       - name: Build Python package
