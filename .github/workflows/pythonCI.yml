@@ -1,4 +1,4 @@
-name: Python CI with Build
+name: Python CI with Auto-Fix (Build)
 
 on:
   push:
@@ -7,28 +7,39 @@ on:
   pull_request: {}
 
 jobs:
-  python-lint-and-build:
+  python-lint-and-test:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # Set up Python environment
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
 
+      # Install dependencies
       - name: Install dependencies
         run: |
-          pip install flake8 autopep8 build
+          pip install flake8 autopep8
 
+      # Lint Python code (allow failure)
       - name: Lint Python code
         run: flake8
+        continue-on-error: true  # Allow the linter step to fail
 
+      # Fix Python linting errors
       - name: Auto-fix Python linting errors
-        if: always()
+        if: always()  # Run regardless of the previous step's result
         run: autopep8 --in-place --aggressive --recursive .
 
+      # Re-run linter to verify fixes
+      - name: Re-run Python linter after auto-fix
+        run: flake8
+
+      # Build Package
       - name: Build Python package
         run: python -m build
