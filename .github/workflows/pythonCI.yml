@@ -28,7 +28,7 @@ jobs:
 
       # Lint Python code (allow failure)
       - name: Lint Python code
-        run: flake8 --ignore E501
+        run: flake8 --ignore E501 .
         continue-on-error: true  # Allow the linter step to fail
 
       # Fix Python linting errors
