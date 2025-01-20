@@ -25,6 +25,30 @@ jobs:
       - name: Install sqlfluff
         run: pip install sqlfluff sqlfluff-templater-dbt
 
+      # Dynamically create profiles.yml
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          echo "
+          ADO_GROUP1_T01:
+            outputs:
+              dev:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ${{ secrets.SNOWFLAKE_ROLE }}
+                database: ${{ secrets.SNOWFLAKE_DATABASE }}
+                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+                schema: RAW_SCHEMA_FINAL
+                threads: 4
+            target: dev
+          " > ~/.dbt/profiles.yml
+
+      # Debug dbt setup
+      - name: Debug dbt setup
+        run: dbt debug
+
       # Lint SQL files
       - name: Lint dbt SQL models and SnowSQL files
         run: sqlfluff lint .
