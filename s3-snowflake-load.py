@@ -2570,3 +2570,602 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+
+#Promotion
+file_path = f"@STG_PROMOTION_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for PROMOTION")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADPROMOTION_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMPROMOTION_RAW AS target
+    USING LOADPROMOTION_STAGE AS source
+    ON target.PROMOTIONKEY = source.PROMOTIONKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            PROMOTIONKEY = source.PROMOTIONKEY,
+            PROMOTIONLABEL = source.PROMOTIONLABEL,
+            PROMOTIONNAME = source.PROMOTIONNAME,
+            PROMOTIONDESCRIPTION = source.PROMOTIONDESCRIPTION,
+            DISCOUNTPERCENT = source.DISCOUNTPERCENT,
+            PROMOTIONTYPE = source.PROMOTIONTYPE,
+            PROMOTIONCATEGORY = source.PROMOTIONCATEGORY,
+            STARTDATE = source.STARTDATE,
+            ENDDATE = source.ENDDATE,
+            MINQUANTITY = source.MINQUANTITY,
+            MAXQUANTITY = source.MAXQUANTITY,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            PROMOTIONKEY,
+            PROMOTIONLABEL,
+            PROMOTIONNAME,
+            PROMOTIONDESCRIPTION,
+            DISCOUNTPERCENT,
+            PROMOTIONTYPE,
+            PROMOTIONCATEGORY,
+            STARTDATE,
+            ENDDATE,
+            MINQUANTITY,
+            MAXQUANTITY,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.PROMOTIONKEY,
+            source.PROMOTIONLABEL,
+            source.PROMOTIONNAME,
+            source.PROMOTIONDESCRIPTION,
+            source.DISCOUNTPERCENT,
+            source.PROMOTIONTYPE,
+            source.PROMOTIONCATEGORY,
+            source.STARTDATE,
+            source.ENDDATE,
+            source.MINQUANTITY,
+            source.MAXQUANTITY,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+
+#Sales
+file_path = f"@STG_SALES_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for SALES")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADSALES_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO FACTSALES_RAW AS target
+    USING LOADSALES_STAGE AS source
+    ON target.SALESKEY = source.SALESKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            SALESKEY = source.SALESKEY,
+            DATEKEY = source.DATEKEY,
+            CHANNELKEY = source.CHANNELKEY,
+            STOREKEY = source.STOREKEY,
+            PRODUCTKEY = source.PRODUCTKEY,
+            PROMOTIONKEY = source.PROMOTIONKEY,
+            CURRENCYKEY = source.CURRENCYKEY,
+            UNITCOST = source.UNITCOST,
+            UNITPRICE = source.UNITPRICE,
+            SALESQUANTITY = source.SALESQUANTITY,
+            RETURNQUANTITY = source.RETURNQUANTITY,
+            RETURNAMOUNT = source.RETURNAMOUNT,
+            DISCOUNTQUANTITY = source.DISCOUNTQUANTITY,
+            DISCOUNTAMOUNT = source.DISCOUNTAMOUNT,
+            TOTALCOST = source.TOTALCOST,
+            SALESAMOUNT = source.SALESAMOUNT
+    WHEN NOT MATCHED THEN
+        INSERT (
+            SALESKEY,
+            DATEKEY,
+            CHANNELKEY,
+            STOREKEY,
+            PRODUCTKEY,
+            PROMOTIONKEY,
+            CURRENCYKEY,
+            UNITCOST,
+            UNITPRICE,
+            SALESQUANTITY,
+            RETURNQUANTITY,
+            RETURNAMOUNT,
+            DISCOUNTQUANTITY,
+            DISCOUNTAMOUNT,
+            TOTALCOST,
+            SALESAMOUNT
+        )
+        VALUES (
+            source.SALESKEY,
+            source.DATEKEY,
+            source.CHANNELKEY,
+            source.STOREKEY,
+            source.PRODUCTKEY,
+            source.PROMOTIONKEY,
+            source.CURRENCYKEY,
+            source.UNITCOST,
+            source.UNITPRICE,
+            source.SALESQUANTITY,
+            source.RETURNQUANTITY,
+            source.RETURNAMOUNT,
+            source.DISCOUNTQUANTITY,
+            source.DISCOUNTAMOUNT,
+            source.TOTALCOST,
+            source.SALESAMOUNT
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+        
+#SalesQuota
+file_path = f"@STG_SALESQUOTA_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for SALESQUOTA")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADSALESQUOTA_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO FACTSALESQUOTA_RAW AS target
+    USING LOADSALESQUOTA_STAGE AS source
+    ON target.SALESQUOTAKEY = source.SALESQUOTAKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            SALESQUOTAKEY = source.SALESQUOTAKEY,
+            CHANNELKEY = source.CHANNELKEY,
+            STOREKEY = source.STOREKEY,
+            PRODUCTKEY = source.PRODUCTKEY,
+            DATEKEY = source.DATEKEY,
+            CURRENCYKEY = source.CURRENCYKEY,
+            SCENARIOKEY = source.SCENARIOKEY,
+            SALESQUANTITYQUOTA = source.SALESQUANTITYQUOTA,
+            SALESAMOUNTQUOTA = source.SALESAMOUNTQUOTA,
+            GROSSMARGINQUOTA = source.GROSSMARGINQUOTA
+    WHEN NOT MATCHED THEN
+        INSERT (
+            SALESQUOTAKEY,
+            CHANNELKEY,
+            STOREKEY,
+            PRODUCTKEY,
+            DATEKEY,
+            CURRENCYKEY,
+            SCENARIOKEY,
+            SALESQUANTITYQUOTA,
+            SALESAMOUNTQUOTA,
+            GROSSMARGINQUOTA
+        )
+        VALUES (
+            source.SALESQUOTAKEY,
+            source.CHANNELKEY,
+            source.STOREKEY,
+            source.PRODUCTKEY,
+            source.DATEKEY,
+            source.CURRENCYKEY,
+            source.SCENARIOKEY,
+            source.SALESQUANTITYQUOTA,
+            source.SALESAMOUNTQUOTA,
+            source.GROSSMARGINQUOTA
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+        
+#SalesTerritory
+file_path = f"@STG_SALESTERRITORY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print(f"No incremental data file found for SALESTERRITORY")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADSALESTERRITORY_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMSALESTERRITORY_RAW AS target
+    USING LOADSALESTERRITORY_STAGE AS source
+    ON target.SALESTERRITORYKEY = source.SALESTERRITORYKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            SALESTERRITORYKEY = source.SALESTERRITORYKEY,
+            GEOGRAPHYKEY = source.GEOGRAPHYKEY,
+            SALESTERRITORYLABEL = source.SALESTERRITORYLABEL,
+            SALESTERRITORYNAME = source.SALESTERRITORYNAME,
+            SALESTERRITORYREGION = source.SALESTERRITORYREGION,
+            SALESTERRITORYCOUNTRY = source.SALESTERRITORYCOUNTRY,
+            SALESTERRITORYGROUP = source.SALESTERRITORYGROUP,
+            SALESTERRITORYLEVEL = source.SALESTERRITORYLEVEL,
+            SALESTERRITORYMANAGER = source.SALESTERRITORYMANAGER,
+            STARTDATE = source.STARTDATE,
+            ENDDATE = source.ENDDATE,
+            STATUS = source.STATUS,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            SALESTERRITORYKEY,
+            GEOGRAPHYKEY,
+            SALESTERRITORYLABEL,
+            SALESTERRITORYNAME,
+            SALESTERRITORYREGION,
+            SALESTERRITORYCOUNTRY,
+            SALESTERRITORYGROUP,
+            SALESTERRITORYLEVEL,
+            SALESTERRITORYMANAGER,
+            STARTDATE,
+            ENDDATE,
+            STATUS,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.SALESTERRITORYKEY,
+            source.GEOGRAPHYKEY,
+            source.SALESTERRITORYLABEL,
+            source.SALESTERRITORYNAME,
+            source.SALESTERRITORYREGION,
+            source.SALESTERRITORYCOUNTRY,
+            source.SALESTERRITORYGROUP,
+            source.SALESTERRITORYLEVEL,
+            source.SALESTERRITORYMANAGER,
+            source.STARTDATE,
+            source.ENDDATE,
+            source.STATUS,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+        
+#Scenario
+file_path = f"@STG_SCENARIO_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print("No incremental data file found for SCENARIO")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADSCENARIO_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMSCENARIO_RAW AS target
+    USING LOADSCENARIO_STAGE AS source
+    ON target.SCENARIOKEY = source.SCENARIOKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            SCENARIOKEY = source.SCENARIOKEY,
+            SCENARIOLABEL = source.SCENARIOLABEL,
+            SCENARIONAME = source.SCENARIONAME,
+            SCENARIODESCRIPTION = source.SCENARIODESCRIPTION,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            SCENARIOKEY,
+            SCENARIOLABEL,
+            SCENARIONAME,
+            SCENARIODESCRIPTION,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.SCENARIOKEY,
+            source.SCENARIOLABEL,
+            source.SCENARIONAME,
+            source.SCENARIODESCRIPTION,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+
+#Store
+file_path = f"@STG_STORE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print("No incremental data file found for STORE")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADSTORE_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO DIMSTORE_RAW AS target
+    USING LOADSTORE_STAGE AS source
+    ON target.STOREKEY = source.STOREKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            STOREKEY = source.STOREKEY,
+            GEOGRAPHYKEY = source.GEOGRAPHYKEY,
+            STOREMANAGER = source.STOREMANAGER,
+            STORETYPE = source.STORETYPE,
+            STORENAME = source.STORENAME,
+            STOREDESCRIPTION = source.STOREDESCRIPTION,
+            STATUS = source.STATUS,
+            OPENDATE = source.OPENDATE,
+            CLOSEDATE = source.CLOSEDATE,
+            ENTITYKEY = source.ENTITYKEY,
+            ZIPCODE = source.ZIPCODE,
+            ZIPCODEEXTENSION = source.ZIPCODEEXTENSION,
+            STOREPHONE = source.STOREPHONE,
+            STOREFAX = source.STOREFAX,
+            ADDRESSLINE1 = source.ADDRESSLINE1,
+            ADDRESSLINE2 = source.ADDRESSLINE2,
+            CLOSEREASON = source.CLOSEREASON,
+            EMPLOYEECOUNT = source.EMPLOYEECOUNT,
+            SELLINGAREASIZE = source.SELLINGAREASIZE,
+            LASTREMODELDATE = source.LASTREMODELDATE,
+            GEOLOCATION = source.GEOLOCATION,
+            GEOMETRY = source.GEOMETRY,
+            ETLLOADID = source.ETLLOADID,
+            LOADDATE = source.LOADDATE,
+            UPDATEDATE = source.UPDATEDATE
+    WHEN NOT MATCHED THEN
+        INSERT (
+            STOREKEY,
+            GEOGRAPHYKEY,
+            STOREMANAGER,
+            STORETYPE,
+            STORENAME,
+            STOREDESCRIPTION,
+            STATUS,
+            OPENDATE,
+            CLOSEDATE,
+            ENTITYKEY,
+            ZIPCODE,
+            ZIPCODEEXTENSION,
+            STOREPHONE,
+            STOREFAX,
+            ADDRESSLINE1,
+            ADDRESSLINE2,
+            CLOSEREASON,
+            EMPLOYEECOUNT,
+            SELLINGAREASIZE,
+            LASTREMODELDATE,
+            GEOLOCATION,
+            GEOMETRY,
+            ETLLOADID,
+            LOADDATE,
+            UPDATEDATE
+        )
+        VALUES (
+            source.STOREKEY,
+            source.GEOGRAPHYKEY,
+            source.STOREMANAGER,
+            source.STORETYPE,
+            source.STORENAME,
+            source.STOREDESCRIPTION,
+            source.STATUS,
+            source.OPENDATE,
+            source.CLOSEDATE,
+            source.ENTITYKEY,
+            source.ZIPCODE,
+            source.ZIPCODEEXTENSION,
+            source.STOREPHONE,
+            source.STOREFAX,
+            source.ADDRESSLINE1,
+            source.ADDRESSLINE2,
+            source.CLOSEREASON,
+            source.EMPLOYEECOUNT,
+            source.SELLINGAREASIZE,
+            source.LASTREMODELDATE,
+            source.GEOLOCATION,
+            source.GEOMETRY,
+            source.ETLLOADID,
+            source.LOADDATE,
+            source.UPDATEDATE
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
+        
+#StrategyPlan
+file_path = f"@STG_STRATEGYPLAN_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+if len(file_list) == 0:
+    print("No incremental data file found for STRATEGYPLAN")
+else:
+    cursor.execute(f"""
+    COPY INTO LOADSTRATEGYPLAN_STAGE
+    FROM {file_path}
+    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    ON_ERROR = 'CONTINUE';
+    """)
+
+    print('Legend: (File name, Status, Rows Parsed, Rows Loaded, Rows Parsed but Skipped, Errors Encountered)')  
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    copy_results = cursor.fetchall()
+
+    for row in copy_results:
+        print(f"COPY INTO Result: {row}")
+
+    cursor.execute("""
+    MERGE INTO FACTSTRATEGYPLAN_RAW AS target
+    USING LOADSTRATEGYPLAN_STAGE AS source
+    ON target.STRATEGYPLANKEY = source.STRATEGYPLANKEY
+    WHEN MATCHED THEN
+        UPDATE SET
+            STRATEGYPLANKEY = source.STRATEGYPLANKEY,
+            DATEKEY = source.DATEKEY,
+            ENTITYKEY = source.ENTITYKEY,
+            SCENARIOKEY = source.SCENARIOKEY,
+            ACCOUNTKEY = source.ACCOUNTKEY,
+            CURRENCYKEY = source.CURRENCYKEY,
+            PRODUCTCATEGORYKEY = source.PRODUCTCATEGORYKEY,
+            AMOUNT = source.AMOUNT
+    WHEN NOT MATCHED THEN
+        INSERT (
+            STRATEGYPLANKEY,
+            DATEKEY,
+            ENTITYKEY,
+            SCENARIOKEY,
+            ACCOUNTKEY,
+            CURRENCYKEY,
+            PRODUCTCATEGORYKEY,
+            AMOUNT
+        )
+        VALUES (
+            source.STRATEGYPLANKEY,
+            source.DATEKEY,
+            source.ENTITYKEY,
+            source.SCENARIOKEY,
+            source.ACCOUNTKEY,
+            source.CURRENCYKEY,
+            source.PRODUCTCATEGORYKEY,
+            source.AMOUNT
+        );
+    """)
+
+      
+    cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+    merge_results = cursor.fetchall()
+
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+    for row in merge_results:
+        print(f"MERGE Result: {row}")
