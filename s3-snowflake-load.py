@@ -2611,7 +2611,6 @@ else:
     )
     ON_ERROR = 'CONTINUE';
     """)
-
     print("""Legend: (file, status, rows_parsed, rows_loaded, 
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
