@@ -2609,7 +2609,8 @@ else:
         FIELD_OPTIONALLY_ENCLOSED_BY='"'
         SKIP_HEADER=1
     )
-    ON_ERROR = 'CONTINUE';""")
+    ON_ERROR = 'CONTINUE';
+    """)
     
     print("""Legend: (file, status, rows_parsed, rows_loaded, 
         error_limit, errors_seen, first_error_details)""")
