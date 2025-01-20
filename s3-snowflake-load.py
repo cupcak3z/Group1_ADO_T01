@@ -807,6 +807,7 @@ TRUNCATE TABLE LOADSTRATEGYPLAN_STAGE
 # );
 # """)
 
+# Batch
 current_time = datetime.now()
 if 6 <= current_time.hour < 14:
     batch = "6am"
