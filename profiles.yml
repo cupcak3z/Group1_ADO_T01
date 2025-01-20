@@ -1,0 +1,13 @@
+ADO_Group1_T01:
+  outputs:
+    dev:
+      account: bab83824 
+      database: ADO_GROUP1_DB_RAW
+      password: 28E978242b06
+      role: TRAINING_ROLE
+      schema: RAW_SCHEMA_FINAL
+      threads: 4
+      type: snowflake
+      user: BEETLE
+      warehouse: GROUP1_ADO_WAREHOUSE
+  target: dev
