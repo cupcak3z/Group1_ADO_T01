@@ -831,7 +831,8 @@ else:
     cursor.execute(f"""
     COPY INTO LOADACCOUNT_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT =
+        (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
     ON_ERROR = 'CONTINUE';
     """)
 
