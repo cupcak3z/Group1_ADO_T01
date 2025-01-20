@@ -1175,3 +1175,1428 @@ for row in insert_results:
     print(f"INSERT Result: {row}")
     
 #Employee
+file_path = f"@STG_EMPLOYEE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADEMPLOYEE_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMEMPLOYEE_RAW (
+    EMPLOYEEKEY,
+    PARENTEMPLOYEEKEY,
+    FIRSTNAME,
+    LASTNAME,
+    MIDDLENAME,
+    TITLE,
+    HIREDATE,
+    BIRTHDATE,
+    EMAILADDRESS,
+    PHONE,
+    MARITALSTATUS,
+    EMERGENCYCONTACTNAME,
+    EMERGENCYCONTACTPHONE,
+    SALARIEDFLAG,
+    GENDER,
+    PAYFREQUENCY,
+    BASERATE,
+    VACATIONHOURS,
+    CURRENTFLAG,
+    SALESPERSONFLAG,
+    DEPARTMENTNAME,
+    STARTDATE,
+    ENDDATE,
+    STATUS,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    EMPLOYEEKEY,
+    PARENTEMPLOYEEKEY,
+    FIRSTNAME,
+    LASTNAME,
+    MIDDLENAME,
+    TITLE,
+    HIREDATE,
+    BIRTHDATE,
+    EMAILADDRESS,
+    PHONE,
+    MARITALSTATUS,
+    EMERGENCYCONTACTNAME,
+    EMERGENCYCONTACTPHONE,
+    SALARIEDFLAG,
+    GENDER,
+    PAYFREQUENCY,
+    BASERATE,
+    VACATIONHOURS,
+    CURRENTFLAG,
+    SALESPERSONFLAG,
+    DEPARTMENTNAME,
+    STARTDATE,
+    ENDDATE,
+    STATUS,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADEMPLOYEE_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+
+#Employee
+file_path = f"@STG_EMPLOYEE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADEMPLOYEE_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMEMPLOYEE_RAW (
+    EMPLOYEEKEY,
+    PARENTEMPLOYEEKEY,
+    FIRSTNAME,
+    LASTNAME,
+    MIDDLENAME,
+    TITLE,
+    HIREDATE,
+    BIRTHDATE,
+    EMAILADDRESS,
+    PHONE,
+    MARITALSTATUS,
+    EMERGENCYCONTACTNAME,
+    EMERGENCYCONTACTPHONE,
+    SALARIEDFLAG,
+    GENDER,
+    PAYFREQUENCY,
+    BASERATE,
+    VACATIONHOURS,
+    CURRENTFLAG,
+    SALESPERSONFLAG,
+    DEPARTMENTNAME,
+    STARTDATE,
+    ENDDATE,
+    STATUS,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    EMPLOYEEKEY,
+    PARENTEMPLOYEEKEY,
+    FIRSTNAME,
+    LASTNAME,
+    MIDDLENAME,
+    TITLE,
+    HIREDATE,
+    BIRTHDATE,
+    EMAILADDRESS,
+    PHONE,
+    MARITALSTATUS,
+    EMERGENCYCONTACTNAME,
+    EMERGENCYCONTACTPHONE,
+    SALARIEDFLAG,
+    GENDER,
+    PAYFREQUENCY,
+    BASERATE,
+    VACATIONHOURS,
+    CURRENTFLAG,
+    SALESPERSONFLAG,
+    DEPARTMENTNAME,
+    STARTDATE,
+    ENDDATE,
+    STATUS,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADEMPLOYEE_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Entity
+file_path = f"@STG_ENTITY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADENTITY_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMENTITY_RAW (
+    ENTITYKEY,
+    ENTITYLABEL,
+    PARENTENTITYKEY,
+    PARENTENTITYLABEL,
+    ENTITYNAME,
+    ENTITYDESCRIPTION,
+    ENTITYTYPE,
+    STARTDATE,
+    ENDDATE,
+    STATUS,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    ENTITYKEY,
+    ENTITYLABEL,
+    PARENTENTITYKEY,
+    PARENTENTITYLABEL,
+    ENTITYNAME,
+    ENTITYDESCRIPTION,
+    ENTITYTYPE,
+    STARTDATE,
+    ENDDATE,
+    STATUS,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADENTITY_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#ExchangeRate
+file_path = f"@STG_EXCHANGERATE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADEXCHANGERATE_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO FACTEXCHANGERATE_RAW (
+    EXCHANGERATEKEY,
+    CURRENCYKEY,
+    DATEKEY,
+    AVERAGERATE,
+    ENDOFDAYRATE,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    EXCHANGERATEKEY,
+    CURRENCYKEY,
+    DATEKEY,
+    AVERAGERATE,
+    ENDOFDAYRATE,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADEXCHANGERATE_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Geography
+file_path = f"@STG_GEOGRAPHY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADGEOGRAPHY_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMGEOGRAPHY_RAW (
+    GEOGRAPHYKEY,
+    GEOGRAPHYTYPE,
+    CONTINENTNAME,
+    CITYNAME,
+    STATEPROVINCENAME,
+    REGIONCOUNTRYNAME,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    GEOGRAPHYKEY,
+    GEOGRAPHYTYPE,
+    CONTINENTNAME,
+    CITYNAME,
+    STATEPROVINCENAME,
+    REGIONCOUNTRYNAME,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADGEOGRAPHY_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Inventory
+file_path = f"@STG_INVENTORY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADINVENTORY_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO FACTINVENTORY_RAW (
+    INVENTORYKEY,
+    DATEKEY,
+    STOREKEY,
+    PRODUCTKEY,
+    CURRENCYKEY,
+    ONHANDQUANTITY,
+    ONORDERQUANTITY,
+    SAFETYSTOCKQUANTITY,
+    UNITCOST,
+    DAYSINSTOCK,
+    MINDAYINSTOCK,
+    MAXDAYINSTOCK,
+    AGING
+)
+SELECT 
+    INVENTORYKEY,
+    DATEKEY,
+    STOREKEY,
+    PRODUCTKEY,
+    CURRENCYKEY,
+    ONHANDQUANTITY,
+    ONORDERQUANTITY,
+    SAFETYSTOCKQUANTITY,
+    UNITCOST,
+    DAYSINSTOCK,
+    MINDAYINSTOCK,
+    MAXDAYINSTOCK,
+    AGING
+FROM LOADINVENTORY_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#ITMachine
+file_path = f"@STG_ITMACHINE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADITMACHINE_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO FACTITMACHINE_RAW (
+    ITMACHINEKEY,
+    MACHINEKEY,
+    DATEKEY,
+    COSTAMOUNT,
+    COSTTYPE,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    ITMACHINEKEY,
+    MACHINEKEY,
+    DATEKEY,
+    COSTAMOUNT,
+    COSTTYPE,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADITMACHINE_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+
+#ITSLA
+file_path = f"@STG_ITSLA_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADITSLA_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO FACTITSLA_RAW (
+    ITSLAKEY,
+    DATEKEY,
+    STOREKEY,
+    MACHINEKEY,
+    OUTAGEKEY,
+    OUTAGESTARTTIME,
+    OUTAGEENDTIME,
+    DOWNTIME,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    ITSLAKEY,
+    DATEKEY,
+    STOREKEY,
+    MACHINEKEY,
+    OUTAGEKEY,
+    OUTAGESTARTTIME,
+    OUTAGEENDTIME,
+    DOWNTIME,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADITSLA_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Machine
+file_path = f"@STG_MACHINE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADMACHINE_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMMACHINE_RAW (
+    MACHINEKEY,
+    MACHINELABEL,
+    STOREKEY,
+    MACHINETYPE,
+    MACHINENAME,
+    MACHINEDESCRIPTION,
+    VENDORNAME,
+    MACHINEOS,
+    MACHINESOURCE,
+    MACHINEHARDWARE,
+    MACHINESOFTWARE,
+    STATUS,
+    SERVICESTARTDATE,
+    DECOMMISSIONDATE,
+    LASTMODIFIEDDATE,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    MACHINEKEY,
+    MACHINELABEL,
+    STOREKEY,
+    MACHINETYPE,
+    MACHINENAME,
+    MACHINEDESCRIPTION,
+    VENDORNAME,
+    MACHINEOS,
+    MACHINESOURCE,
+    MACHINEHARDWARE,
+    MACHINESOFTWARE,
+    STATUS,
+    SERVICESTARTDATE,
+    DECOMMISSIONDATE,
+    LASTMODIFIEDDATE,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADMACHINE_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#OnlineSales
+file_path = f"@STG_ONLINESALES_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADONLINESALES_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO FACTONLINESALES_RAW (
+    ONLINESALESKEY,
+    DATEKEY,
+    STOREKEY,
+    PRODUCTKEY,
+    PROMOTIONKEY,
+    CURRENCYKEY,
+    CUSTOMERKEY,
+    SALESORDERNUMBER,
+    SALESORDERLINENUMBER,
+    SALESQUANTITY,
+    SALESAMOUNT,
+    RETURNQUANTITY,
+    RETURNAMOUNT,
+    DISCOUNTQUANTITY,
+    DISCOUNTAMOUNT,
+    TOTALCOST,
+    UNITCOST,
+    UNITPRICE
+)
+SELECT 
+    ONLINESALESKEY,
+    DATEKEY,
+    STOREKEY,
+    PRODUCTKEY,
+    PROMOTIONKEY,
+    CURRENCYKEY,
+    CUSTOMERKEY,
+    SALESORDERNUMBER,
+    SALESORDERLINENUMBER,
+    SALESQUANTITY,
+    SALESAMOUNT,
+    RETURNQUANTITY,
+    RETURNAMOUNT,
+    DISCOUNTQUANTITY,
+    DISCOUNTAMOUNT,
+    TOTALCOST,
+    UNITCOST,
+    UNITPRICE
+FROM LOADONLINESALES_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+
+#Outage
+file_path = f"@STG_OUTAGE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADOUTAGE_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMOUTAGE_RAW (
+    OUTAGEKEY,
+    OUTAGELABEL,
+    OUTAGENAME,
+    OUTAGEDESCRIPTION,
+    OUTAGETYPE,
+    OUTAGETYPEDESCRIPTION,
+    OUTAGESUBTYPE,
+    OUTAGESUBTYPEDESCRIPTION,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    OUTAGEKEY,
+    OUTAGELABEL,
+    OUTAGENAME,
+    OUTAGEDESCRIPTION,
+    OUTAGETYPE,
+    OUTAGETYPEDESCRIPTION,
+    OUTAGESUBTYPE,
+    OUTAGESUBTYPEDESCRIPTION,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADOUTAGE_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Product
+file_path = f"@STG_PRODUCT_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADPRODUCT_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMPRODUCT_RAW (
+    PRODUCTKEY,
+    PRODUCTLABEL,
+    PRODUCTNAME,
+    PRODUCTDESCRIPTION,
+    PRODUCTSUBCATEGORYKEY,
+    MANUFACTURER,
+    BRANDNAME,
+    CLASSID,
+    CLASSNAME,
+    STYLEID,
+    STYLENAME,
+    COLORID,
+    COLORNAME,
+    SIZE,
+    SIZERANGE,
+    SIZEUNITMEASUREID,
+    WEIGHT,
+    WEIGHTUNITMEASUREID,
+    UNITOFMEASUREID,
+    UNITOFMEASURENAME,
+    STOCKTYPEID,
+    STOCKTYPENAME,
+    UNITCOST,
+    UNITPRICE,
+    AVAILABLEFORSALEDATE,
+    STOPSALEDATE,
+    STATUS,
+    IMAGEURL,
+    PRODUCTURL,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    PRODUCTKEY,
+    PRODUCTLABEL,
+    PRODUCTNAME,
+    PRODUCTDESCRIPTION,
+    PRODUCTSUBCATEGORYKEY,
+    MANUFACTURER,
+    BRANDNAME,
+    CLASSID,
+    CLASSNAME,
+    STYLEID,
+    STYLENAME,
+    COLORID,
+    COLORNAME,
+    SIZE,
+    SIZERANGE,
+    SIZEUNITMEASUREID,
+    WEIGHT,
+    WEIGHTUNITMEASUREID,
+    UNITOFMEASUREID,
+    UNITOFMEASURENAME,
+    STOCKTYPEID,
+    STOCKTYPENAME,
+    UNITCOST,
+    UNITPRICE,
+    AVAILABLEFORSALEDATE,
+    STOPSALEDATE,
+    STATUS,
+    IMAGEURL,
+    PRODUCTURL,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADPRODUCT_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#ProductCategory
+file_path = f"@STG_PRODUCTCATEGORY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADPRODUCTCATEGORY_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMPRODUCTCATEGORY_RAW (
+    PRODUCTCATEGORYKEY,
+    PRODUCTCATEGORYLABEL,
+    PRODUCTCATEGORYNAME,
+    PRODUCTCATEGORYDESCRIPTION,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    PRODUCTCATEGORYKEY,
+    PRODUCTCATEGORYLABEL,
+    PRODUCTCATEGORYNAME,
+    PRODUCTCATEGORYDESCRIPTION,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADPRODUCTCATEGORY_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#ProductSubCategory
+file_path = f"@STG_PRODUCTSUBCATEGORY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADPRODUCTSUBCATEGORY_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMPRODUCTSUBCATEGORY_RAW (
+    PRODUCTSUBCATEGORYKEY,
+    PRODUCTSUBCATEGORYLABEL,
+    PRODUCTSUBCATEGORYNAME,
+    PRODUCTSUBCATEGORYDESCRIPTION,
+    PRODUCTCATEGORYKEY,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    PRODUCTSUBCATEGORYKEY,
+    PRODUCTSUBCATEGORYLABEL,
+    PRODUCTSUBCATEGORYNAME,
+    PRODUCTSUBCATEGORYDESCRIPTION,
+    PRODUCTCATEGORYKEY,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADPRODUCTSUBCATEGORY_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Promotion
+file_path = f"@STG_PROMOTION_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADPROMOTION_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMPROMOTION_RAW (
+    PROMOTIONKEY,
+    PROMOTIONLABEL,
+    PROMOTIONNAME,
+    PROMOTIONDESCRIPTION,
+    DISCOUNTPERCENT,
+    PROMOTIONTYPE,
+    PROMOTIONCATEGORY,
+    STARTDATE,
+    ENDDATE,
+    MINQUANTITY,
+    MAXQUANTITY,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    PROMOTIONKEY,
+    PROMOTIONLABEL,
+    PROMOTIONNAME,
+    PROMOTIONDESCRIPTION,
+    DISCOUNTPERCENT,
+    PROMOTIONTYPE,
+    PROMOTIONCATEGORY,
+    STARTDATE,
+    ENDDATE,
+    MINQUANTITY,
+    MAXQUANTITY,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADPROMOTION_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Sales
+file_path = f"@STG_SALES_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADSALES_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO FACTSALES_RAW (
+    SALESKEY,
+    DATEKEY,
+    CHANNELKEY,
+    STOREKEY,
+    PRODUCTKEY,
+    PROMOTIONKEY,
+    CURRENCYKEY,
+    UNITCOST,
+    UNITPRICE,
+    SALESQUANTITY,
+    RETURNQUANTITY,
+    RETURNAMOUNT,
+    DISCOUNTQUANTITY,
+    DISCOUNTAMOUNT,
+    TOTALCOST,
+    SALESAMOUNT
+)
+SELECT 
+    SALESKEY,
+    DATEKEY,
+    CHANNELKEY,
+    STOREKEY,
+    PRODUCTKEY,
+    PROMOTIONKEY,
+    CURRENCYKEY,
+    UNITCOST,
+    UNITPRICE,
+    SALESQUANTITY,
+    RETURNQUANTITY,
+    RETURNAMOUNT,
+    DISCOUNTQUANTITY,
+    DISCOUNTAMOUNT,
+    TOTALCOST,
+    SALESAMOUNT
+FROM LOADSALES_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#SalesQuota
+file_path = f"@STG_SALESQUOTA_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADSALESQUOTA_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO FACTSALESQUOTA_RAW (
+    SALESQUOTAKEY,
+    CHANNELKEY,
+    STOREKEY,
+    PRODUCTKEY,
+    DATEKEY,
+    CURRENCYKEY,
+    SCENARIOKEY,
+    SALESQUANTITYQUOTA,
+    SALESAMOUNTQUOTA,
+    GROSSMARGINQUOTA
+)
+SELECT 
+    SALESQUOTAKEY,
+    CHANNELKEY,
+    STOREKEY,
+    PRODUCTKEY,
+    DATEKEY,
+    CURRENCYKEY,
+    SCENARIOKEY,
+    SALESQUANTITYQUOTA,
+    SALESAMOUNTQUOTA,
+    GROSSMARGINQUOTA
+FROM LOADSALESQUOTA_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+
+#SalesTerritory
+file_path = f"@STG_SALESTERRITORY_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADSALESTERRITORY_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMSALESTERRITORY_RAW (
+    SALESTERRITORYKEY,
+    GEOGRAPHYKEY,
+    SALESTERRITORYLABEL,
+    SALESTERRITORYNAME,
+    SALESTERRITORYREGION,
+    SALESTERRITORYCOUNTRY,
+    SALESTERRITORYGROUP,
+    SALESTERRITORYLEVEL,
+    SALESTERRITORYMANAGER,
+    STARTDATE,
+    ENDDATE,
+    STATUS,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    SALESTERRITORYKEY,
+    GEOGRAPHYKEY,
+    SALESTERRITORYLABEL,
+    SALESTERRITORYNAME,
+    SALESTERRITORYREGION,
+    SALESTERRITORYCOUNTRY,
+    SALESTERRITORYGROUP,
+    SALESTERRITORYLEVEL,
+    SALESTERRITORYMANAGER,
+    STARTDATE,
+    ENDDATE,
+    STATUS,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADSALESTERRITORY_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Scenario
+file_path = f"@STG_SCENARIO_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADSCENARIO_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMSCENARIO_RAW (
+    SCENARIOKEY,
+    SCENARIOLABEL,
+    SCENARIONAME,
+    SCENARIODESCRIPTION,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    SCENARIOKEY,
+    SCENARIOLABEL,
+    SCENARIONAME,
+    SCENARIODESCRIPTION,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADSCENARIO_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+    
+#Store
+file_path = f"@STG_STORE_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADSTORE_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO DIMSTORE_RAW (
+    STOREKEY,
+    GEOGRAPHYKEY,
+    STOREMANAGER,
+    STORETYPE,
+    STORENAME,
+    STOREDESCRIPTION,
+    STATUS,
+    OPENDATE,
+    CLOSEDATE,
+    ENTITYKEY,
+    ZIPCODE,
+    ZIPCODEEXTENSION,
+    STOREPHONE,
+    STOREFAX,
+    ADDRESSLINE1,
+    ADDRESSLINE2,
+    CLOSEREASON,
+    EMPLOYEECOUNT,
+    SELLINGAREASIZE,
+    LASTREMODELDATE,
+    GEOLOCATION,
+    GEOMETRY,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+)
+SELECT 
+    STOREKEY,
+    GEOGRAPHYKEY,
+    STOREMANAGER,
+    STORETYPE,
+    STORENAME,
+    STOREDESCRIPTION,
+    STATUS,
+    OPENDATE,
+    CLOSEDATE,
+    ENTITYKEY,
+    ZIPCODE,
+    ZIPCODEEXTENSION,
+    STOREPHONE,
+    STOREFAX,
+    ADDRESSLINE1,
+    ADDRESSLINE2,
+    CLOSEREASON,
+    EMPLOYEECOUNT,
+    SELLINGAREASIZE,
+    LASTREMODELDATE,
+    GEOLOCATION,
+    GEOMETRY,
+    ETLLOADID,
+    LOADDATE,
+    UPDATEDATE
+FROM LOADSTORE_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")
+
+#StrategyPlan
+file_path = f"@STG_STRATEGYPLAN_DEV/{file_name}"
+
+cursor.execute(f"LIST {file_path};")
+file_list = cursor.fetchall()
+
+cursor.execute(f"""
+COPY INTO LOADSTRATEGYPLAN_STAGE
+FROM {file_path}
+FILE_FORMAT = (
+    TYPE='CSV'
+    FIELD_OPTIONALLY_ENCLOSED_BY='"'
+    SKIP_HEADER=1
+)
+ON_ERROR = 'CONTINUE';
+""")
+print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    error_limit, errors_seen, first_error_details)""")
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+copy_results = cursor.fetchall()
+
+for row in copy_results:
+    print(f"COPY INTO Result: {row}")
+
+cursor.execute("""
+INSERT INTO FACTSTRATEGYPLAN_RAW (
+    STRATEGYPLANKEY,
+    DATEKEY,
+    ENTITYKEY,
+    SCENARIOKEY,
+    ACCOUNTKEY,
+    CURRENCYKEY,
+    PRODUCTCATEGORYKEY,
+    AMOUNT
+)
+SELECT 
+    STRATEGYPLANKEY,
+    DATEKEY,
+    ENTITYKEY,
+    SCENARIOKEY,
+    ACCOUNTKEY,
+    CURRENCYKEY,
+    PRODUCTCATEGORYKEY,
+    AMOUNT
+FROM LOADSTRATEGYPLAN_STAGE;
+""")
+
+cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
+insert_results = cursor.fetchall()
+
+print()
+print('Legend: (Number of inserted records)')
+for row in insert_results:
+    print(f"INSERT Result: {row}")    
