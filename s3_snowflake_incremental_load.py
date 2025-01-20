@@ -1,5 +1,5 @@
 import snowflake.connector
-from datetime import datetime
+import datetime
 
 # Setting up snowflake connection
 conn = snowflake.connector.connect(
@@ -808,7 +808,7 @@ TRUNCATE TABLE LOADSTRATEGYPLAN_STAGE
 # """)
 
 # Batch
-current_time = datetime.now()
+current_time = datetime.datetime.now()
 if 6 <= current_time.hour < 14:
     batch = "6am"
 elif 14 <= current_time.hour < 22:
