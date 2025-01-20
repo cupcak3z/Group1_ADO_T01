@@ -831,8 +831,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADACCOUNT_STAGE
     FROM {file_path}
-    FILE_FORMAT =
-        (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -916,7 +919,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADCHANNEL_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -982,7 +989,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADCURRENCY_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1048,7 +1059,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADCUSTOMER_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1180,7 +1195,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADDATE_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1312,7 +1331,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADEMPLOYEE_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1438,7 +1461,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADENTITY_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1522,7 +1549,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADEXCHANGERATE_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1588,7 +1619,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADGEOGRAPHY_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1660,7 +1695,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADINVENTORY_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1744,7 +1783,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADITMACHINE_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1813,7 +1856,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADITSLA_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1891,7 +1938,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADMACHINE_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -1990,7 +2041,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADONLINESALES_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2089,7 +2144,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADOUTAGE_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2167,7 +2226,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADPRODUCT_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2308,7 +2371,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADPRODUCT_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2449,7 +2516,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADPRODUCTCATEGORY_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2515,7 +2586,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADPRODUCTSUBCATEGORY_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2579,12 +2654,16 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for PROMOTION")
+    print("No incremental data file found for PROMOTION")
 else:
     cursor.execute(f"""
     COPY INTO LOADPROMOTION_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2666,12 +2745,16 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for SALES")
+    print("No incremental data file found for SALES")
 else:
     cursor.execute(f"""
     COPY INTO LOADSALES_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2759,12 +2842,16 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for SALESQUOTA")
+    print("No incremental data file found for SALESQUOTA")
 else:
     cursor.execute(f"""
     COPY INTO LOADSALESQUOTA_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2834,12 +2921,16 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print(f"No incremental data file found for SALESTERRITORY")
+    print("No incremental data file found for SALESTERRITORY")
 else:
     cursor.execute(f"""
     COPY INTO LOADSALESTERRITORY_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2929,7 +3020,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADSCENARIO_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -2994,7 +3089,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADSTORE_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
@@ -3114,7 +3213,11 @@ else:
     cursor.execute(f"""
     COPY INTO LOADSTRATEGYPLAN_STAGE
     FROM {file_path}
-    FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY = '"' SKIP_HEADER = 1)
+    FILE_FORMAT = (
+        TYPE='CSV'
+        FIELD_OPTIONALLY_ENCLOSED_BY='"'
+        SKIP_HEADER=1
+    )
     ON_ERROR = 'CONTINUE';
     """)
 
