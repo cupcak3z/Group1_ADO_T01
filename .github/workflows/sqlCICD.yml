@@ -59,6 +59,10 @@ jobs:
             target: dev
           EOF
 
+      # Install dbt dependencies
+      - name: Install dbt dependencies
+        run: dbt deps
+
       # Debug dbt setup
       - name: Debug dbt setup
         env:
