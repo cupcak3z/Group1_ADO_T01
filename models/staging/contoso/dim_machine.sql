@@ -26,13 +26,13 @@ machine as (
         cast(lastmodifieddate as date) as lastmodifieddate_updated,
 
         -- additional
+        cast(loaddate as timestamp_ntz) as created_at,
         datediff('year', servicestartdate_updated, decommissiondate_updated)
             as yearsservicelife,
-        datediff('day', lastmodifieddate_updated, cast('2009-12-31' as date))
-            as dayssincelastmodification,
 
         -- creation timing
-        cast (loaddate as timestamp_ntz) as created_at
+        datediff('day', lastmodifieddate_updated, cast('2009-12-31' as date))
+            as dayssincelastmodification
 
     from source
 )

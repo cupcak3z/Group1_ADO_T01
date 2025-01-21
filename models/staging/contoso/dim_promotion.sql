@@ -21,8 +21,11 @@ promotion as (
         cast(enddate as date) as enddate_updated,
 
         -- additional
+        cast(loaddate as timestamp_ntz) as created_at,
         datediff('day', startdate_updated, enddate_updated)
             as dayspromotionduration,
+
+        -- creation timing
         case
             when cast('2009-12-31' as date) < startdate_updated
                 then
@@ -31,10 +34,7 @@ promotion as (
                     )
             else
                 datediff('day', startdate_updated, cast('2009-12-31' as date))
-        end as dayssincepromotionstart,
-
-        -- creation timing
-        cast (loaddate as timestamp_ntz) as created_at
+        end as dayssincepromotionstart
 
     from source
 )

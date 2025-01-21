@@ -24,14 +24,15 @@ employee as (
 
         cast(vacationhours as numeric(38, 0)) as vacationhours_updated,
 
+        cast(loaddate as timestamp_ntz) as created_at,
+
+        -- dates
         case
             when
                 parentemployeekey = 'NULL'
                 then cast(employeekey as numeric(38, 0))
             else cast(parentemployeekey as numeric(38, 0))
         end as parentemployeekey_updated,
-
-        -- dates
         cast(firstname as string)
         || ' '
         || cast(lastname as string) as fullname,
@@ -39,13 +40,13 @@ employee as (
             when gender = 'M' then 'Male'
             else 'Female'
         end as gender_updated,
+
+        -- numbers
         case
             when currentflag = 1 then 'Current'
             when currentflag = 0 then 'Not Current'
             else 'Not Current'
         end as status_updated,
-
-        -- numbers
         case
             when salariedflag = '1' then 'Salaried'
             else 'Not Salaried'
@@ -62,10 +63,9 @@ employee as (
             as yearssincehired,
         datediff('year', birthdate_updated, cast('2009-12-31' as date))
             as employeeage,
-        datediff('day', hiredate_updated, startdate_updated) as daystoonboard,
 
         -- creation timing
-        cast (loaddate as timestamp_ntz) as created_at
+        datediff('day', hiredate_updated, startdate_updated) as daystoonboard
 
     from source
 )

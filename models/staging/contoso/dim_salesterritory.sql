@@ -24,12 +24,15 @@ salesterritory as (
 
         -- dates
         cast(startdate as date) as startdate_updated,
+        cast(loaddate as timestamp_ntz) as created_at,
+
+        -- additional
         case
             when enddate = 'NULL' then null
             else cast(enddate as date)
         end as enddate_updated,
 
-        -- additional
+        -- creation timing
         case
             when cast('2009-12-31' as date) < startdate_updated
                 then
@@ -38,10 +41,7 @@ salesterritory as (
                     )
             else
                 datediff('day', startdate_updated, cast('2009-12-31' as date))
-        end as yearssincesalesterritorystart,
-
-        -- creation timing
-        cast (loaddate as timestamp_ntz) as created_at
+        end as yearssincesalesterritorystart
 
     from source
 )

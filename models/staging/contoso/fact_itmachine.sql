@@ -17,7 +17,7 @@ itmachine as (
         cast(costamount as numeric(38, 0)) as costamount_updated,
 
         -- Creation Timings
-        cast (loaddate as timestamp_ntz) as created_at
+        cast(loaddate as timestamp_ntz) as created_at
 
     from source
 )

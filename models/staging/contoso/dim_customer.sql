@@ -15,6 +15,7 @@ customer as (
         addressline1,
         phone,
         customertype,
+        cast(loaddate as timestamp_ntz) as created_at,
         cast(firstname as string)
         || ' '
         || cast(lastname as string) as fullname,
@@ -26,11 +27,11 @@ customer as (
             when gender = 'M' then 'Male'
             else 'Female'
         end as gender_updated,
+        -- Numbers
         case
             when companyname = 'NULL' then 'No Company Entered'
             else companyname
         end as companyname_updated,
-        -- Numbers
         case
             when yearlyincome is NULL then NULL
             else cast(yearlyincome as numeric(10, 2))
@@ -47,11 +48,11 @@ customer as (
             when houseownerflag = 'NULL' then NULL
             else cast(houseownerflag as numeric(38, 0))
         end as houseownerflag_updated,
+        -- date
         case
             when numbercarsowned = 'NULL' then NULL
             else cast(numbercarsowned as numeric(38, 0))
         end as numbercarsowned_updated,
-        -- date
         case
             when birthdate = 'NULL' or birthdate is NULL then NULL
             else cast(birthdate as date)
@@ -66,16 +67,15 @@ customer as (
             when birthdate_updated is NULL then NULL
             else datediff('year', birthdate_updated, cast('2009-12-31' as date))
         end as customerage,
+
+        -- creation timing
         case
             when datefirstpurchase_updated is NULL then NULL
             else
                 datediff(
                     'day', datefirstpurchase_updated, cast('2009-12-31' as date)
                 )
-        end as dayssincefirstpurchase,
-
-        -- creation timing
-        cast (loaddate as timestamp_ntz) as created_at
+        end as dayssincefirstpurchase
 
     from source
 )

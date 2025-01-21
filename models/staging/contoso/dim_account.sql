@@ -13,22 +13,22 @@ account as (
         accountdescription,
         accounttype,
         valuetype,
+        cast(loaddate as timestamp_ntz) as created_at,
         case
             when parentaccountkey = 'NULL' then '1'
             else cast(parentaccountkey as numeric(38, 0))
         end as parentaccountkey_updated,
+
         case
             when accounttype = 'NULL' then 'Income'
             else accounttype
         end as accounttype_updated,
 
+        -- creation timing
         case
             when valuetype = 'NULL' then 'Income'
             else valuetype
-        end as valuetype_updated,
-
-        -- creation timing
-        cast (loaddate as timestamp_ntz) as created_at
+        end as valuetype_updated
     from source
 )
 

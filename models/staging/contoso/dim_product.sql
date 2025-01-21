@@ -34,16 +34,17 @@ product as (
                 (unitprice_updated - unitcost_updated) / unitcost_updated
             ) as numeric(3, 2)
         ) as markup,
+        cast(loaddate as timestamp_ntz) as created_at,
         case
             when status = 'NULL' then 'Off'
             else status
         end as status_updated,
+
+        -- additional
         case
             when styleid = 'NULL' then 1
             else cast(styleid as numeric(38, 0))
         end as styleid_updated,
-
-        -- additional
         case
             when weight = 'NULL' then 0
             else cast(weight as numeric(10, 2))
@@ -54,6 +55,8 @@ product as (
                 then cast('2005-05-03T00:00:00' as timestamp_ntz)
             else cast(availableforsaledate as timestamp_ntz)
         end as availableforsaledate_updated,
+
+        -- creation timing
         case
             when cast('2009-12-31' as date) < availableforsaledate_updated
                 then
@@ -68,10 +71,7 @@ product as (
                     availableforsaledate_updated,
                     cast('2009-12-31' as date)
                 )
-        end as dayssinceavailableforsale,
-
-        -- creation timing
-        cast (loaddate as timestamp_ntz) as created_at
+        end as dayssinceavailableforsale
 
     from source
 )

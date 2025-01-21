@@ -20,7 +20,7 @@ itsla as (
         TO_TIMESTAMP(outageendtime) as outageendtime_updated,
 
         -- Creation Timings
-        CAST (loaddate as TIMESTAMP_NTZ) as created_at
+        CAST(loaddate as TIMESTAMP_NTZ) as created_at
 
     from source
 )

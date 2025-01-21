@@ -24,30 +24,30 @@ store as (
         lastremodeldate,
 
         --date
+        cast(loaddate as timestamp_ntz) as created_at,
         case
             when closereason = 'NULL' then 'Not Yet Closed'
             else closereason
         end as closereason_updated,
+
+        --TIMESTAMP_NTZ
         case
             when employeecount = 'NULL' then 18
             else cast(employeecount as numeric(38, 0))
         end as employeecount_updated,
 
-        --TIMESTAMP_NTZ
+        -- additional
         case
             when closedate = 'NULL' then to_date('2090-12-31', 'YYYY-MM-DD')
             else to_date(closedate, 'YYYY-MM-DD')
         end as closedate_updated,
-
-        -- additional
         datediff('year', opendate_updated, cast('2009-12-31' as date))
             as yearssinceopen,
         datediff('year', opendate_updated, closedate_updated) as yearsleft,
-        datediff('day', lastremodeldate, cast('2009-12-31' as date))
-            as dayssincelastremodel,
 
         --creation date
-        cast (loaddate as timestamp_ntz) as created_at
+        datediff('day', lastremodeldate, cast('2009-12-31' as date))
+            as dayssincelastremodel
 
     from source
 )

@@ -15,7 +15,7 @@ productsubcategory as (
         productsubcategoryname,
 
         -- creation timing
-        cast (loaddate as timestamp_ntz) as created_at
+        cast(loaddate as timestamp_ntz) as created_at
 
     from source
 )
