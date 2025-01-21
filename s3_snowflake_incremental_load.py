@@ -820,6 +820,8 @@ file_date = current_time.strftime('%d-%m-%Y')
 file_name = f"{file_date}_increment_{batch}.csv"
 print(f"Generated file name: {file_name}")
 
+file_name = "10-02-2025_increment_6am.csv" #hardcoded for testing
+
 #Account
 file_path = f"@STG_ACCOUNT_DEV/{file_name}"
 
