@@ -1,46 +1,56 @@
-name: SQL Linter for dbt Models and SnowSQL
+name: Run dbt Locally
 
 on:
   push:
     branches:
       - main
-  pull_request:
+    paths:
+      - 'models/**'
+      - 'dbt_project.yml'
 
 jobs:
-  lint:
+  run_dbt:
     runs-on: ubuntu-latest
-
     steps:
-      # Checkout the code from the repository
+      # Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Set up Python environment
+      # Set up Python
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
 
-      # Install sqlfluff with dbt and dbt-snowflake
-      - name: Install sqlfluff and dbt-snowflake
+      # Install dbt Snowflake adapter
+      - name: Install dbt
         run: |
-          pip install sqlfluff sqlfluff-templater-dbt
           pip install dbt-snowflake
 
-      # Move profiles.yml to ~/.dbt/
-      - name: Set up dbt profiles.yml
+      # Dynamically create profiles.yml
+      - name: Create profiles.yml
         run: |
           mkdir -p ~/.dbt
-          cp profiles.yml ~/.dbt/profiles.yml
+          cat <<EOF > ~/.dbt/profiles.yml
+          ADO_GROUP1_T01:
+            outputs:
+              dev:
+                type: snowflake
+                account: '${{ secrets.SNOWFLAKE_ACCOUNT_SENDEROS }}'
+                user: '${{ secrets.SNOWFLAKE_USER_SENDEROS }}'
+                password: '${{ secrets.SNOWFLAKE_PASSWORD_SENDEROS }}'
+                role: '${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}'
+                database: ADO_GROUP1_DB_RAW
+                warehouse: '${{ secrets.SNOWFLAKE_WAREHOUSE }}'
+                schema: '${{ secrets.SNOWFLAKE_SCHEMA }}'
+                threads: 4
+            target: dev
+          EOF
 
-      # Debug dbt setup
-      - name: Debug dbt setup
+      # Run dbt debug
+      - name: Debug dbt
         run: dbt debug
 
-      # Lint SQL files
-      - name: Lint dbt SQL models and SnowSQL files
-        run: sqlfluff lint .
-
-      # Fix SQL issues (optional)
-      - name: Fix SQL issues
-        run: sqlfluff fix .
+      # Run dbt commands (e.g., dbt run, dbt test)
+      - name: Run dbt models
+        run: dbt run
