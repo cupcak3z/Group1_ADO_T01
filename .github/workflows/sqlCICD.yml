@@ -85,7 +85,8 @@ jobs:
           SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        run: sqlfluff lint .
+        run: sqlfluff lint . --no-fail-fast
+        continue-on-error: true
 
       # Fix SQL issues
       - name: Fix SQL issues
@@ -96,15 +97,25 @@ jobs:
           SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        run: sqlfluff fix .
-
-      # Commit and push fixes
-      - name: Commit and push fixes
+        if: always()
+        run: sqlfluff fix --in-place --aggressive --recursive .
+      
+      - name: Lint dbt SQL models and SnowSQL files
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SNOWFLAKE_ACCOUNT_SENDEROS: ${{ secrets.SNOWFLAKE_ACCOUNT_SENDEROS }}
+          SNOWFLAKE_USER_SENDEROS: ${{ secrets.SNOWFLAKE_USER_SENDEROS }}
+          SNOWFLAKE_PASSWORD_SENDEROS: ${{ secrets.SNOWFLAKE_PASSWORD_SENDEROS }}
+          SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+        run: sqlfluff lint . --no-fail-fast
+
+     # Commit and push auto-fixes
+      - name: Commit and Push Changes
+        if: always()
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add .
-          git commit -m "SQL Linter: Auto-fix issues detected by sqlfluff"
+          git diff-index --quiet HEAD || git commit -m "Auto-fix linting issues"
           git push
