@@ -1,4 +1,4 @@
-name: Python CI with Auto-Fix (Build)
+name: Python CI with Auto-Fix (Commit Changes)
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   pull_request: {}
 
 jobs:
-  python-lint-and-test:
+  python-lint-and-fix:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,7 +24,7 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: |
-          pip install flake8 autopep8 build
+          pip install flake8 autopep8
 
       # Lint Python code (allow failure)
       - name: Lint Python code
@@ -40,6 +40,12 @@ jobs:
       - name: Re-run Python linter after auto-fix
         run: flake8 --ignore E501 
 
-      # Build Package
-      - name: Build Python package
-        run: python -m build
+      # Commit and push auto-fixes
+      - name: Commit and Push Changes
+        if: always()
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Auto-fix linting issues"
+          git push
