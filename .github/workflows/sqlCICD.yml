@@ -1,4 +1,4 @@
-name: Run dbt Locally
+name: SQL Linter for dbt Models and SnowSQL
 
 on:
   push:
