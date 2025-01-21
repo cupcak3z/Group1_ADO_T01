@@ -76,7 +76,7 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: dbt debug
 
-      # Lint SQL files
+      # Lint SQL files with warning suppression
       - name: Lint dbt SQL models and SnowSQL files
         env:
           SNOWFLAKE_ACCOUNT_SENDEROS: ${{ secrets.SNOWFLAKE_ACCOUNT_SENDEROS }}
@@ -85,7 +85,8 @@ jobs:
           SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        run: sqlfluff lint . --nofail --verbose --quiet
+        run: |
+          sqlfluff lint . --nofail --verbose 2>&1 | grep -v "was not found in dbt project"
         continue-on-error: true
 
       # Fix SQL issues
@@ -98,10 +99,11 @@ jobs:
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         if: always()
-        run: sqlfluff fix .
-        continue-on-error: true
-      
-      - name: Lint dbt SQL models and SnowSQL files
+        run: |
+          sqlfluff fix . || true
+
+      # Lint again to ensure issues are resolved
+      - name: Final Lint
         env:
           SNOWFLAKE_ACCOUNT_SENDEROS: ${{ secrets.SNOWFLAKE_ACCOUNT_SENDEROS }}
           SNOWFLAKE_USER_SENDEROS: ${{ secrets.SNOWFLAKE_USER_SENDEROS }}
@@ -109,9 +111,10 @@ jobs:
           SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        run: sqlfluff lint . --nofail --verbose --quiet
+        run: |
+          sqlfluff lint . --nofail --verbose 2>&1 | grep -v "was not found in dbt project"
 
-     # Commit and push auto-fixes
+      # Commit and push auto-fixes
       - name: Commit and Push Changes
         if: always()
         run: |
