@@ -2600,3 +2600,6 @@ print()
 print('Legend: (Number of inserted records)')
 for row in insert_results:
     print(f"INSERT Result: {row}")    
+
+cursor.close()
+conn.close()
