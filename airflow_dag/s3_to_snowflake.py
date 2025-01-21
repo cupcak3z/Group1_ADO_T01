@@ -5,8 +5,8 @@ from datetime import datetime, timedelta
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,
-    "email_on_failure": False,
-    "email_on_retry": False,
+    "email_on_failure": True,
+    "email_on_retry": True,
     "retries": 2,  # Retry twice if the task fails
     "retry_delay": timedelta(minutes=5),  # Wait 5 minutes between retries
 }
