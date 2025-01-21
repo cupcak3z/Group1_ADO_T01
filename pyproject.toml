@@ -1,0 +1,26 @@
+[project]
+name = "s3-data-transfer"
+version = "0.1.0"
+description = "Code that transfers data from S3 to Snowflake"
+
+dependencies = [
+    "snowflake-connector-python>=2.4.0",
+]
+
+[project.optional-dependencies]
+testing = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+]
+dev = [
+    "black",
+    "flake8",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["."]
+exclude = ["seeds", "models", "macros", "analyses", "Sprint_*", "snapshots"]

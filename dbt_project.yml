@@ -6,7 +6,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'default'
+profile: 'ADO_GROUP1_T01'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -37,15 +37,7 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   group1_ado_t01:
     # Applies to all files under models/example/
-    dbt_reference_tables:
-      +materialized: table
-      +database: ADO_GROUP1_DB_RAW
-    marts:         # For final, production-level models
-      +materialized: table
-    example:       # Existing example folder
-      +materialized: table
     staging:
-      +materialized: view
-      +database: ADO_GROUP1_DB_RAW
-    intermediate:
+#      +schema: final    # Write staging models to a new schema
       +materialized: table
+#      +database: ADO_GROUP1_DB_RAW TESTING CI/CD

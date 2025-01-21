@@ -1,0 +1,61 @@
+name: SQL Linter for dbt Models and SnowSQL
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the code from the repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Set up Python environment
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      # Install sqlfluff with dbt and dbt-snowflake
+      - name: Install sqlfluff and dbt-snowflake
+        run: |
+          pip install sqlfluff sqlfluff-templater-dbt
+          pip install dbt-snowflake
+
+      # Dynamically create profiles.yml
+      - name: Create profiles.yml
+        run: |
+            mkdir -p ~/.dbt
+            echo "
+            ADO_GROUP1_T01:
+              outputs:
+                dev:
+                  type: snowflake
+                account: '${{ secrets.SNOWFLAKE_ACCOUNT }}'
+                user: '${{ secrets.SNOWFLAKE_USER }}'
+                password: '${{ secrets.SNOWFLAKE_PASSWORD }}'
+                role: '${{ secrets.SNOWFLAKE_ROLE }}'
+                database: '${{ secrets.SNOWFLAKE_DATABASE }}'
+                warehouse: '${{ secrets.SNOWFLAKE_WAREHOUSE }}'
+                schema: RAW_SCHEMA_FINAL
+                threads: 4
+            target: dev
+            " > ~/.dbt/profiles.yml
+
+
+      # Debug dbt setup
+      - name: Debug dbt setup
+        run: dbt debug
+
+      # Lint SQL files
+      - name: Lint dbt SQL models and SnowSQL files
+        run: sqlfluff lint .
+
+      # Fix SQL issues (optional)
+      - name: Fix SQL issues
+        run: sqlfluff fix .
