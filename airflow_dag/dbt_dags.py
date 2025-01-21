@@ -17,13 +17,10 @@ dbt_snowflake_dag = DbtDag(
     project_config=ProjectConfig("/usr/local/airflow/dags/dbt/data_pipeline"),
     operator_args={"install_deps": True},
     profile_config=profile_config,
-    execution_config=ExecutionConfig(dbt_executable_path=f"{os.environ['AIRFLOW_HOME']}/.local/bin/dbt"),
+    execution_config=ExecutionConfig(
+        dbt_executable_path=f"{os.environ['AIRFLOW_HOME']}/.local/bin/dbt"),
     schedule_interval="@daily",  # Use "@daily" or a valid cron expression
     start_date=datetime(2023, 9, 10, 0, 0, 0),  # Ensure full timestamp format
     catchup=False,
     dag_id="dbt_dag",
 )
-
-
-
-

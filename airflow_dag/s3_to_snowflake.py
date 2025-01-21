@@ -23,4 +23,3 @@ with DAG(
         task_id="run_python_script",
         bash_command="source /home/astro/dbt_venv/bin/activate && python /home/astro/incremental_load/s3_snowflake_incremental_load.py",
     )
-
