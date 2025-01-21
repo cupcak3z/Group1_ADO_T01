@@ -2,7 +2,7 @@ ADO_GROUP1_T01:
   outputs:
     dev:
       account: {secrets.SNOWFLAKE_ACCOUNT_SENDEROS}
-      database: {secrets.SNOWFLAKE_DATABASE}
+      database: ADO_GROUP1_DB_RAW
       password: {secrets.SNOWFLAKE_PASSWORD_SENDEROS}
       role: {secrets.SNOWFLAKE_ROLE_SENDEROS}
       schema: {secrets.SNOWFLAKE_SCHEMA}
