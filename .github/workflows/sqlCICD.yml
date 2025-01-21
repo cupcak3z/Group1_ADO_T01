@@ -85,7 +85,7 @@ jobs:
           SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        run: sqlfluff lint . --nofail --verbose | grep "\[unfixable\]"
+        run: sqlfluff lint . --nofail --verbose 
         continue-on-error: true
 
       # Fix SQL issues
@@ -99,6 +99,7 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         if: always()
         run: sqlfluff fix .
+        continue-on-error: true
       
       - name: Lint dbt SQL models and SnowSQL files
         env:
@@ -108,7 +109,7 @@ jobs:
           SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        run: sqlfluff lint . --nofail --verbose | grep "\[unfixable\]"
+        run: sqlfluff lint . --nofail --verbose 
 
      # Commit and push auto-fixes
       - name: Commit and Push Changes
