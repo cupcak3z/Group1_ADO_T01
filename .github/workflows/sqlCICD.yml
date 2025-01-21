@@ -27,27 +27,20 @@ jobs:
           pip install sqlfluff sqlfluff-templater-dbt
           pip install dbt-core dbt-snowflake
 
-      # Set environment variables
+      # Export environment variables (for dbt to resolve using env_var in profiles.yml)
       - name: Export environment variables
         env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+          SNOWFLAKE_ACCOUNT_SENDEROS: ${{ secrets.SNOWFLAKE_ACCOUNT_SENDEROS }}
+          SNOWFLAKE_USER_SENDEROS: ${{ secrets.SNOWFLAKE_USER_SENDEROS }}
+          SNOWFLAKE_PASSWORD_SENDEROS: ${{ secrets.SNOWFLAKE_PASSWORD_SENDEROS }}
+          SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
-          echo "Environment variables have been set!"
+          echo "Environment variables exported successfully for dbt!"
 
-      # Create profiles.yml with env_var
+      # Create profiles.yml with env_var usage
       - name: Create profiles.yml
-        env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
           mkdir -p ~/.dbt
           cat <<EOF > ~/.dbt/profiles.yml
@@ -55,13 +48,13 @@ jobs:
             outputs:
               dev:
                 type: snowflake
-                account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
-                user: "{{ env_var('SNOWFLAKE_USER') }}"
-                password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
-                role: "{{ env_var('SNOWFLAKE_ROLE') }}"
-                database: "{{ env_var('SNOWFLAKE_DATABASE') }}"
+                account: "{{ env_var('SNOWFLAKE_ACCOUNT_SENDEROS') }}"
+                user: "{{ env_var('SNOWFLAKE_USER_SENDEROS') }}"
+                password: "{{ env_var('SNOWFLAKE_PASSWORD_SENDEROS') }}"
+                role: "{{ env_var('SNOWFLAKE_ROLE_SENDEROS') }}"
+                database: ADO_GROUP1_DB_RAW
                 warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE') }}"
-                schema: RAW_SCHEMA_FINAL
+                schema: "{{ env_var('SNOWFLAKE_SCHEMA') }}"
                 threads: 4
             target: dev
           EOF
@@ -69,32 +62,32 @@ jobs:
       # Debug dbt setup
       - name: Debug dbt setup
         env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+          SNOWFLAKE_ACCOUNT_SENDEROS: ${{ secrets.SNOWFLAKE_ACCOUNT_SENDEROS }}
+          SNOWFLAKE_USER_SENDEROS: ${{ secrets.SNOWFLAKE_USER_SENDEROS }}
+          SNOWFLAKE_PASSWORD_SENDEROS: ${{ secrets.SNOWFLAKE_PASSWORD_SENDEROS }}
+          SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: dbt debug
 
       # Lint SQL files
       - name: Lint dbt SQL models and SnowSQL files
         env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+          SNOWFLAKE_ACCOUNT_SENDEROS: ${{ secrets.SNOWFLAKE_ACCOUNT_SENDEROS }}
+          SNOWFLAKE_USER_SENDEROS: ${{ secrets.SNOWFLAKE_USER_SENDEROS }}
+          SNOWFLAKE_PASSWORD_SENDEROS: ${{ secrets.SNOWFLAKE_PASSWORD_SENDEROS }}
+          SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: sqlfluff lint .
 
       # Fix SQL issues (optional)
       - name: Fix SQL issues
         env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
+          SNOWFLAKE_ACCOUNT_SENDEROS: ${{ secrets.SNOWFLAKE_ACCOUNT_SENDEROS }}
+          SNOWFLAKE_USER_SENDEROS: ${{ secrets.SNOWFLAKE_USER_SENDEROS }}
+          SNOWFLAKE_PASSWORD_SENDEROS: ${{ secrets.SNOWFLAKE_PASSWORD_SENDEROS }}
+          SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
+          SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: sqlfluff fix .
