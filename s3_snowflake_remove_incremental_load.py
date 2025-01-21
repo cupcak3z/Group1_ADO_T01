@@ -13,7 +13,7 @@ conn = snowflake.connector.connect(
 # Creating a cursor object
 cursor = conn.cursor()
 
-#Account
+# Account
 cursor.execute("""
 DELETE FROM DIMACCOUNT_RAW WHERE ACCOUNTKEY = 25;
 """)
@@ -26,122 +26,122 @@ SET ACCOUNTNAME = 'Other Expenses',
 WHERE ACCOUNTKEY = 12;
 """)
 
-#Channel
+# Channel
 cursor.execute("""
 DELETE FROM DIMCHANNEL_RAW WHERE CHANNELKEY = 5;
 """)
 
-#Currency
+# Currency
 cursor.execute("""
 DELETE FROM DIMCURRENCY_RAW WHERE CURRENCYKEY = 29;
 """)
 
-#Customer
+# Customer
 cursor.execute("""
 DELETE FROM DIMCUSTOMER_RAW WHERE CUSTOMERKEY = 19146;
 """)
 
-#Date
+# Date
 cursor.execute("""
 DELETE FROM DIMDATE_RAW WHERE DATEKEY = '2025-02-10';
 """)
 
-#Employee
+# Employee
 cursor.execute("""
 DELETE FROM DIMEMPLOYEE_RAW WHERE EMPLOYEEKEY = 297;
 """)
 
-#Entity
+# Entity
 cursor.execute("""
 DELETE FROM DIMENTITY_RAW WHERE ENTITYKEY = 950;
 """)
 
-#ExchangeRate
+# ExchangeRate
 cursor.execute("""
 DELETE FROM FACTEXCHANGERATE_RAW WHERE EXCHANGERATEKEY = 775;
 """)
 
-#Geography
+# Geography
 cursor.execute("""
 DELETE FROM DIMGEOGRAPHY_RAW WHERE GEOGRAPHYKEY = 953;
 """)
 
-#Inventory
+# Inventory
 cursor.execute("""
 DELETE FROM FACTINVENTORY_RAW WHERE INVENTORYKEY = 6070273;
 """)
 
-#ITMachine
+# ITMachine
 cursor.execute("""
 DELETE FROM FACTITMACHINE_RAW WHERE ITMACHINEKEY = 23284;
 """)
 
-#ITSLA
+# ITSLA
 cursor.execute("""
 DELETE FROM FACTITSLA_RAW WHERE ITSLAKEY = 4926;
 """)
 
-#Machine
+# Machine
 cursor.execute("""
 DELETE FROM DIMMACHINE_RAW WHERE MACHINEKEY = 7817;
 """)
 
-#OnlineSales
+# OnlineSales
 cursor.execute("""
 DELETE FROM FACTONLINESALES_RAW WHERE ONLINESALESKEY = 32188092;
 """)
 
-#Outage
+# Outage
 cursor.execute("""
 DELETE FROM DIMOUTAGE_RAW WHERE OUTAGEKEY = 596;
 """)
 
-#Product
+# Product
 cursor.execute("""
 DELETE FROM DIMPRODUCT_RAW WHERE PRODUCTKEY = 2518;
 """)
 
-#ProductCategory
+# ProductCategory
 cursor.execute("""
 DELETE FROM DIMPRODUCTCATEGORY_RAW WHERE PRODUCTCATEGORYKEY = 9;
 """)
 
-#ProductSubCategory
+# ProductSubCategory
 cursor.execute("""
 DELETE FROM DIMPRODUCTSUBCATEGORY_RAW WHERE PRODUCTSUBCATEGORYKEY = 49;
 """)
 
-#Promotion
+# Promotion
 cursor.execute("""
 DELETE FROM DIMPROMOTION_RAW WHERE PROMOTIONKEY = 29;
 """)
 
-#Sales
+# Sales
 cursor.execute("""
 DELETE FROM FACTSALES_RAW WHERE SALESKEY = 3406090;
 """)
 
-#SalesQuota
+# SalesQuota
 cursor.execute("""
 DELETE FROM FACTSALESQUOTA_RAW WHERE SALESQUOTAKEY = 7465912;
 """)
 
-#SalesTerritory
+# SalesTerritory
 cursor.execute("""
 DELETE FROM DIMSALESTERRITORY_RAW WHERE SALESTERRITORYKEY = 275;
 """)
 
-#Scenario
+# Scenario
 cursor.execute("""
 DELETE FROM DIMSCENARIO_RAW WHERE SCENARIOKEY = 4;
 """)
 
-#Store
+# Store
 cursor.execute("""
 DELETE FROM DIMSTORE_RAW WHERE STOREKEY = 311;
 """)
 
-#StrategyPlan
+# StrategyPlan
 cursor.execute("""
 DELETE FROM FACTSTRATEGYPLAN_RAW WHERE STRATEGYPLANKEY = 7465912;
 """)

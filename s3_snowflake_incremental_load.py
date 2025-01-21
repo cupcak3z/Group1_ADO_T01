@@ -17,117 +17,117 @@ cursor = conn.cursor()
 # Clearing previous load
 cursor.execute("""
 TRUNCATE TABLE LOADACCOUNT_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADCHANNEL_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADCURRENCY_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADCUSTOMER_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADDATE_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADEMPLOYEE_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADENTITY_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADEXCHANGERATE_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADGEOGRAPHY_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADINVENTORY_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADITMACHINE_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADITSLA_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADMACHINE_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADONLINESALES_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADOUTAGE_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADPRODUCTCATEGORY_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADPRODUCTSUBCATEGORY_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADPRODUCT_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADPROMOTION_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADSALESQUOTA_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADSALESTERRITORY_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADSALES_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADSCENARIO_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADSTORE_STAGE
-""") 
+""")
 
 cursor.execute("""
 TRUNCATE TABLE LOADSTRATEGYPLAN_STAGE
-""") 
+""")
 
-#cursor.execute("""
-#CREATE OR REPLACE STORAGE INTEGRATION contoso_int
+# cursor.execute("""
+# CREATE OR REPLACE STORAGE INTEGRATION contoso_int
 #  TYPE = EXTERNAL_STAGE
 #  STORAGE_PROVIDER = 'S3'
 #  STORAGE_AWS_ROLE_ARN = 'arn:aws:iam::590183919776:role/contoso'
 #  ENABLED = TRUE
 #  STORAGE_ALLOWED_LOCATIONS = ('s3://contoso-blah/');
-#""")
+# """)
 
-## Creating a file format for the load
+# Creating a file format for the load
 
-#cursor.execute("""
-#CREATE OR REPLACE FILE FORMAT CSV_LOAD_FORMAT
+# cursor.execute("""
+# CREATE OR REPLACE FILE FORMAT CSV_LOAD_FORMAT
 #    TYPE = 'CSV'
 #    COMPRESSION = 'AUTO'
 #    FIELD_DELIMITER = ','
@@ -140,185 +140,185 @@ TRUNCATE TABLE LOADSTRATEGYPLAN_STAGE
 #    ESCAPE_UNENCLOSED_FIELD = '\\134'
 #    DATE_FORMAT = 'AUTO'
 #    TIMESTAMP_FORMAT = 'AUTO';
-#""")
+# """)
 
-## Creating stages for the storage integration
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_ACCOUNT_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/ACCOUNT/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# Creating stages for the storage integration
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_ACCOUNT_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/ACCOUNT/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_CHANNEL_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/CHANNEL/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_CHANNEL_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/CHANNEL/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_CURRENCY_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/CURRENCY/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_CURRENCY_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/CURRENCY/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_CUSTOMER_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/CUSTOMER/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_CUSTOMER_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/CUSTOMER/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_DATE_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/DATE/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_DATE_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/DATE/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_EMPLOYEE_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/EMPLOYEE/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_EMPLOYEE_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/EMPLOYEE/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_ENTITY_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/ENTITY/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_ENTITY_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/ENTITY/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_GEOGRAPHY_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/GEOGRAPHY/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_GEOGRAPHY_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/GEOGRAPHY/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_MACHINE_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/MACHINE/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_MACHINE_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/MACHINE/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_OUTAGE_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/OUTAGE/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_OUTAGE_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/OUTAGE/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_PRODUCTCATEGORY_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/PRODUCTCATEGORY/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_PRODUCTCATEGORY_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/PRODUCTCATEGORY/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_PRODUCTSUBCATEGORY_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/PRODUCTSUBCATEGORY/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_PRODUCTSUBCATEGORY_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/PRODUCTSUBCATEGORY/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_PRODUCT_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/PRODUCT/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_PRODUCT_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/PRODUCT/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_PROMOTION_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/PROMOTION/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_PROMOTION_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/PROMOTION/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_SALESTERRITORY_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/SALESTERRITORY/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_SALESTERRITORY_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/SALESTERRITORY/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_SCENARIO_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/SCENARIO/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_SCENARIO_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/SCENARIO/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_STORE_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/STORE/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_STORE_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/STORE/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_EXCHANGERATE_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/EXCHANGERATE/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_EXCHANGERATE_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/EXCHANGERATE/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_INVENTORY_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/INVENTORY/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_INVENTORY_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/INVENTORY/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_ITMACHINE_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/ITMACHINE/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_ITMACHINE_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/ITMACHINE/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_ITSLA_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/ITSLA/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_ITSLA_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/ITSLA/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_ONLINESALES_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/ONLINESALES/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_ONLINESALES_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/ONLINESALES/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_SALESQUOTA_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/SALESQUOTA/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_SALESQUOTA_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/SALESQUOTA/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_SALES_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/SALES/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_SALES_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/SALES/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-#cursor.execute("""
-#CREATE OR REPLACE STAGE STG_STRATEGYPLAN_DEV
-#STORAGE_INTEGRATION = CONTOSO_INT
-#URL = 's3://contoso-blah/STRATEGYPLAN/'
-#FILE_FORMAT = CSV_LOAD_FORMAT;
-#""")
+# cursor.execute("""
+# CREATE OR REPLACE STAGE STG_STRATEGYPLAN_DEV
+# STORAGE_INTEGRATION = CONTOSO_INT
+# URL = 's3://contoso-blah/STRATEGYPLAN/'
+# FILE_FORMAT = CSV_LOAD_FORMAT;
+# """)
 
-## Create stages for the table load
+# Create stages for the table load
 
 # cursor.execute("""
 # CREATE OR REPLACE TABLE LOADACCOUNT_STAGE (
@@ -820,9 +820,9 @@ file_date = current_time.strftime('%d-%m-%Y')
 file_name = f"{file_date}_increment_{batch}.csv"
 print(f"Generated file name: {file_name}")
 
-file_name = "10-02-2025_increment_6am.csv" #hardcoded for testing
+file_name = "10-02-2025_increment_6am.csv"  # hardcoded for testing
 
-#Account
+# Account
 file_path = f"@STG_ACCOUNT_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -842,7 +842,7 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
@@ -902,7 +902,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -910,8 +909,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-# Channel        
+
+# Channel
 file_path = f"@STG_CHANNEL_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -931,8 +930,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""") 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -973,7 +972,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -981,8 +979,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Currency
+
+# Currency
 file_path = f"@STG_CURRENCY_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1002,7 +1000,7 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
@@ -1044,7 +1042,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1052,8 +1049,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Customer
+
+# Customer
 file_path = f"@STG_CUSTOMER_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1073,8 +1070,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""") 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1181,7 +1178,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1189,8 +1185,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Date
+
+# Date
 file_path = f"@STG_DATE_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1210,7 +1206,7 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
@@ -1318,7 +1314,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1326,8 +1321,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Employee
+
+# Employee
 file_path = f"@STG_EMPLOYEE_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1347,8 +1342,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1449,7 +1444,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1457,8 +1451,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Entity
+
+# Entity
 file_path = f"@STG_ENTITY_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1478,8 +1472,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""") 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1538,7 +1532,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1546,8 +1539,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#ExchangeRate
+
+# ExchangeRate
 file_path = f"@STG_EXCHANGERATE_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1567,8 +1560,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1609,7 +1602,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1617,8 +1609,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Geography
+
+# Geography
 file_path = f"@STG_GEOGRAPHY_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1638,8 +1630,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""") 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1686,7 +1678,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1694,8 +1685,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Inventory
+
+# Inventory
 file_path = f"@STG_INVENTORY_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1715,8 +1706,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1775,7 +1766,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1783,8 +1773,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#ITMachine
+
+# ITMachine
 file_path = f"@STG_ITMACHINE_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1804,7 +1794,7 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
@@ -1849,7 +1839,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1858,7 +1847,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#ITSLA
+# ITSLA
 file_path = f"@STG_ITSLA_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1878,8 +1867,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""") 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1932,7 +1921,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1940,8 +1928,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Machine
+
+# Machine
 file_path = f"@STG_MACHINE_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -1961,8 +1949,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2036,7 +2024,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2045,7 +2032,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#OnlineSales
+# OnlineSales
 file_path = f"@STG_ONLINESALES_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2065,8 +2052,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2140,7 +2127,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2149,7 +2135,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#Outage
+# Outage
 file_path = f"@STG_OUTAGE_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2169,8 +2155,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2223,7 +2209,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2232,7 +2217,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#Product
+# Product
 file_path = f"@STG_PRODUCT_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2252,8 +2237,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2369,7 +2354,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2378,7 +2362,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#ProductCategory
+# ProductCategory
 file_path = f"@STG_PRODUCTCATEGORY_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2398,7 +2382,7 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
@@ -2440,7 +2424,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2449,7 +2432,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#ProductSubCategory
+# ProductSubCategory
 file_path = f"@STG_PRODUCTSUBCATEGORY_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2468,8 +2451,8 @@ else:
     )
     ON_ERROR = 'CONTINUE';
     """)
-    
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
@@ -2514,7 +2497,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2523,7 +2505,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#Promotion
+# Promotion
 file_path = f"@STG_PROMOTION_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2543,8 +2525,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""") 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2606,7 +2588,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2615,7 +2596,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#Sales
+# Sales
 file_path = f"@STG_SALES_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2635,7 +2616,7 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
@@ -2704,7 +2685,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2712,8 +2692,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#SalesQuota
+
+# SalesQuota
 file_path = f"@STG_SALESQUOTA_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2733,8 +2713,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2784,7 +2764,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2792,8 +2771,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#SalesTerritory
+
+# SalesTerritory
 file_path = f"@STG_SALESTERRITORY_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2813,8 +2792,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""")  
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2879,7 +2858,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2887,8 +2865,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#Scenario
+
+# Scenario
 file_path = f"@STG_SCENARIO_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2908,7 +2886,7 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
@@ -2949,7 +2927,7 @@ else:
             source.UPDATEDATE
         );
     """)
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2958,7 +2936,7 @@ else:
     for row in merge_results:
         print(f"MERGE Result: {row}")
 
-#Store
+# Store
 file_path = f"@STG_STORE_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -2978,8 +2956,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""") 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3074,7 +3052,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -3082,8 +3059,8 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
-        
-#StrategyPlan
+
+# StrategyPlan
 file_path = f"@STG_STRATEGYPLAN_DEV/{file_name}"
 
 cursor.execute(f"LIST {file_path};")
@@ -3103,8 +3080,8 @@ else:
     ON_ERROR = 'CONTINUE';
     """)
 
-    print("""Legend: (file, status, rows_parsed, rows_loaded, 
-        error_limit, errors_seen, first_error_details)""") 
+    print("""Legend: (file, status, rows_parsed, rows_loaded,
+        error_limit, errors_seen, first_error_details)""")
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3148,7 +3125,6 @@ else:
         );
     """)
 
-      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
