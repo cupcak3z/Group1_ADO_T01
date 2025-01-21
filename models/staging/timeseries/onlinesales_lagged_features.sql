@@ -6,7 +6,7 @@ onlinesales as (
 
 aggregated_onlinesales as (
     select
-        created_at::date as date,
+        created_at::date as "date",
         extract(year from created_at) as year_number,
         extract(month from created_at) as month_number,
         -- Use date for daily grouping
