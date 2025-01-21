@@ -6,22 +6,22 @@ source as (
 itsla as (
     select
         -- IDs
-        CAST(ITSLAKEY AS NUMERIC(38,0)) as ITSLAKEY_updated,
-        CAST(STOREKEY AS NUMERIC(38,0)) as STOREKEY_updated,
-        cast(DATEKEY as date) as DATEKEY_updated,
-        CAST(MACHINEKEY AS NUMERIC(38,0)) as MACHINEKEY_updated,
-        CAST(OUTAGEKEY AS NUMERIC(38,0)) as OUTAGEKEY_updated,
-        
+        CAST(itslakey as NUMERIC(38, 0)) as itslakey_updated,
+        CAST(storekey as NUMERIC(38, 0)) as storekey_updated,
+        CAST(datekey as DATE) as datekey_updated,
+        CAST(machinekey as NUMERIC(38, 0)) as machinekey_updated,
+        CAST(outagekey as NUMERIC(38, 0)) as outagekey_updated,
+
         -- Amounts
-        CAST(DOWNTIME AS NUMERIC(38,0)) as DOWNTIME_updated,
+        CAST(downtime as NUMERIC(38, 0)) as downtime_updated,
 
         -- Dates
-        to_timestamp(OUTAGESTARTTIME) as OUTAGESTARTTIME_updated,
-        to_timestamp(OUTAGEENDTIME) as OUTAGEENDTIME_updated,
+        TO_TIMESTAMP(outagestarttime) as outagestarttime_updated,
+        TO_TIMESTAMP(outageendtime) as outageendtime_updated,
 
         -- Creation Timings
-        LOADDATE::timestamp_ntz as created_at  
-        
+        CAST (loaddate as TIMESTAMP_NTZ) as created_at
+
     from source
 )
 

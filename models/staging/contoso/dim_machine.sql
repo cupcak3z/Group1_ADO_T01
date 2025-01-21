@@ -1,36 +1,38 @@
 with
 source as (
-    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMMACHINE_RAW')}}
+    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMMACHINE_RAW') }}
 ),
 
 machine as (
     select
         -- ids
-        cast(MACHINEKEY as numeric(38,0)) as MACHINEKEY_updated,
-        cast(STOREKEY as numeric(38,0)) as STOREKEY_updated,
+        cast(machinekey as numeric(38, 0)) as machinekey_updated,
+        cast(storekey as numeric(38, 0)) as storekey_updated,
 
         -- strings
-        MACHINETYPE,
-        MACHINENAME,
-        MACHINEDESCRIPTION,
-        VENDORNAME,
-        MACHINEOS,
-        MACHINESOURCE,
-        MACHINEHARDWARE,
-        MACHINESOFTWARE,
-        STATUS,
+        machinetype,
+        machinename,
+        machinedescription,
+        vendorname,
+        machineos,
+        machinesource,
+        machinehardware,
+        machinesoftware,
+        status,
 
         -- dates
-        cast(SERVICESTARTDATE as date) as SERVICESTARTDATE_updated,
-        cast(DECOMMISSIONDATE as date) as DECOMMISSIONDATE_updated,
-        cast(LASTMODIFIEDDATE as date) as LASTMODIFIEDDATE_updated,
+        cast(servicestartdate as date) as servicestartdate_updated,
+        cast(decommissiondate as date) as decommissiondate_updated,
+        cast(lastmodifieddate as date) as lastmodifieddate_updated,
 
         -- additional
-        datediff('year', SERVICESTARTDATE_UPDATED, DECOMMISSIONDATE_UPDATED) as YEARSSERVICELIFE,
-        datediff('day', LASTMODIFIEDDATE_UPDATED, cast('2009-12-31' as date)) as DAYSSINCELASTMODIFICATION,
+        datediff('year', servicestartdate_updated, decommissiondate_updated)
+            as yearsservicelife,
+        datediff('day', lastmodifieddate_updated, cast('2009-12-31' as date))
+            as dayssincelastmodification,
 
         -- creation timing
-        LOADDATE::timestamp_ntz as created_at
+        cast (loaddate as timestamp_ntz) as created_at
 
     from source
 )

@@ -1,65 +1,71 @@
 with
 source as (
-    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMEMPLOYEE_RAW')}}
+    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMEMPLOYEE_RAW') }}
 ),
 
 employee as (
     select
         -- ids
-        cast(EMPLOYEEKEY as numeric(38,0)) as EMPLOYEEKEY_updated,
-        case
-            when PARENTEMPLOYEEKEY = 'NULL' then cast(EMPLOYEEKEY as numeric(38,0))
-            else cast(PARENTEMPLOYEEKEY as numeric(38,0))
-        end as PARENTEMPLOYEEKEY_updated,
+        cast(employeekey as numeric(38, 0)) as employeekey_updated,
+        title,
 
         -- strings
-        cast(FIRSTNAME as string) || ' ' || cast(LASTNAME as string) as FULLNAME,
-        TITLE,
-        EMAILADDRESS,
-        PHONE,
-        EMERGENCYCONTACTNAME,
-        EMERGENCYCONTACTPHONE,
-        case
-            when GENDER = 'M' then 'Male'
-            else 'Female'
-        end as GENDER_updated,
-        DEPARTMENTNAME,
-        case
-            when CURRENTFLAG = 1 then 'Current'
-            when CURRENTFLAG = 0 then 'Not Current'
-            else 'Not Current'
-        end as STATUS_updated,
+        emailaddress,
+        phone,
+        emergencycontactname,
+        emergencycontactphone,
+        departmentname,
+        cast(hiredate as date) as hiredate_updated,
+        cast(birthdate as date) as birthdate_updated,
+        cast(startdate as date) as startdate_updated,
+        cast(payfrequency as numeric(38, 0)) as payfrequency_updated,
+
+        cast(baserate as numeric(38, 2)) as baserate_updated,
+
+        cast(vacationhours as numeric(38, 0)) as vacationhours_updated,
 
         case
-            when SALARIEDFLAG = '1' then 'Salaried'
-            else 'Not Salaried'
-        end as SALARYSTATUS,
-
-        case
-            when SALESPERSONFLAG = '1' then 'Yes'
-            else 'No'
-        end as ISSALESPERSON,
-
-        case 
-            when MARITALSTATUS = 'M' then 'Yes'
-            else 'No'
-        end as ISMARRIED,
+            when
+                parentemployeekey = 'NULL'
+                then cast(employeekey as numeric(38, 0))
+            else cast(parentemployeekey as numeric(38, 0))
+        end as parentemployeekey_updated,
 
         -- dates
-        cast(HIREDATE as date) as HIREDATE_updated,
-        cast(BIRTHDATE as date) as BIRTHDATE_updated,
-        cast(STARTDATE as date) as STARTDATE_updated,
+        cast(firstname as string)
+        || ' '
+        || cast(lastname as string) as fullname,
+        case
+            when gender = 'M' then 'Male'
+            else 'Female'
+        end as gender_updated,
+        case
+            when currentflag = 1 then 'Current'
+            when currentflag = 0 then 'Not Current'
+            else 'Not Current'
+        end as status_updated,
 
         -- numbers
-        cast(PAYFREQUENCY as numeric(38,0)) as PAYFREQUENCY_updated,
-        cast(BASERATE as numeric(38,2)) as BASERATE_updated,
-        cast(VACATIONHOURS as numeric(38,0)) as VACATIONHOURS_updated,
-        datediff('year', HIREDATE_UPDATED, cast('2009-12-31' as date)) as YEARSSINCEHIRED,
-        datediff('year', BIRTHDATE_UPDATED, cast('2009-12-31' as date)) as EMPLOYEEAGE,
-        datediff('day', HIREDATE_UPDATED, STARTDATE_UPDATED) as DAYSTOONBOARD,
+        case
+            when salariedflag = '1' then 'Salaried'
+            else 'Not Salaried'
+        end as salarystatus,
+        case
+            when salespersonflag = '1' then 'Yes'
+            else 'No'
+        end as issalesperson,
+        case
+            when maritalstatus = 'M' then 'Yes'
+            else 'No'
+        end as ismarried,
+        datediff('year', hiredate_updated, cast('2009-12-31' as date))
+            as yearssincehired,
+        datediff('year', birthdate_updated, cast('2009-12-31' as date))
+            as employeeage,
+        datediff('day', hiredate_updated, startdate_updated) as daystoonboard,
 
         -- creation timing
-        LOADDATE::timestamp_ntz as created_at
+        cast (loaddate as timestamp_ntz) as created_at
 
     from source
 )

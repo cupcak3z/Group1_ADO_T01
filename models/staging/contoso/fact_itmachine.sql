@@ -1,4 +1,4 @@
-with 
+with
 source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'FACTITMACHINE_RAW') }}
 ),
@@ -6,18 +6,18 @@ source as (
 itmachine as (
     select
         -- IDs
-        cast(ITMACHINEKEY as numeric(38,0)) as ITMACHINEKEY_updated,
-        cast(MACHINEKEY as numeric(38,0)) as MACHINEKEY_updated,
-        cast(DATEKEY as date) as DATEKEY_updated,
-        
+        cast(itmachinekey as numeric(38, 0)) as itmachinekey_updated,
+        cast(machinekey as numeric(38, 0)) as machinekey_updated,
+        cast(datekey as date) as datekey_updated,
+
         -- String
-        COSTTYPE,
+        costtype,
 
         -- Amounts
-        cast(COSTAMOUNT as numeric(38,0)) as COSTAMOUNT_updated,
+        cast(costamount as numeric(38, 0)) as costamount_updated,
 
         -- Creation Timings
-        LOADDATE::timestamp_ntz as created_at  
+        cast (loaddate as timestamp_ntz) as created_at
 
     from source
 )

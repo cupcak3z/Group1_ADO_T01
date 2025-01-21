@@ -1,25 +1,25 @@
 with
-source as(
+source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'FACTEXCHANGERATE_RAW') }}
 ),
 
 exchangerate as (
     select
     --ids
-    cast(EXCHANGERATEKEY as numeric(38,0)) as EXCHANGERATEKEY_updated,
-    cast(CURRENCYKEY as numeric(38,0)) as CURRENCYKEY_updated,
+        cast(exchangeratekey as numeric(38, 0)) as exchangeratekey_updated,
+        cast(currencykey as numeric(38, 0)) as currencykey_updated,
 
-    --numbers
-    cast(AVERAGERATE as numeric(38,5)) as AVERAGERATE_updated,
-    cast(ENDOFDAYRATE as numeric(38,6)) as ENDOFDAYRATE_updated,
+        --numbers
+        cast(averagerate as numeric(38, 5)) as averagerate_updated,
+        cast(endofdayrate as numeric(38, 6)) as endofdayrate_updated,
 
-    --date
-    cast(DATEKEY as date) as DATEKEY_updated,
+        --date
+        cast(datekey as date) as datekey_updated,
 
-    --creation timing
-    LOADDATE::timestamp_ntz as created_at  
+        --creation timing
+        cast (loaddate as timestamp_ntz) as created_at
 
     from source
 )
 
-SELECT * FROM exchangerate
+select * from exchangerate

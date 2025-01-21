@@ -1,61 +1,77 @@
 with
 source as (
-    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMPRODUCT_RAW')}}
+    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMPRODUCT_RAW') }}
 ),
 
 product as (
     select
         -- ids
-        cast(PRODUCTKEY as numeric(38,0)) as PRODUCTKEY_updated,
-        cast(PRODUCTSUBCATEGORYKEY as numeric(38,0)) as PRODUCTSUBCATEGORYKEY_updated,
+        cast(productkey as numeric(38, 0)) as productkey_updated,
+        cast(productsubcategorykey as numeric(38, 0))
+            as productsubcategorykey_updated,
 
         -- strings
-        PRODUCTNAME,
-        PRODUCTDESCRIPTION,
-        MANUFACTURER,
-        BRANDNAME,
-        CLASSNAME,
-        STYLENAME,
-        COLORNAME,
-        WEIGHTUNITMEASUREID as WEIGHTUNITMEASURENAME,
-        UNITOFMEASUREID,
-        UNITOFMEASURENAME as LENGTHUNITMEASURENAME,
-        STOCKTYPENAME,
-        case 
-            when STATUS = 'NULL' then 'Off'
-            else STATUS
-        end as STATUS_updated,
-        
+        productname,
+        productdescription,
+        manufacturer,
+        brandname,
+        classname,
+        stylename,
+        colorname,
+        weightunitmeasureid as weightunitmeasurename,
+        unitofmeasureid,
+        unitofmeasurename as lengthunitmeasurename,
+        stocktypename,
+        cast(classid as numeric(38, 0)) as classid_updated,
+
         -- numbers
-        cast(CLASSID as numeric(38,0)) as CLASSID_updated,
+        cast(colorid as numeric(38, 0)) as colorid_updated,
+        cast(stocktypeid as numeric(38, 0)) as stocktypeid_updated,
+        cast(unitcost as numeric(10, 2)) as unitcost_updated,
+        cast(unitprice as numeric(10, 2)) as unitprice_updated,
+        cast(
+            (
+                (unitprice_updated - unitcost_updated) / unitcost_updated
+            ) as numeric(3, 2)
+        ) as markup,
         case
-            when STYLEID = 'NULL' then 1
-            else cast(STYLEID as numeric(38,0))       
-        end as STYLEID_updated,
-        cast(COLORID as numeric(38,0)) as COLORID_updated,
+            when status = 'NULL' then 'Off'
+            else status
+        end as status_updated,
         case
-            when WEIGHT = 'NULL' then 0
-            else cast(WEIGHT as numeric(10, 2)) 
-        end as WEIGHT_updated,
-        cast(STOCKTYPEID as numeric(38,0)) as STOCKTYPEID_updated,
-        cast(UNITCOST as numeric(10, 2)) as UNITCOST_updated,
-        cast(UNITPRICE as numeric(10, 2)) as UNITPRICE_updated,
+            when styleid = 'NULL' then 1
+            else cast(styleid as numeric(38, 0))
+        end as styleid_updated,
 
         -- additional
         case
-            when AVAILABLEFORSALEDATE = 'NULL' then cast('2005-05-03T00:00:00' as timestamp_ntz)
-            else cast(AVAILABLEFORSALEDATE as timestamp_ntz)
-        end as AVAILABLEFORSALEDATE_updated,
-        cast(((UNITPRICE_updated - UNITCOST_updated) / UNITCOST_updated) as numeric(3,2)) AS MARKUP,
+            when weight = 'NULL' then 0
+            else cast(weight as numeric(10, 2))
+        end as weight_updated,
         case
-            when cast('2009-12-31' as date) < AVAILABLEFORSALEDATE_updated then 
-                -datediff('day', cast('2009-12-31' as date), AVAILABLEFORSALEDATE_updated)
-        else
-            datediff('day', AVAILABLEFORSALEDATE_updated, cast('2009-12-31' as date))
-        end as DAYSSINCEAVAILABLEFORSALE,
-        
+            when
+                availableforsaledate = 'NULL'
+                then cast('2005-05-03T00:00:00' as timestamp_ntz)
+            else cast(availableforsaledate as timestamp_ntz)
+        end as availableforsaledate_updated,
+        case
+            when cast('2009-12-31' as date) < availableforsaledate_updated
+                then
+                    -datediff(
+                        'day',
+                        cast('2009-12-31' as date),
+                        availableforsaledate_updated
+                    )
+            else
+                datediff(
+                    'day',
+                    availableforsaledate_updated,
+                    cast('2009-12-31' as date)
+                )
+        end as dayssinceavailableforsale,
+
         -- creation timing
-        LOADDATE::timestamp_ntz as created_at
+        cast (loaddate as timestamp_ntz) as created_at
 
     from source
 )
