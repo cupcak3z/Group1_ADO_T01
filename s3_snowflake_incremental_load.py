@@ -3154,3 +3154,6 @@ else:
     print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+
+cursor.close()
+conn.close()
