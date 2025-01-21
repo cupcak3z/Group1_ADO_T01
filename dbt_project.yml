@@ -6,7 +6,7 @@ version: '1.0.0'
 config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
-profile: 'ADO_GROUP1_T01'
+profile: 'default'
 
 # These configurations specify where dbt should look for different types of files.
 # The `model-paths` config, for example, states that models in this project can be
@@ -38,6 +38,6 @@ models:
   group1_ado_t01:
     # Applies to all files under models/example/
     staging:
-#      +schema: final    # Write staging models to a new schema
+      +schema: final    # Write staging models to a new schema
       +materialized: table
 #      +database: ADO_GROUP1_DB_RAW TESTING CI/CD
