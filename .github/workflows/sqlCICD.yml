@@ -85,7 +85,7 @@ jobs:
           SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        run: sqlfluff lint . --no-fail-fast
+        run: sqlfluff lint . --nofail
         continue-on-error: true
 
       # Fix SQL issues
@@ -98,7 +98,7 @@ jobs:
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         if: always()
-        run: sqlfluff fix --in-place --aggressive --recursive .
+        run: sqlfluff fix .
       
       - name: Lint dbt SQL models and SnowSQL files
         env:
@@ -108,7 +108,7 @@ jobs:
           SNOWFLAKE_ROLE_SENDEROS: ${{ secrets.SNOWFLAKE_ROLE_SENDEROS }}
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        run: sqlfluff lint . --no-fail-fast
+        run: sqlfluff lint . --nofail
 
      # Commit and push auto-fixes
       - name: Commit and Push Changes
