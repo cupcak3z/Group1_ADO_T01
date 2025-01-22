@@ -100,7 +100,7 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         if: always()
         run: |
-          sqlfluff fix . || true
+          sqlfluff fix . || true --verbose 2>&1 | grep -v "was not found in dbt project"
 
       # Lint again to ensure issues are resolved
       - name: Final Lint
