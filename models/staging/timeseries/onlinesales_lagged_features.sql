@@ -6,10 +6,9 @@ onlinesales as (
 
 aggregated_onlinesales as (
     select
-        created_at::date as "date",
+        created_at::date as date,
         extract(year from created_at) as year_number,
         extract(month from created_at) as month_number,
-        -- Use date for daily grouping
         extract(day from created_at) as day_number,
         sum(salesamount_updated) as total_onlinesales,
         avg(salesamount_updated) as avg_onlinesales
@@ -28,12 +27,12 @@ lagged_features as (
             lag(total_onlinesales) over (
                 order by date
             ), total_onlinesales
-        ) as lag_total_onlinesales, -- Default to total_sales if NULL
+        ) as lag_total_onlinesales,
         coalesce(
             lag(avg_onlinesales) over (
                 order by date
             ), avg_onlinesales
-        ) as lag_avg_onlinesales -- Default to avg_sales if NULL
+        ) as lag_avg_onlinesales
     from aggregated_onlinesales
 )
 
