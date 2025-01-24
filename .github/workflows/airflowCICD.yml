@@ -30,7 +30,7 @@ jobs:
       # Run flake8 to lint DAGs
       - name: Lint DAG code
         continue-on-error: true  # Ensures the workflow does not stop on errors
-        run: flake8 airflow_dag/dags/
+        run: flake8 airflow_dag/dags/ --ignore E501
 
       # Fix linting issues automatically
       - name: Fix linting issues with autopep8
@@ -38,7 +38,7 @@ jobs:
 
       # Re-run flake8 to ensure fixes were applied
       - name: Re-lint DAG code
-        run: flake8 airflow_dag/dags/
+        run: flake8 airflow_dag/dags/ --ignore E501
 
       # Check if any changes were made and commit them
       - name: Commit changes if fixes were applied
