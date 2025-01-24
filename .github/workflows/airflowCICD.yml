@@ -28,7 +28,7 @@ jobs:
       # Lint DAGs
       - name: Lint DAG code
         run: |
-          flake8 Group1_ADO_T01/airflow_dag/dags/**
+          flake8 airflow_dag/dags/**
 
       # Validate DAGs with dynamic execution date
       - name: Validate DAGs
