@@ -23,7 +23,6 @@ with DAG(
     dbt_run = BashOperator(
         task_id="dbt_run",
         bash_command=(
-            "source /home/astro/dbt_venv/bin/activate && " 
             "dbt run --project-dir /home/astro/files "  
             "--profiles-dir /home/astro/files" 
         ),
@@ -33,7 +32,6 @@ with DAG(
     dbt_test = BashOperator(
         task_id="dbt_test",
         bash_command=(
-            "source /home/astro/dbt_venv/bin/activate && "  
             "dbt test --project-dir /home/astro/files "  
             "--profiles-dir /home/astro/files" 
         ),
@@ -41,3 +39,4 @@ with DAG(
 
     # Task Dependencies
     dbt_run >> dbt_test
+

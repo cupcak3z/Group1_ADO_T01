@@ -14,12 +14,13 @@ with DAG(
     dag_id="orchestrate_s3_to_snowflake",
     default_args=default_args,
     description="Orchestrates the Python script to load S3 data into Snowflake",
-    schedule_interval="0 6,14,22 * * *", 
+    schedule_interval="0 6,14,22 * * *",  # Runs at 6am, 2pm, and 10pm
     start_date=datetime(2023, 1, 1),
     catchup=False,
 ) as dag:
     run_script = BashOperator(
         task_id="run_python_script",
-        bash_command="source /home/astro/dbt_venv/bin/activate && python /home/astro/files/s3_snowflake_incremental_load.py",
+        bash_command="python /home/astro/files/s3_snowflake_incremental_load.py",
     )
+
 
