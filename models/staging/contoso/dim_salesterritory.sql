@@ -34,13 +34,13 @@ salesterritory as (
 
         -- creation timing
         case
-            when cast('2009-12-31' as date) < startdate_updated
+            when getdate() < startdate_updated
                 then
                     -datediff(
-                        'day', cast('2009-12-31' as date), startdate_updated
+                        'day', getdate(), startdate_updated
                     )
             else
-                datediff('day', startdate_updated, cast('2009-12-31' as date))
+                datediff('day', startdate_updated, getdate())
         end as yearssincesalesterritorystart
 
     from source
