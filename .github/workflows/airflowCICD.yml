@@ -3,7 +3,7 @@ name: Airflow CI/CD
 on:
   push:
     paths:
-      - 'dags/**' # Trigger only if DAG files are modified
+      - 'Group1_ADO_T01/airflow_dag/dags/**' # Trigger only if DAG files are modified
 
 jobs:
   validate-and-deploy-dags:
@@ -27,14 +27,16 @@ jobs:
 
       # Lint DAGs
       - name: Lint DAG code
-        run: flake8 dags/
+        run: |
+          flake8 Group1_ADO_T01/airflow_dag/dags/
 
       # Validate DAGs
-      - name: Test DAGs
+      - name: Validate DAGs
         run: |
-          airflow dags test <dag_id> <execution_date> # Replace with actual DAG ID and execution date
+          airflow dags test orchestrate_dbt_to_snowflake 2023-01-01
+          airflow dags test orchestrate_s3_to_snowflake 2023-01-01
 
       # Deploy DAGs to Airflow
       - name: Deploy DAGs to Airflow
         run: |
-          scp -r dags/ user@your-airflow-instance:/path/to/dags/
+          scp -r Group1_ADO_T01/airflow_dag/dags/ user@your-airflow-instance:/path/to/dags/
