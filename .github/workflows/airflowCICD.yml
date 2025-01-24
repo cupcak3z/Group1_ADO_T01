@@ -1,4 +1,4 @@
-name: Airflow CI
+name: Airflow CI with Fixer and Re-Linter
 
 on:
   push:
@@ -35,6 +35,10 @@ jobs:
       # Fix linting issues automatically
       - name: Fix linting issues with autopep8
         run: autopep8 --in-place --recursive airflow_dag/dags/
+
+      # Re-run flake8 to ensure fixes were applied
+      - name: Re-lint DAG code
+        run: flake8 airflow_dag/dags/
 
       # Check if any changes were made and commit them
       - name: Commit changes if fixes were applied
