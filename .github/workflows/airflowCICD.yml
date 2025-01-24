@@ -1,4 +1,4 @@
-name: Airflow CI/CD
+name: Airflow CI
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main  # Trigger only on pushes to the 'main' branch
 
 jobs:
-  validate-and-deploy-dags:
+  validate-dags:
     runs-on: ubuntu-latest
 
     steps:
@@ -33,10 +33,6 @@ jobs:
       # Validate DAGs
       - name: Validate DAGs
         run: |
-          airflow dags test orchestrate_dbt_to_snowflake 2023-01-01
-          airflow dags test orchestrate_s3_to_snowflake 2023-01-01
+          airflow dags test orchestrate_dbt_to_snowflake $(date +%Y-%m-%d)
+          airflow dags test orchestrate_s3_to_snowflake $(date +%Y-%m-%d)
 
-      # Deploy DAGs to Airflow
-      - name: Deploy DAGs to Airflow
-        run: |
-          scp -r Group1_ADO_T01/airflow_dag/dags/ user@your-airflow-instance:/path/to/dags/
