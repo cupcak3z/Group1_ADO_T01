@@ -41,12 +41,12 @@ store as (
             when closedate = 'NULL' then to_date('2090-12-31', 'YYYY-MM-DD')
             else to_date(closedate, 'YYYY-MM-DD')
         end as closedate_updated,
-        datediff('year', opendate_updated, cast('2009-12-31' as date))
+        datediff('year', opendate_updated, getdate())
             as yearssinceopen,
         datediff('year', opendate_updated, closedate_updated) as yearsleft,
 
         --creation date
-        datediff('day', lastremodeldate, cast('2009-12-31' as date))
+        datediff('day', lastremodeldate, getdate())
             as dayssincelastremodel
 
     from source

@@ -31,7 +31,7 @@ machine as (
             as yearsservicelife,
 
         -- creation timing
-        datediff('day', lastmodifieddate_updated, cast('2009-12-31' as date))
+        datediff('day', lastmodifieddate_updated, getdate())
             as dayssincelastmodification
 
     from source

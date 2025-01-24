@@ -65,7 +65,7 @@ customer as (
         end as datefirstpurchase_updated,
         case
             when birthdate_updated is NULL then NULL
-            else datediff('year', birthdate_updated, cast('2009-12-31' as date))
+            else datediff('year', birthdate_updated, getdate())
         end as customerage,
 
         -- creation timing
@@ -73,7 +73,7 @@ customer as (
             when datefirstpurchase_updated is NULL then NULL
             else
                 datediff(
-                    'day', datefirstpurchase_updated, cast('2009-12-31' as date)
+                    'day', datefirstpurchase_updated, getdate()
                 )
         end as dayssincefirstpurchase
 

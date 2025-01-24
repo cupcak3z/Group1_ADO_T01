@@ -59,9 +59,9 @@ employee as (
             when maritalstatus = 'M' then 'Yes'
             else 'No'
         end as ismarried,
-        datediff('year', hiredate_updated, cast('2009-12-31' as date))
+        datediff('year', hiredate_updated, getdate())
             as yearssincehired,
-        datediff('year', birthdate_updated, cast('2009-12-31' as date))
+        datediff('year', birthdate_updated, getdate())
             as employeeage,
 
         -- creation timing
