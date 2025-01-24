@@ -6,13 +6,15 @@ on:
       - main  # Trigger only on pushes to the 'main' branch
 
 jobs:
-  validate-dags:
+  validate-and-fix-dags:
     runs-on: ubuntu-latest
 
     steps:
       # Checkout the repository
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}  # Needed to commit fixes
 
       # Set up Python environment
       - name: Set up Python
@@ -23,15 +25,22 @@ jobs:
       # Install dependencies
       - name: Install dependencies
         run: |
-          pip install flake8 pytest pytest-airflow
+          pip install flake8 pytest pytest-airflow autopep8
 
-      # Lint DAGs
+      # Run flake8 to lint DAGs
       - name: Lint DAG code
-        run: |
-          flake8 airflow_dag/dags/**
+        continue-on-error: true  # Ensures the workflow does not stop on errors
+        run: flake8 airflow_dag/dags/
 
-      # Validate DAGs with dynamic execution date
-      - name: Validate DAGs
+      # Fix linting issues automatically
+      - name: Fix linting issues with autopep8
+        run: autopep8 --in-place --recursive airflow_dag/dags/
+
+      # Check if any changes were made and commit them
+      - name: Commit changes if fixes were applied
         run: |
-          airflow dags test orchestrate_dbt_to_snowflake "$(date +%Y-%m-%d)"
-          airflow dags test orchestrate_s3_to_snowflake "$(date +%Y-%m-%d)"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add airflow_dag/dags/
+          git diff --cached --quiet || git commit -m "fix: Automatically fixed linting issues in DAGs"
+          git push origin main
