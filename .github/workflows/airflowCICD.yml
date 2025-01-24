@@ -2,8 +2,8 @@ name: Airflow CI/CD
 
 on:
   push:
-    paths:
-      - 'Group1_ADO_T01/airflow_dag/dags/**' # Trigger only if DAG files are modified
+    branches:
+      - main  # Trigger only on pushes to the 'main' branch
 
 jobs:
   validate-and-deploy-dags:
