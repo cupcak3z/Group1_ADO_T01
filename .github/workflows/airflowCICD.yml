@@ -30,9 +30,8 @@ jobs:
         run: |
           flake8 Group1_ADO_T01/airflow_dag/dags/
 
-      # Validate DAGs
+      # Validate DAGs with dynamic execution date
       - name: Validate DAGs
         run: |
-          airflow dags test orchestrate_dbt_to_snowflake $(date +%Y-%m-%d)
-          airflow dags test orchestrate_s3_to_snowflake $(date +%Y-%m-%d)
-
+          airflow dags test orchestrate_dbt_to_snowflake "$(date +%Y-%m-%d)"
+          airflow dags test orchestrate_s3_to_snowflake "$(date +%Y-%m-%d)"
