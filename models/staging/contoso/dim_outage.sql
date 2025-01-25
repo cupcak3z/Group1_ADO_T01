@@ -1,21 +1,21 @@
 with
 source as (
-    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMOUTAGE_RAW')}}
+    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMOUTAGE_RAW') }}
 ),
 
 outage as (
     select
         -- ids
-        cast(OUTAGEKEY as numeric(38,0)) as OUTAGEKEY_updated,
+        cast(outagekey as numeric(38, 0)) as outagekey_updated,
 
         -- strings
-        OUTAGENAME,
-        OUTAGETYPE,
-        OUTAGESUBTYPE,
-        OUTAGESUBTYPEDESCRIPTION,
+        outagename,
+        outagetype,
+        outagesubtype,
+        outagesubtypedescription,
 
         -- creation timing
-        LOADDATE::timestamp_ntz as created_at
+        cast(loaddate as timestamp_ntz) as created_at
 
     from source
 )

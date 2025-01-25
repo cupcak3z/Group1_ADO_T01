@@ -1,42 +1,47 @@
 with
 source as (
-    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMSALESTERRITORY_RAW')}}
+    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMSALESTERRITORY_RAW') }}
 ),
 
 salesterritory as (
     select
         -- ids
-        cast(SALESTERRITORYKEY as numeric(38,0)) as SALESTERRITORYKEY_updated,
-        cast(GEOGRAPHYKEY as numeric(38,0)) as GEOGRAPHYKEY_updated,
-        cast(SALESTERRITORYMANAGER as numeric(38,0)) as SALESTERRITORYMANAGER_updated,
+        cast(salesterritorykey as numeric(38, 0)) as salesterritorykey_updated,
+        cast(geographykey as numeric(38, 0)) as geographykey_updated,
+        cast(salesterritorymanager as numeric(38, 0))
+            as salesterritorymanager_updated,
 
         -- strings
-        SALESTERRITORYNAME,
-        SALESTERRITORYREGION,
-        SALESTERRITORYCOUNTRY, 
-        SALESTERRITORYGROUP,
-        STATUS,
-        
+        salesterritoryname,
+        salesterritoryregion,
+        salesterritorycountry,
+        salesterritorygroup,
+        status,
+
         -- numbers
-        cast(SALESTERRITORYLEVEL as numeric(38,0)) as SALESTERRITORYLEVEL_updated,
+        cast(salesterritorylevel as numeric(38, 0))
+            as salesterritorylevel_updated,
 
         -- dates
-        cast(STARTDATE as date) as STARTDATE_updated,
-        case
-            when ENDDATE = 'NULL' then null
-            else cast(ENDDATE as date)
-        end as ENDDATE_updated,
-        
+        cast(startdate as date) as startdate_updated,
+        cast(loaddate as timestamp_ntz) as created_at,
+
         -- additional
         case
-            when cast('2009-12-31' as date) < STARTDATE_updated then 
-                -datediff('day', cast('2009-12-31' as date), STARTDATE_updated)
-        else
-            datediff('day', STARTDATE_updated, cast('2009-12-31' as date))
-        end as YEARSSINCESALESTERRITORYSTART,           
+            when enddate = 'NULL' then null
+            else cast(enddate as date)
+        end as enddate_updated,
 
         -- creation timing
-        LOADDATE::timestamp_ntz as created_at
+        case
+            when getdate() < startdate_updated
+                then
+                    -datediff(
+                        'day', getdate(), startdate_updated
+                    )
+            else
+                datediff('day', startdate_updated, getdate())
+        end as yearssincesalesterritorystart
 
     from source
 )

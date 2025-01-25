@@ -1,34 +1,35 @@
+-- this statement is to test the SQL linter
 with
 source as (
-    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMACCOUNT_RAW')}}
+    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMACCOUNT_RAW') }}
 ),
 
 account as (
     select
         -- ids
-        cast (ACCOUNTKEY as numeric(38,0)) as ACCOUNTKEY_updated,
-        case
-            when PARENTACCOUNTKEY = 'NULL' then '1'
-            else cast(PARENTACCOUNTKEY as numeric(38,0))
-        end as PARENTACCOUNTKEY_updated,
+        cast(accountkey as numeric(38, 0)) as accountkey_updated,
+        accountname,
 
         -- strings
-        ACCOUNTNAME,
-        ACCOUNTDESCRIPTION,
-        ACCOUNTTYPE,
-        VALUETYPE,
+        accountdescription,
+        accounttype,
+        valuetype,
+        cast(loaddate as timestamp_ntz) as created_at,
         case
-            when ACCOUNTTYPE = 'NULL' then 'Income'
-            else ACCOUNTTYPE
-        end as ACCOUNTTYPE_updated,
-        
+            when parentaccountkey = 'NULL' then '1'
+            else cast(parentaccountkey as numeric(38, 0))
+        end as parentaccountkey_updated,
+
         case
-            when VALUETYPE = 'NULL' then 'Income'
-            else VALUETYPE
-        end as VALUETYPE_updated,
+            when accounttype = 'NULL' then 'Income'
+            else accounttype
+        end as accounttype_updated,
 
         -- creation timing
-        LOADDATE::timestamp_ntz as created_at
+        case
+            when valuetype = 'NULL' then 'Income'
+            else valuetype
+        end as valuetype_updated
     from source
 )
 

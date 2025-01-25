@@ -1,17 +1,17 @@
 with
 source as (
-    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMCHANNEL_RAW')}}
+    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMCHANNEL_RAW') }}
 ),
 
 channel as (
     select
         -- ids
-        cast(CHANNELKEY as numeric(38,0)) as CHANNELKEY_updated,
+        cast(channelkey as numeric(38, 0)) as channelkey_updated,
         -- strings
-        CHANNELNAME,
-        CHANNELDESCRIPTION,
+        channelname,
+        channeldescription,
         -- creation timing
-        LOADDATE::timestamp_ntz as created_at
+        cast(loaddate as timestamp_ntz) as created_at
     from source
 )
 

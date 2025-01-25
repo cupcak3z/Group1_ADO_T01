@@ -1,2 +1,6 @@
 datetime
 snowflake-connector
+
+astronomer-cosmos
+apache-airflow-providers-snowflake==4.0.2
+astro-sdk-python [amazon,snowflake] >= 1.1.0

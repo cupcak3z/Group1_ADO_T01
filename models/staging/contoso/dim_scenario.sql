@@ -1,20 +1,20 @@
 with
-source as(
+source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMSCENARIO_RAW') }}
 ),
 
 scenario as (
     select
     --ids
-    cast(SCENARIOKEY as numeric(38,0)) as SCENARIOKEY_updated,
+        cast(scenariokey as numeric(38, 0)) as scenariokey_updated,
 
-    --strings
-    SCENARIONAME,
+        --strings
+        scenarioname,
 
-    --creation date
-    LOADDATE::timestamp_ntz as created_at
+        --creation date
+        cast(loaddate as timestamp_ntz) as created_at
 
     from source
 )
 
-SELECT * FROM scenario
+select * from scenario

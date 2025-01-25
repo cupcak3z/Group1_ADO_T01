@@ -1,47 +1,49 @@
 with
 source as (
-    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMDATE_RAW')}}
+    select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMDATE_RAW') }}
 ),
 
 date as (
     select
         -- ids
-        cast(DATEKEY as date) as DATEKEY_updated ,
+        cast(datekey as date) as datekey_updated,
         -- strings
-        CALENDARYEARLABEL,
-        CALENDARHALFYEARLABEL,
-        CALENDARQUARTERLABEL,
-        CALENDARMONTHLABEL,
-        CALENDARWEEKLABEL,
-        CALENDARDAYOFWEEKLABEL,
-        FISCALYEARLABEL,
-        FISCALHALFYEARLABEL,
-        FISCALMONTHLABEL,
-        FISCALQUARTERLABEL,
-        case
-           when ISHOLIDAY = 1 then 'Yes'
-           else 'No'
-        end as ISHOLIDAY_updated,
-        ISWORKDAY,
-        case 
-           when EUROPESEASON = 'NULL' then 'No Season'
-           else EUROPESEASON
-        end as EUROPESEASON_updated,
-        case 
-           when NORTHAMERICASEASON = 'NULL' then 'No Season'
-           else NORTHAMERICASEASON
-        end as NORTHAMERICASEASON_updated,
-        case 
-           when ASIASEASON = 'NULL' then 'No Season'
-           else ASIASEASON
-        end as ASIASEASON_updated,
+        calendaryearlabel,
+        calendarhalfyearlabel,
+        calendarquarterlabel,
+        calendarmonthlabel,
+        calendarweeklabel,
+        calendardayofweeklabel,
+        fiscalyearlabel,
+        fiscalhalfyearlabel,
+        fiscalmonthlabel,
+        fiscalquarterlabel,
+        isworkday,
+        cast(calendaryear as numeric(38, 0)) as calendaryear_updated,
+        cast(fiscalyear as numeric(38, 0)) as fiscalyear_updated,
+        cast(extract(month from datekey) as numeric(38, 0))
+            as monthnumber_updated,
+        cast(extract(dayofweek from datekey) as numeric(38, 0))
+            as calendardayofweeknumber_updated,
         -- Numbers
-        cast(CALENDARYEAR as numeric(38,0)) as CALENDARYEAR_updated,
-        cast(FISCALYEAR as numeric(38,0)) as FISCALYEAR_updated,
-        cast(extract(month from DATEKEY) as numeric(38,0)) as MONTHNUMBER_updated,
-        cast(extract(dayofweek from DATEKEY) as numeric(38,0)) as CALENDARDAYOFWEEKNUMBER_updated,
+        case
+            when isholiday = 1 then 'Yes'
+            else 'No'
+        end as isholiday_updated,
+        case
+            when europeseason = 'NULL' then 'No Season'
+            else europeseason
+        end as europeseason_updated,
+        case
+            when northamericaseason = 'NULL' then 'No Season'
+            else northamericaseason
+        end as northamericaseason_updated,
+        case
+            when asiaseason = 'NULL' then 'No Season'
+            else asiaseason
+        end as asiaseason_updated,
         -- Creation timing
-        TO_TIMESTAMP(DATEKEY) as created_at
+        to_timestamp(datekey) as created_at
     from source
 )
 

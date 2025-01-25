@@ -1,32 +1,33 @@
 with
-source as(
+source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'FACTINVENTORY_RAW') }}
 ),
 
 inventory as (
     select
     --ids
-    cast(INVENTORYKEY as numeric(38,0)) as INVENTORYKEY_updated,
-    cast(STOREKEY as numeric(38,0)) as STOREKEY_updated,
-    cast(CURRENCYKEY as numeric(38,0)) as CURRENCYKEY_updated,
+        cast(inventorykey as numeric(38, 0)) as inventorykey_updated,
+        cast(storekey as numeric(38, 0)) as storekey_updated,
+        cast(currencykey as numeric(38, 0)) as currencykey_updated,
 
-    --numbers
-    cast(ONHANDQUANTITY as numeric(38,0)) as ONHANDQUANTITY_updated,
-    cast(ONORDERQUANTITY as numeric(38,0)) as ONORDERQUANTITY_updated,
-    cast(SAFETYSTOCKQUANTITY as numeric(38,0)) as SAFETYSTOCKQUANTITY_updated,
-    cast(UNITCOST as numeric(38,2)) as UNITCOST_updated,
-    cast(DAYSINSTOCK as numeric(38,0)) as DAYSINSTOCK_updated,
-    cast(MINDAYINSTOCK as numeric(38,0)) as MINDAYINSTOCK_updated,
-    cast(MAXDAYINSTOCK as numeric(38,0)) as MAXDAYINSTOCK_updated,
-    cast(AGING as numeric(38,0)) as AGING_updated,
+        --numbers
+        cast(onhandquantity as numeric(38, 0)) as onhandquantity_updated,
+        cast(onorderquantity as numeric(38, 0)) as onorderquantity_updated,
+        cast(safetystockquantity as numeric(38, 0))
+            as safetystockquantity_updated,
+        cast(unitcost as numeric(38, 2)) as unitcost_updated,
+        cast(daysinstock as numeric(38, 0)) as daysinstock_updated,
+        cast(mindayinstock as numeric(38, 0)) as mindayinstock_updated,
+        cast(maxdayinstock as numeric(38, 0)) as maxdayinstock_updated,
+        cast(aging as numeric(38, 0)) as aging_updated,
 
-    --date
-    cast(DATEKEY as date) as DATEKEY_updated,
+        --date
+        cast(datekey as date) as datekey_updated,
 
-    --creation date
-    to_timestamp(DATEKEY) as created_at
+        --creation date
+        to_timestamp(datekey) as created_at
 
     from source
 )
 
-SELECT * FROM inventory
+select * from inventory

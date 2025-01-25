@@ -1,18 +1,19 @@
-with 
+with
 sales as (
-    select * 
+    select *
     from {{ ref('fact_sales') }}
 ),
 
 aggregated_sales as (
     select
+        created_at::date as date, -- noqa: RF04
         extract(year from created_at) as year_number,
         extract(month from created_at) as month_number,
+        -- Use date for daily grouping
         extract(day from created_at) as day_number,
-        created_at::date as date, -- Use date for daily grouping
-        sum(SALESAMOUNT_updated) as total_sales
+        sum(salesamount_updated) as total_sales
     from sales
-    group by 
+    group by
         extract(year from created_at),
         extract(month from created_at),
         extract(day from created_at),
@@ -30,7 +31,7 @@ moving_averages as (
     from aggregated_sales
 )
 
-select 
+select
     year_number,
     month_number,
     day_number,

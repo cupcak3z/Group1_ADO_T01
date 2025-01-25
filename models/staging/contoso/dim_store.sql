@@ -1,53 +1,55 @@
 with
-source as(
+source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMSTORE_RAW') }}
 ),
 
 store as (
     select
     --ids
-    cast(STOREKEY as numeric(38,0)) as STOREKEY_updated,
-    cast(GEOGRAPHYKEY as numeric(38,0)) as GEOGRAPHYKEY_updated,
-    cast(ENTITYKEY as numeric(38,0)) as ENTITYKEY_updated,
+        cast(storekey as numeric(38, 0)) as storekey_updated,
+        cast(geographykey as numeric(38, 0)) as geographykey_updated,
+        cast(entitykey as numeric(38, 0)) as entitykey_updated,
 
-    --strings
-    STORETYPE,
-    STORENAME,
-    STOREPHONE,
-    STOREFAX,
-    STATUS,
-    case
-      when CLOSEREASON = 'NULL' then 'Not Yet Closed'
-      else CLOSEREASON
-    end as CLOSEREASON_updated,
+        --strings
+        storetype,
+        storename,
+        storephone,
+        storefax,
+        status,
+        cast(storemanager as numeric(38, 0)) as storemanager_updated,
 
-    --numbers
-    cast(STOREMANAGER as numeric(38,0)) as STOREMANAGER_updated,
-    case
-      when EMPLOYEECOUNT = 'NULL' then 18
-      else cast(EMPLOYEECOUNT as numeric(38,0))
-    end as EMPLOYEECOUNT_updated,
-    cast(SELLINGAREASIZE as numeric(38,0)) as SELLINGAREASIZE_updated,
+        --numbers
+        cast(sellingareasize as numeric(38, 0)) as sellingareasize_updated,
+        cast(opendate as date) as opendate_updated,
+        lastremodeldate,
 
-    --date
-    cast(OPENDATE as date) as OPENDATE_updated,
-    case
-      when CLOSEDATE = 'NULL' then to_date('2090-12-31', 'YYYY-MM-DD')
-      else to_date(CLOSEDATE, 'YYYY-MM-DD')
-    end as CLOSEDATE_updated,
+        --date
+        cast(loaddate as timestamp_ntz) as created_at,
+        case
+            when closereason = 'NULL' then 'Not Yet Closed'
+            else closereason
+        end as closereason_updated,
 
-    --TIMESTAMP_NTZ
-    LASTREMODELDATE,
+        --TIMESTAMP_NTZ
+        case
+            when employeecount = 'NULL' then 18
+            else cast(employeecount as numeric(38, 0))
+        end as employeecount_updated,
 
-    -- additional
-    datediff('year', OPENDATE_updated, cast('2009-12-31' as date)) as YEARSSINCEOPEN,
-    datediff('year', OPENDATE_updated, CLOSEDATE_updated) as YEARSLEFT,
-    datediff('day', LASTREMODELDATE, cast('2009-12-31' as date)) as DAYSSINCELASTREMODEL,
+        -- additional
+        case
+            when closedate = 'NULL' then to_date('2090-12-31', 'YYYY-MM-DD')
+            else to_date(closedate, 'YYYY-MM-DD')
+        end as closedate_updated,
+        datediff('year', opendate_updated, getdate())
+            as yearssinceopen,
+        datediff('year', opendate_updated, closedate_updated) as yearsleft,
 
-    --creation date
-    LOADDATE::timestamp_ntz as created_at
+        --creation date
+        datediff('day', lastremodeldate, getdate())
+            as dayssincelastremodel
 
     from source
 )
 
-SELECT * FROM store
+select * from store
