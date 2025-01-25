@@ -917,7 +917,7 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
-    print("No incremental data file found for ACCOUNT")
+    print("No incremental data file found for CHANNEL")
 else:
     cursor.execute(f"""
     COPY INTO LOADCHANNEL_STAGE
