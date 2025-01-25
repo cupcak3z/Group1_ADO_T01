@@ -6,7 +6,7 @@ sales as (
 
 aggregated_sales as (
     select
-        created_at::date as date,
+        created_at::date as date, -- noqa: RF04
         extract(year from created_at) as year_number,
         extract(month from created_at) as month_number,
         extract(day from created_at) as day_number,
