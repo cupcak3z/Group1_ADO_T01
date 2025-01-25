@@ -4,7 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'models/staging/contoso/**/*.sql'
   pull_request:
+    paths:
+      - 'models/staging/contoso/**/*.sql'
 
 jobs:
   lint:
