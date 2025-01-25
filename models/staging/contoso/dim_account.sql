@@ -1,3 +1,4 @@
+-- this statement is to test the SQL linter
 with
 source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMACCOUNT_RAW') }}
