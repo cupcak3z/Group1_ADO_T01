@@ -86,9 +86,7 @@ jobs:
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
-          find models/staging -name '*.sql' ! -path "*/timeseries/*" \
-          | xargs sqlfluff lint . --nofail --verbose 2>&1 \
-          | grep -v "was not found in dbt project"
+          sqlfluff lint . --nofail --verbose 2>&1 | grep -v "was not found in dbt project"
         continue-on-error: true
 
       # Fix SQL issues
@@ -102,9 +100,7 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         if: always()
         run: |
-          find models/staging -name '*.sql' ! -path "*/timeseries/*" \
-          | xargs sqlfluff fix --verbose 2>&1 \
-          | grep -v "was not found in dbt project" || true
+          sqlfluff fix . --verbose 2>&1 | grep -v "was not found in dbt project" || true
 
       # Lint again to ensure issues are resolved
       - name: Final Lint
@@ -116,10 +112,7 @@ jobs:
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
-          find models/staging -name '*.sql' ! -path "*/timeseries/*" \
-          | xargs sqlfluff lint . --nofail --verbose 2>&1 \
-          | grep -v "was not found in dbt project"
-        continue-on-error: true
+          sqlfluff lint . --nofail --verbose 2>&1 | grep -v "was not found in dbt project"
 
       # Commit and push auto-fixes
       - name: Commit and Push Changes
