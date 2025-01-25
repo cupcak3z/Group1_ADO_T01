@@ -18,19 +18,19 @@ with DAG(
     start_date=datetime(2023, 1, 1),
     catchup=False,
 ) as dag:
-    
-    # Task: Load data to S3 
+
+    # Task: Load data to S3
     run_mysql_to_S3_script = BashOperator(
-        task_id = "mysql_to_S3",
-        bash_command = "python /home/astro/files/mysql_s3_incremental_load.py"
+        task_id="mysql_to_S3",
+        bash_command="python /home/astro/files/mysql_s3_incremental_load.py"
     )
-    
+
     # Task: Load data to snowflake
     run_S3_to_snowflake_script = BashOperator(
         task_id="S3_to_snowflake",
         bash_command="python /home/astro/files/s3_snowflake_incremental_load.py",
     )
-    
+
     # Task: Run dbt models
     dbt_run = BashOperator(
         task_id="dbt_run",
@@ -39,7 +39,7 @@ with DAG(
             "--profiles-dir /home/astro/files"
         ),
     )
-    
+
     # Task: Test dbt models
     dbt_test = BashOperator(
         task_id="dbt_test",
@@ -49,5 +49,5 @@ with DAG(
         ),
     )
 
-     # Task Dependencies
+    # Task Dependencies
     run_mysql_to_S3_script >> run_S3_to_snowflake_script >> dbt_run >> dbt_test
