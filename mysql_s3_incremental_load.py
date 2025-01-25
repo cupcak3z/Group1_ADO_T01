@@ -100,8 +100,8 @@ for table_name in table_names:
 
         csv_buffer = io.StringIO()
         df.to_csv(csv_buffer, index=False)
-        csv_buffer.seek(0) 
-        
+        csv_buffer.seek(0)
+
         s3_object_key = f"{table_name}/{file_name}"
 
         s3_client.put_object(
@@ -111,7 +111,7 @@ for table_name in table_names:
         )
 
         print(f"Exported {table_name} to s3")
-        
+
     except Exception as e:
         print(f"Failed to export {table_name}: {e}")
 
