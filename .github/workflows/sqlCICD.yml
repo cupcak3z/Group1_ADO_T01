@@ -4,11 +4,7 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'models/staging/contoso/**/*.sql'
   pull_request:
-    paths:
-      - 'models/staging/contoso/**/*.sql'
 
 jobs:
   lint:
@@ -90,7 +86,9 @@ jobs:
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
-          sqlfluff lint . --nofail --verbose 2>&1 | grep -v "was not found in dbt project"
+          find models/staging -name '*.sql' ! -path "*/timeseries/*" \
+          | xargs sqlfluff lint . --nofail --verbose 2>&1 \
+          | grep -v "was not found in dbt project"
         continue-on-error: true
 
       # Fix SQL issues
@@ -104,7 +102,9 @@ jobs:
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         if: always()
         run: |
-          sqlfluff fix . --verbose 2>&1 | grep -v "was not found in dbt project" || true
+          find models/staging -name '*.sql' ! -path "*/timeseries/*" \
+          | xargs sqlfluff fix --verbose 2>&1 \
+          | grep -v "was not found in dbt project" || true
 
       # Lint again to ensure issues are resolved
       - name: Final Lint
@@ -116,7 +116,10 @@ jobs:
           SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
           SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
         run: |
-          sqlfluff lint . --nofail --verbose 2>&1 | grep -v "was not found in dbt project"
+          find models/staging -name '*.sql' ! -path "*/timeseries/*" \
+          | xargs sqlfluff lint . --nofail --verbose 2>&1 \
+          | grep -v "was not found in dbt project"
+        continue-on-error: true
 
       # Commit and push auto-fixes
       - name: Commit and Push Changes
