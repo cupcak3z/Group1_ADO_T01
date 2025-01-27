@@ -902,14 +902,25 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
 
+    print()
+    
 # Channel
 file_path = f"@STG_CHANNEL_DEV/{file_name}"
 
@@ -972,13 +983,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Currency
 file_path = f"@STG_CURRENCY_DEV/{file_name}"
@@ -1042,13 +1064,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Customer
 file_path = f"@STG_CUSTOMER_DEV/{file_name}"
@@ -1178,13 +1211,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Date
 file_path = f"@STG_DATE_DEV/{file_name}"
@@ -1314,13 +1358,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Employee
 file_path = f"@STG_EMPLOYEE_DEV/{file_name}"
@@ -1444,13 +1499,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Entity
 file_path = f"@STG_ENTITY_DEV/{file_name}"
@@ -1532,13 +1598,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # ExchangeRate
 file_path = f"@STG_EXCHANGERATE_DEV/{file_name}"
@@ -1602,13 +1679,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Geography
 file_path = f"@STG_GEOGRAPHY_DEV/{file_name}"
@@ -1678,13 +1766,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Inventory
 file_path = f"@STG_INVENTORY_DEV/{file_name}"
@@ -1766,13 +1865,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # ITMachine
 file_path = f"@STG_ITMACHINE_DEV/{file_name}"
@@ -1839,13 +1949,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # ITSLA
 file_path = f"@STG_ITSLA_DEV/{file_name}"
@@ -1921,13 +2042,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Machine
 file_path = f"@STG_MACHINE_DEV/{file_name}"
@@ -2024,13 +2156,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # OnlineSales
 file_path = f"@STG_ONLINESALES_DEV/{file_name}"
@@ -2127,13 +2270,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Outage
 file_path = f"@STG_OUTAGE_DEV/{file_name}"
@@ -2209,13 +2363,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Product
 file_path = f"@STG_PRODUCT_DEV/{file_name}"
@@ -2354,13 +2519,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # ProductCategory
 file_path = f"@STG_PRODUCTCATEGORY_DEV/{file_name}"
@@ -2424,13 +2600,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # ProductSubCategory
 file_path = f"@STG_PRODUCTSUBCATEGORY_DEV/{file_name}"
@@ -2497,13 +2684,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Promotion
 file_path = f"@STG_PROMOTION_DEV/{file_name}"
@@ -2588,13 +2786,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Sales
 file_path = f"@STG_SALES_DEV/{file_name}"
@@ -2685,13 +2894,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # SalesQuota
 file_path = f"@STG_SALESQUOTA_DEV/{file_name}"
@@ -2764,13 +2984,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # SalesTerritory
 file_path = f"@STG_SALESTERRITORY_DEV/{file_name}"
@@ -2858,13 +3089,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Scenario
 file_path = f"@STG_SCENARIO_DEV/{file_name}"
@@ -2928,13 +3170,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # Store
 file_path = f"@STG_STORE_DEV/{file_name}"
@@ -3052,13 +3305,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 # StrategyPlan
 file_path = f"@STG_STRATEGYPLAN_DEV/{file_name}"
@@ -3125,13 +3389,24 @@ else:
         );
     """)
 
+    print()
+    print('Legend: (Number of inserted records, Number of updated records)')
+      
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
-    print()
-    print('Legend: (Number of inserted records, Number of updated records)')
     for row in merge_results:
         print(f"MERGE Result: {row}")
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, INSERTED_RECORDS, UPDATED_RECORDS
+        )
+        VALUES (
+            'MERGE', '{file_path}', {row[0]}, {row[1]}
+        );
+        """)
+
+    print()
 
 cursor.close()
 conn.close()
