@@ -33,7 +33,7 @@ loadup_tables = [
 ]
 
 non_loadup_tables = [
-    'ACCOUNT', 'CHANNEL', 'CURRENCY', 'CUSTOMER', 'EMPLOYEE', 
+    'ACCOUNT', 'CHANNEL', 'CURRENCY', 'CUSTOMER', 'EMPLOYEE',
     'ENTITY', 'EXCHANGERATE', 'GEOGRAPHY', 'ITMACHINE', 'ITSLA',
     'MACHINE', 'OUTAGE', 'PRODUCT', 'PRODUCTCATEGORY',
     'PRODUCTSUBCATEGORY', 'PROMOTION', 'SALESTERRITORY',
@@ -85,8 +85,8 @@ for table_name in non_loadup_tables:
 
         csv_buffer = io.StringIO()
         df.to_csv(csv_buffer, index=False)
-        csv_buffer.seek(0) 
-        
+        csv_buffer.seek(0)
+
         s3_object_key = f"{table_name}/{file_name}"
 
         s3_client.put_object(
@@ -96,14 +96,15 @@ for table_name in non_loadup_tables:
         )
 
         print(f"Exported {table_name} to s3")
-        
+
     except Exception as e:
         print(f"Failed to export {table_name}: {e}")
 
 for table_name in loadup_tables:
     try:
         row_count_query = f"SELECT COUNT(*) AS row_count FROM {table_name}"
-        current_row_count = pd.read_sql(row_count_query, connection).iloc[0]['row_count']
+        current_row_count = pd.read_sql(
+            row_count_query, connection).iloc[0]['row_count']
 
         metadata_query = f"SELECT last_row_count FROM EXPORTMETADATA WHERE table_name = '{table_name}'"
         metadata_result = pd.read_sql(metadata_query, connection)
@@ -115,7 +116,7 @@ for table_name in loadup_tables:
 
         query = f"SELECT * FROM {table_name}"
         df = pd.read_sql(query, connection)
-        
+
         csv_buffer = io.StringIO()
         df.to_csv(csv_buffer, index=False)
         csv_buffer.seek(0)
@@ -130,7 +131,7 @@ for table_name in loadup_tables:
 
         print(f"Exported {table_name} to s3")
 
-        connection.execute(update_metadata_query = f"""
+        connection.execute(update_metadata_query=f"""
             INSERT INTO EXPORTMETADATA (table_name, last_row_count)
             VALUES ('{table_name}', {current_row_count})
             ON DUPLICATE KEY UPDATE last_row_count = {current_row_count}
