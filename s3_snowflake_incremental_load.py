@@ -844,11 +844,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMACCOUNT_RAW AS target
@@ -943,11 +960,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMCHANNEL_RAW AS target
@@ -1024,11 +1058,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMCURRENCY_RAW AS target
@@ -1105,11 +1156,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMCUSTOMER_RAW AS target
@@ -1252,11 +1320,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMDATE_RAW AS target
@@ -1399,11 +1484,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMEMPLOYEE_RAW AS target
@@ -1540,11 +1642,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMENTITY_RAW AS target
@@ -1639,11 +1758,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO FACTEXCHANGERATE_RAW AS target
@@ -1720,11 +1856,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMGEOGRAPHY_RAW AS target
@@ -1807,11 +1960,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO FACTINVENTORY_RAW AS target
@@ -1906,11 +2076,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO FACTITMACHINE_RAW AS target
@@ -1990,11 +2177,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO FACTITSLA_RAW AS target
@@ -2083,11 +2287,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMMACHINE_RAW AS target
@@ -2197,11 +2418,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO FACTONLINESALES_RAW AS target
@@ -2311,11 +2549,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMOUTAGE_RAW AS target
@@ -2404,11 +2659,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMPRODUCT_RAW AS target
@@ -2560,11 +2832,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMPRODUCTCATEGORY_RAW AS target
@@ -2641,11 +2930,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMPRODUCTSUBCATEGORY_RAW AS target
@@ -2725,11 +3031,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMPROMOTION_RAW AS target
@@ -2827,11 +3150,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO FACTSALES_RAW AS target
@@ -2935,11 +3275,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO FACTSALESQUOTA_RAW AS target
@@ -3025,11 +3382,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMSALESTERRITORY_RAW AS target
@@ -3130,11 +3504,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMSCENARIO_RAW AS target
@@ -3211,11 +3602,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO DIMSTORE_RAW AS target
@@ -3346,11 +3754,28 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
+			    
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
     for row in copy_results:
         print(f"COPY INTO Result: {row}")
+        status = row[1] if len(row) > 1 else "N/A"
+        rows_parsed = row[2] if len(row) > 2 else 0
+        rows_loaded = row[3] if len(row) > 3 else 0
+        errors_seen = row[5] if len(row) > 5 else 0
+        first_error_details = row[6] if len(row) > 6 and row[6] else "None"
+    
+        cursor.execute(f"""
+        INSERT INTO PROCESSLOG (
+            OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
+            ERRORS_SEEN, FIRST_ERROR_DETAILS
+        )
+        VALUES (
+            'COPY', '{file_path}', '{status}', {rows_parsed}, {rows_loaded},
+            {errors_seen}, '{first_error_details}'
+        );
+        """)
 
     cursor.execute("""
     MERGE INTO FACTSTRATEGYPLAN_RAW AS target
