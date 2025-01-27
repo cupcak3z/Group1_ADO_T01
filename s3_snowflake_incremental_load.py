@@ -807,6 +807,22 @@ TRUNCATE TABLE LOADSTRATEGYPLAN_STAGE
 # );
 # """)
 
+# Create table to log processes
+# cursor.execute("""
+# CREATE OR REPLACE TABLE PROCESSLOG (
+#   OPERATION_TYPE VARCHAR(16777216),
+#   FILE_NAME VARCHAR(16777216),
+#   STATUS VARCHAR(16777216),
+#   ROWS_PARSED NUMBER(38,0),
+#   ROWS_LOADED NUMBER(38,0),
+#   ERRORS_SEEN NUMBER(38,0),
+#   FIRST_ERROR_DETAILS VARCHAR(16777216),
+#   INSERTED_RECORDS NUMBER(38,0),
+#   UPDATED_RECORDS NUMBER(38,0),
+#   LOG_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+# );
+# """)
+
 # Batch
 current_time = datetime.datetime.now()
 if 6 <= current_time.hour < 14:
@@ -829,6 +845,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for ACCOUNT")
 else:
     cursor.execute(f"""
@@ -919,7 +943,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -945,6 +968,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for CHANNEL")
 else:
     cursor.execute(f"""
@@ -1017,7 +1048,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -1043,6 +1073,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for CURRENCY")
 else:
     cursor.execute(f"""
@@ -1115,7 +1153,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -1141,6 +1178,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for CUSTOMER")
 else:
     cursor.execute(f"""
@@ -1279,7 +1324,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -1305,6 +1349,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for DATE")
 else:
     cursor.execute(f"""
@@ -1443,7 +1495,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -1469,6 +1520,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for EMPLOYEE")
 else:
     cursor.execute(f"""
@@ -1601,7 +1660,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -1627,6 +1685,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for ENTITY")
 else:
     cursor.execute(f"""
@@ -1717,7 +1783,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -1743,6 +1808,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for EXCHANGERATE")
 else:
     cursor.execute(f"""
@@ -1815,7 +1888,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -1841,6 +1913,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for GEOGRAPHY")
 else:
     cursor.execute(f"""
@@ -1919,7 +1999,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -1945,6 +2024,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for INVENTORY")
 else:
     cursor.execute(f"""
@@ -2035,7 +2122,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -2061,6 +2147,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for ITMACHINE")
 else:
     cursor.execute(f"""
@@ -2136,7 +2230,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -2162,6 +2255,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for ITSLA")
 else:
     cursor.execute(f"""
@@ -2246,7 +2347,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -2272,6 +2372,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for MACHINE")
 else:
     cursor.execute(f"""
@@ -2377,7 +2485,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -2403,6 +2510,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for ONLINESALES")
 else:
     cursor.execute(f"""
@@ -2508,7 +2623,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -2534,6 +2648,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for OUTAGE")
 else:
     cursor.execute(f"""
@@ -2618,7 +2740,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -2644,6 +2765,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for PRODUCT")
 else:
     cursor.execute(f"""
@@ -2791,7 +2920,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -2817,6 +2945,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for PRODUCTCATEGORY")
 else:
     cursor.execute(f"""
@@ -2889,7 +3025,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -2915,6 +3050,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for PRODUCTSUBCATEGORY")
 else:
     cursor.execute(f"""
@@ -2990,7 +3133,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -3016,6 +3158,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for PROMOTION")
 else:
     cursor.execute(f"""
@@ -3109,7 +3259,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -3135,6 +3284,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for SALES")
 else:
     cursor.execute(f"""
@@ -3234,7 +3391,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -3260,6 +3416,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for SALESQUOTA")
 else:
     cursor.execute(f"""
@@ -3341,7 +3505,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -3367,6 +3530,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for SALESTERRITORY")
 else:
     cursor.execute(f"""
@@ -3463,7 +3634,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -3489,6 +3659,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for SCENARIO")
 else:
     cursor.execute(f"""
@@ -3561,7 +3739,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -3587,6 +3764,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for STORE")
 else:
     cursor.execute(f"""
@@ -3713,7 +3898,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
@@ -3739,6 +3923,14 @@ cursor.execute(f"LIST {file_path};")
 file_list = cursor.fetchall()
 
 if len(file_list) == 0:
+    cursor.execute(f"""
+    INSERT INTO PROCESSLOG (
+        OPERATION_TYPE, FILE_NAME, STATUS
+    )
+    VALUES (
+        'CHECK', '{file_path}', 'NO FILE FOUND'
+    );
+    """)
     print("No incremental data file found for STRATEGYPLAN")
 else:
     cursor.execute(f"""
@@ -3814,7 +4006,6 @@ else:
         );
     """)
 
-    print()
     print('Legend: (Number of inserted records, Number of updated records)')
 
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
