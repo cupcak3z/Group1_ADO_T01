@@ -1,4 +1,5 @@
 import boto3
+import csv
 import io
 import datetime
 import pymysql
@@ -26,35 +27,20 @@ connection = pymysql.connect(
 )
 
 s3_bucket_name = 'contoso-blah'
-table_names = [
-    'ACCOUNT',
-    'CHANNEL',
-    'CURRENCY',
-    'CUSTOMER',
-    'DATE',
-    'EMPLOYEE',
-    'ENTITY',
-    'EXCHANGERATE',
-    'GEOGRAPHY',
-    'INVENTORY',
-    'ITMACHINE',
-    'ITSLA',
-    'MACHINE',
-    'ONLINESALES',
-    'OUTAGE',
-    'PRODUCT',
-    'PRODUCTCATEGORY',
-    'PRODUCTSUBCATEGORY',
-    'PROMOTION',
-    'SALES',
-    'SALESQUOTA',
-    'SALESTERRITORY',
-    'SCENARIO',
-    'STORE',
-    'STRATEGYPLAN'
+loadup_tables = [
+    'DATE', 'INVENTORY', 'ONLINESALES', 'SALESQUOTA',
+    'SALES', 'STRATEGYPLAN'
 ]
 
-table_names = ['CURRENCY']
+non_loadup_tables = [
+    'ACCOUNT', 'CHANNEL', 'CURRENCY', 'CUSTOMER', 'EMPLOYEE', 
+    'ENTITY', 'EXCHANGERATE', 'GEOGRAPHY', 'ITMACHINE', 'ITSLA',
+    'MACHINE', 'OUTAGE', 'PRODUCT', 'PRODUCTCATEGORY',
+    'PRODUCTSUBCATEGORY', 'PROMOTION', 'SALESTERRITORY',
+    'SCENARIO', 'STORE']
+
+non_loadup_tables = ['CURRENCY']
+loadup_tables = []
 current_time = datetime.datetime.now()
 
 if 6 <= current_time.hour < 14:
@@ -80,7 +66,7 @@ file_date = current_time.strftime('%d-%m-%Y')
 file_name = f"{file_date}_increment_{batch}.csv"
 print(f"Generated file name: {file_name}")
 
-for table_name in table_names:
+for table_name in non_loadup_tables:
     try:
         query = f"""
             SELECT * FROM {table_name}
@@ -99,6 +85,39 @@ for table_name in table_names:
 
         csv_buffer = io.StringIO()
         df.to_csv(csv_buffer, index=False)
+        csv_buffer.seek(0) 
+        
+        s3_object_key = f"{table_name}/{file_name}"
+
+        s3_client.put_object(
+            Bucket=s3_bucket_name,
+            Key=s3_object_key,
+            Body=csv_buffer.getvalue()
+        )
+
+        print(f"Exported {table_name} to s3")
+        
+    except Exception as e:
+        print(f"Failed to export {table_name}: {e}")
+
+for table_name in loadup_tables:
+    try:
+        row_count_query = f"SELECT COUNT(*) AS row_count FROM {table_name}"
+        current_row_count = pd.read_sql(row_count_query, connection).iloc[0]['row_count']
+
+        metadata_query = f"SELECT last_row_count FROM EXPORTMETADATA WHERE table_name = '{table_name}'"
+        metadata_result = pd.read_sql(metadata_query, connection)
+        last_row_count = metadata_result.iloc[0]['last_row_count'] if not metadata_result.empty else 0
+
+        if current_row_count <= last_row_count:
+            print(f"No data to export for {table_name}.")
+            continue
+
+        query = f"SELECT * FROM {table_name}"
+        df = pd.read_sql(query, connection)
+        
+        csv_buffer = io.StringIO()
+        df.to_csv(csv_buffer, index=False)
         csv_buffer.seek(0)
 
         s3_object_key = f"{table_name}/{file_name}"
@@ -110,6 +129,12 @@ for table_name in table_names:
         )
 
         print(f"Exported {table_name} to s3")
+
+        connection.execute(update_metadata_query = f"""
+            INSERT INTO EXPORTMETADATA (table_name, last_row_count)
+            VALUES ('{table_name}', {current_row_count})
+            ON DUPLICATE KEY UPDATE last_row_count = {current_row_count}
+        """)
 
     except Exception as e:
         print(f"Failed to export {table_name}: {e}")
