@@ -904,7 +904,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -920,7 +920,7 @@ else:
         """)
 
     print()
-    
+
 # Channel
 file_path = f"@STG_CHANNEL_DEV/{file_name}"
 
@@ -985,7 +985,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1066,7 +1066,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1213,7 +1213,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1360,7 +1360,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1501,7 +1501,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1600,7 +1600,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1681,7 +1681,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1768,7 +1768,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1867,7 +1867,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -1951,7 +1951,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2044,7 +2044,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2158,7 +2158,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2272,7 +2272,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2365,7 +2365,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2521,7 +2521,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2602,7 +2602,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2686,7 +2686,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2788,7 +2788,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2896,7 +2896,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -2986,7 +2986,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -3091,7 +3091,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -3172,7 +3172,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -3307,7 +3307,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
@@ -3391,7 +3391,7 @@ else:
 
     print()
     print('Legend: (Number of inserted records, Number of updated records)')
-      
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     merge_results = cursor.fetchall()
 
