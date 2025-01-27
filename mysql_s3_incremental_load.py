@@ -27,12 +27,12 @@ connection = pymysql.connect(
 )
 
 s3_bucket_name = 'contoso-blah'
-loadup_tables = [
+non_loadup_tables = [
     'DATE', 'INVENTORY', 'ONLINESALES', 'SALESQUOTA',
     'SALES', 'STRATEGYPLAN'
 ]
 
-non_loadup_tables = [
+loadup_tables = [
     'ACCOUNT', 'CHANNEL', 'CURRENCY', 'CUSTOMER', 'EMPLOYEE',
     'ENTITY', 'EXCHANGERATE', 'GEOGRAPHY', 'ITMACHINE', 'ITSLA',
     'MACHINE', 'OUTAGE', 'PRODUCT', 'PRODUCTCATEGORY',
@@ -66,7 +66,7 @@ file_date = current_time.strftime('%d-%m-%Y')
 file_name = f"{file_date}_increment_{batch}.csv"
 print(f"Generated file name: {file_name}")
 
-for table_name in non_loadup_tables:
+for table_name in loadup_tables:
     try:
         query = f"""
             SELECT * FROM {table_name}
@@ -100,7 +100,7 @@ for table_name in non_loadup_tables:
     except Exception as e:
         print(f"Failed to export {table_name}: {e}")
 
-for table_name in loadup_tables:
+for table_name in non_loadup_tables:
     try:
         row_count_query = f"SELECT COUNT(*) AS row_count FROM {table_name}"
         current_row_count = pd.read_sql(
