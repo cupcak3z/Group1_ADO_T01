@@ -9,6 +9,7 @@ inventory as (
         cast(inventorykey as numeric(38, 0)) as inventorykey_updated,
         cast(storekey as numeric(38, 0)) as storekey_updated,
         cast(currencykey as numeric(38, 0)) as currencykey_updated,
+        cast(productkey as numeric(38, 0)) as productkey_updated,
 
         --numbers
         cast(onhandquantity as numeric(38, 0)) as onhandquantity_updated,
