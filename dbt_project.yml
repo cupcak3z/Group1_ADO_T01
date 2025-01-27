@@ -38,6 +38,17 @@ models:
   group1_ado_t01:
     # Applies to all files under models/example/
     staging:
-#      +schema: final    # Write staging models to a new schema
+      +schema: development    # Write staging models to a new schema
+      +materialized: view
+    logistics:
+      +schema: logistics
       +materialized: table
-#      +database: ADO_GROUP1_DB_RAW TESTING CI/CD
+    operations:
+      +schema: operations
+      +materialized: table
+    sales:
+      +schema: sales
+      +materialized: table
+    others:
+      +schema: others
+      +materialized: table
