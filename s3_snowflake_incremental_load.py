@@ -844,7 +844,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -855,7 +855,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -960,7 +960,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -971,7 +971,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -1058,7 +1058,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1069,7 +1069,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -1156,7 +1156,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1167,7 +1167,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -1320,7 +1320,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1331,7 +1331,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -1484,7 +1484,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1495,7 +1495,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -1642,7 +1642,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1653,7 +1653,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -1758,7 +1758,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1769,7 +1769,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -1856,7 +1856,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1867,7 +1867,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -1960,7 +1960,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -1971,7 +1971,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -2076,7 +2076,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2087,7 +2087,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -2177,7 +2177,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2188,7 +2188,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -2287,7 +2287,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2298,7 +2298,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -2418,7 +2418,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2429,7 +2429,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -2549,7 +2549,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2560,7 +2560,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -2659,7 +2659,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2670,7 +2670,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -2832,7 +2832,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2843,7 +2843,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -2930,7 +2930,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -2941,7 +2941,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -3031,7 +3031,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3042,7 +3042,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -3150,7 +3150,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3161,7 +3161,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -3275,7 +3275,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3286,7 +3286,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -3382,7 +3382,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3393,7 +3393,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -3504,7 +3504,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3515,7 +3515,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -3602,7 +3602,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3613,7 +3613,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
@@ -3754,7 +3754,7 @@ else:
 
     print("""Legend: (file, status, rows_parsed, rows_loaded,
         error_limit, errors_seen, first_error_details)""")
-			    
+
     cursor.execute("SELECT * FROM TABLE(RESULT_SCAN(LAST_QUERY_ID()));")
     copy_results = cursor.fetchall()
 
@@ -3765,7 +3765,7 @@ else:
         rows_loaded = row[3] if len(row) > 3 else 0
         errors_seen = row[5] if len(row) > 5 else 0
         first_error_details = row[6] if len(row) > 6 and row[6] else "None"
-    
+
         cursor.execute(f"""
         INSERT INTO PROCESSLOG (
             OPERATION_TYPE, FILE_NAME, STATUS, ROWS_PARSED, ROWS_LOADED,
