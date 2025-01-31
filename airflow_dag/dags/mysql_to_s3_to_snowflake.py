@@ -31,15 +31,6 @@ with DAG(
         bash_command="python /home/astro/files/s3_snowflake_incremental_load.py",
     )
 
-    # Task: Run dbt models
-    dbt_run = BashOperator(
-        task_id="dbt_run",
-        bash_command=(
-            "dbt run --project-dir /home/astro/files "
-            "--profiles-dir /home/astro/files"
-        ),
-    )
-
     # Task: Test dbt models
     dbt_test = BashOperator(
         task_id="dbt_test",
@@ -49,5 +40,15 @@ with DAG(
         ),
     )
 
+    # Task: Run dbt models
+    dbt_run = BashOperator(
+        task_id="dbt_run",
+        bash_command=(
+            "dbt run --project-dir /home/astro/files "
+            "--profiles-dir /home/astro/files"
+        ),
+    )
+
+
     # Task Dependencies
-    run_mysql_to_S3_script >> run_S3_to_snowflake_script >> dbt_run >> dbt_test
+    run_mysql_to_S3_script >> run_S3_to_snowflake_script >> dbt_test >> dbt_run
