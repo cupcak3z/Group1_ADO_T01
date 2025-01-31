@@ -49,6 +49,5 @@ with DAG(
         ),
     )
 
-
     # Task Dependencies
     run_mysql_to_S3_script >> run_S3_to_snowflake_script >> dbt_test >> dbt_run
