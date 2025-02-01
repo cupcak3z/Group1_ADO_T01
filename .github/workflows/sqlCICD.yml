@@ -1,4 +1,4 @@
-name: SQL Linter for dbt Models and SnowSQL
+name: SQL Linter for dbt Models 
 
 on:
   push:
