@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - development # Trigger only on pushes to the 'development' branch
+
   pull_request: {}
 
 jobs:
