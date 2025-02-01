@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main  # Trigger only on pushes to the 'main' branch
+      - development # Trigger only on pushes to the 'development' branch
 
 jobs:
   validate-and-fix-dags:
