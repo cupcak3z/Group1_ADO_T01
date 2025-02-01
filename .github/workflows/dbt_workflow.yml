@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+      - development # Trigger only on pushes to the 'development' branch
+
     paths:
       - 'models/**'       # Trigger for changes in dbt models
       - 'dbt_project.yml' # Trigger for changes in dbt_project.yml
