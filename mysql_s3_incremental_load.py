@@ -1,5 +1,5 @@
 import boto3
-import csv
+# import csv
 import io
 import datetime
 import pymysql
