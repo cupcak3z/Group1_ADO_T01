@@ -1,3 +1,4 @@
+-- get data from sales staging model
 with
 sales as (
     select *
@@ -5,7 +6,7 @@ sales as (
 ),
 
 aggregated_sales as (
-    select
+    select -- extract date data
         created_at::date as date, -- noqa: RF04
         extract(year from created_at) as year_number,
         extract(month from created_at) as month_number,
@@ -22,7 +23,7 @@ aggregated_sales as (
 ),
 
 lagged_features as (
-    select
+    select -- create lagged features
         *,
         coalesce(
             lag(total_sales) over (
@@ -37,6 +38,7 @@ lagged_features as (
     from aggregated_sales
 )
 
+-- putting data into a table
 select
     year_number,
     month_number,

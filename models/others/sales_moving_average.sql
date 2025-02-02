@@ -1,3 +1,4 @@
+-- putting data into a sales table
 with
 sales as (
     select *
@@ -5,7 +6,7 @@ sales as (
 ),
 
 aggregated_sales as (
-    select
+    select -- extract date data
         created_at::date as date, -- noqa: RF04
         extract(year from created_at) as year_number,
         extract(month from created_at) as month_number,
@@ -21,7 +22,7 @@ aggregated_sales as (
 ),
 
 moving_averages as (
-    select
+    select -- create moving averages
         *,
         -- Moving average of sales over 7 days (current day + 6 preceding days)
         avg(total_sales) over (
@@ -31,6 +32,7 @@ moving_averages as (
     from aggregated_sales
 )
 
+-- putting data into a table
 select
     year_number,
     month_number,
