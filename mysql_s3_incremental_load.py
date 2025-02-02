@@ -4,11 +4,18 @@ import io
 import datetime
 import pymysql
 import pandas as pd
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+AWS_ID = os.getenv('AWS_ID')
+AWS_SECRET = os.getenv('AWS_SECRET')
+MYSQL_PASSWORD = os.getenv('MYSQL_PASSWORD')
 
 s3_client = boto3.client(
     's3',
-    aws_access_key_id='AKIAYS2NT6CQBLEM3GPZ',
-    aws_secret_access_key='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',
+    aws_access_key_id=AWS_ID,
+    aws_secret_access_key=AWS_SECRET,
     region_name='us-west-2'
 )
 
@@ -19,7 +26,7 @@ connection = pymysql.connect(
     cursorclass=pymysql.cursors.DictCursor,
     db="defaultdb",
     host="contoso-smallscale-production-contoso.g.aivencloud.com",
-    password="AVNS_wIHNRrM7RHDX86_xSaF",
+    password=MYSQL_PASSWORD,
     read_timeout=timeout,
     port=12096,
     user="avnadmin",
@@ -39,8 +46,8 @@ loadup_tables = [
     'PRODUCTSUBCATEGORY', 'PROMOTION', 'SALESTERRITORY',
     'SCENARIO', 'STORE']
 
-non_loadup_tables = ['CURRENCY']
-loadup_tables = []
+non_loadup_tables = []
+loadup_tables = ['CURRENCY']
 current_time = datetime.datetime.now()
 
 if 6 <= current_time.hour < 14:
