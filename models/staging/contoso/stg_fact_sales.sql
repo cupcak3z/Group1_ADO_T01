@@ -1,3 +1,4 @@
+-- getting raw data from database
 with
 source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'FACTSALES_RAW') }}
@@ -6,6 +7,7 @@ source as (
 sales as (
     select
         -- IDs
+        -- converting data type
         CAST(saleskey as NUMERIC(38, 0)) as saleskey_updated,
         CAST(storekey as NUMERIC(38, 0)) as storekey_updated,
         CAST(datekey as DATE) as datekey_updated,
@@ -15,6 +17,7 @@ sales as (
         CAST(currencykey as NUMERIC(38, 0)) as currencykey_updated,
 
         -- Amounts
+        -- converting data type
         CAST(salesamount as NUMERIC(38, 4)) as salesamount_updated,
         CAST(discountamount as NUMERIC(38, 4)) as discountamount_updated,
         CAST(returnamount as NUMERIC(38, 2)) as returnamount_updated,
@@ -26,15 +29,18 @@ sales as (
         CAST(totalcost as NUMERIC(38, 2)) as totalcost_updated,
 
         -- Derived Columns
+        -- creating derived metrics
         CAST(salesamount - discountamount as NUMERIC(38, 4))
             as net_sales_amount,
+        -- creating derived metrics
         CAST((unitprice - unitcost) * salesquantity as NUMERIC(38, 2))
             as total_profit,
 
         -- Creation Timings
-        TO_TIMESTAMP_NTZ(datekey) as created_at
+        TO_TIMESTAMP_NTZ(datekey) as created_at -- converting data type
 
     from source
 )
 
+-- putting the transformed data into a table
 select * from sales

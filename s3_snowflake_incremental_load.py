@@ -1,10 +1,16 @@
 import snowflake.connector
 import datetime
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+SNOWFLAKE_USER = os.getenv('SNOWFLAKE_USER')
+SNOWFLAKE_PASSWORD = os.getenv('SNOWFLAKE_PASSWORD')
 
 # Setting up snowflake connection
 conn = snowflake.connector.connect(
-    user='BLUEJAY',
-    password='Tanhongkai123!',
+    user=SNOWFLAKE_USER,
+    password=SNOWFLAKE_PASSWORD,
     account='sfedu02-bab83824',
     warehouse='GROUP1_ADO_WAREHOUSE',
     database='ADO_GROUP1_DB_RAW',

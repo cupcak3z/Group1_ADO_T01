@@ -1,3 +1,4 @@
+-- get data from online sales staging model
 with
 onlinesales as (
     select *
@@ -5,7 +6,7 @@ onlinesales as (
 ),
 
 aggregated_onlinesales as (
-    select
+    select -- get the date
         created_at::date as date, -- noqa: RF04
         extract(year from created_at) as year_number,
         extract(month from created_at) as month_number,
@@ -21,7 +22,7 @@ aggregated_onlinesales as (
 ),
 
 lagged_features as (
-    select
+    select -- creating lagged features
         *,
         coalesce(
             lag(total_onlinesales) over (
@@ -36,6 +37,7 @@ lagged_features as (
     from aggregated_onlinesales
 )
 
+-- putting data into a table
 select
     year_number,
     month_number,

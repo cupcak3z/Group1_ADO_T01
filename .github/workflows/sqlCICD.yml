@@ -1,9 +1,11 @@
-name: SQL Linter for dbt Models and SnowSQL
+name: SQL Linter for dbt Models 
 
 on:
   push:
     branches:
       - main
+      - development # Trigger only on pushes to the 'development' branch testing
+
   pull_request:
 
 jobs:

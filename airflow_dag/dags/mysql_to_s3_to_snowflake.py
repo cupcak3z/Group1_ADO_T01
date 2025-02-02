@@ -14,7 +14,7 @@ with DAG(
     dag_id="orchestrate_mysql_to_s3_to_snowflake",
     default_args=default_args,
     description="Orchestrates the Python scripts to load on premise data from MySQL to S3 then into Snowflake",
-    schedule_interval="0 6,14,22 * * *",  # Runs at 6am, 2pm, and 10pm
+    schedule_interval="0 22,6,14 * * *",  # Runs at 6am, 2pm, and 10pm SGT
     start_date=datetime(2023, 1, 1),
     catchup=False,
 ) as dag:
