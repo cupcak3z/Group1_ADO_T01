@@ -46,8 +46,8 @@ loadup_tables = [
     'PRODUCTSUBCATEGORY', 'PROMOTION', 'SALESTERRITORY',
     'SCENARIO', 'STORE']
 
-non_loadup_tables = ['CURRENCY']
-loadup_tables = []
+non_loadup_tables = []
+loadup_tables = ['CURRENCY']
 current_time = datetime.datetime.now()
 
 if 6 <= current_time.hour < 14:
