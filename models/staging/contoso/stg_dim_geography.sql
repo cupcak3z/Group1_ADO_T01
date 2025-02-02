@@ -1,3 +1,4 @@
+-- getting raw data from database
 with
 source as (
     select * from {{ source('ADO_GROUP1_DB_RAW', 'DIMGEOGRAPHY_RAW') }}
@@ -6,7 +7,7 @@ source as (
 geography as (
     select
         -- ids
-        cast(geographykey as numeric(38, 0)) as geographykey_updated,
+        cast(geographykey as numeric(38, 0)) as geographykey_updated, -- converting data type to ensure correct parsing
 
         -- strings
         geographytype,
@@ -16,9 +17,10 @@ geography as (
         regioncountryname,
 
         -- creation timing
-        to_timestamp(loaddate) as created_at
+        to_timestamp(loaddate) as created_at -- converting data type to ensure correct parsing
 
     from source
 )
 
+-- putting the transformed data into a table
 select * from geography
