@@ -12,7 +12,7 @@ These are the things required before implementing these processes.
 ### General
 - Snowflake Account
 ### Data Migration
-- AWS Free Tier Account
+- AWS Account with both a User and IAM Role with AmazonS3FullAccess
 ### Data Transformation
 - dbt Account (dbt Core/dbt Cloud)
 ### CICD Pipeline + Orchestration
