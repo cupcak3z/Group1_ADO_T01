@@ -1,5 +1,5 @@
 # Dbt Cloud Job
-# Pre-requisites dbt Cloud account is connected to GitHub
+# Pre-requisites dbt Cloud account is connected to GitHub repository
 To create a job, go Deploy -> Job -> Create job -> Continuous Integration Job
 
 
