@@ -7,8 +7,8 @@ Constoso is a fictional multinational corporation that operates in retail, elect
 This repository contains all materials including Python code and SQL scripts that are used during data cleaning, data transformation, and other tasks.
 
 ## Pre-requisite
-# Incremental data load: MySQL, Amazon S3, Snowflake
-# Dbt Cloud job: dbt cloud account & GitHub account
-# Linters: GitHub account
-# Orchestration: Apache Airflow
+#### Incremental data load: MySQL, Amazon S3, Snowflake
+#### Dbt Cloud job: dbt cloud account & GitHub account
+#### Linters: GitHub account
+#### Orchestration: Apache Airflow
 
