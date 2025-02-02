@@ -7,14 +7,16 @@ source as (
 productcategory as (
     select
         -- ids
-        cast(productcategorykey as numeric(38, 0)) -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(productcategorykey as numeric(38, 0))
             as productcategorykey_updated,
 
         -- strings
         productcategoryname,
 
         -- creation timing
-        cast(loaddate as timestamp_ntz) as created_at -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(loaddate as timestamp_ntz) as created_at
 
     from source
 )

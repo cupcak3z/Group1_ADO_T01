@@ -7,7 +7,8 @@ source as (
 geography as (
     select
         -- ids
-        cast(geographykey as numeric(38, 0)) as geographykey_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(geographykey as numeric(38, 0)) as geographykey_updated,
 
         -- strings
         geographytype,
@@ -17,7 +18,8 @@ geography as (
         regioncountryname,
 
         -- creation timing
-        to_timestamp(loaddate) as created_at -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        to_timestamp(loaddate) as created_at
 
     from source
 )

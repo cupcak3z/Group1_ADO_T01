@@ -7,7 +7,8 @@ source as (
 employee as (
     select
         -- ids
-        cast(employeekey as numeric(38, 0)) as employeekey_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(employeekey as numeric(38, 0)) as employeekey_updated,
         title,
 
         -- strings
@@ -16,29 +17,40 @@ employee as (
         emergencycontactname,
         emergencycontactphone,
         departmentname,
-        cast(hiredate as date) as hiredate_updated, -- converting data type to ensure correct parsing
-        cast(birthdate as date) as birthdate_updated, -- converting data type to ensure correct parsing
-        cast(startdate as date) as startdate_updated, -- converting data type to ensure correct parsing
-        cast(payfrequency as numeric(38, 0)) as payfrequency_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(hiredate as date) as hiredate_updated,
+        -- converting data type to ensure correct parsing
+        cast(birthdate as date) as birthdate_updated,
+        -- converting data type to ensure correct parsing
+        cast(startdate as date) as startdate_updated,
+        -- converting data type to ensure correct parsing
+        cast(payfrequency as numeric(38, 0)) as payfrequency_updated,
 
-        cast(baserate as numeric(38, 2)) as baserate_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(baserate as numeric(38, 2)) as baserate_updated,
 
-        cast(vacationhours as numeric(38, 0)) as vacationhours_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(vacationhours as numeric(38, 0)) as vacationhours_updated,
 
-        cast(loaddate as timestamp_ntz) as created_at, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(loaddate as timestamp_ntz) as created_at,
 
         -- dates
         case
             when
-                parentemployeekey = 'NULL' -- checking and replacing null values, then converting data type
-                then cast(employeekey as numeric(38, 0)) 
+                -- checking and replacing null values, then converting data type
+                parentemployeekey = 'NULL'
+                then cast(employeekey as numeric(38, 0))
             else cast(parentemployeekey as numeric(38, 0))
         end as parentemployeekey_updated,
-        cast(firstname as string) -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(firstname as string)
         || ' '
-        || cast(lastname as string) as fullname, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        || cast(lastname as string) as fullname,
         case
-            when gender = 'M' then 'Male' -- convert values for easier understanding
+            -- convert values for easier understanding
+            when gender = 'M' then 'Male'
             else 'Female'
         end as gender_updated,
 
@@ -60,13 +72,16 @@ employee as (
             when maritalstatus = 'M' then 'Yes'
             else 'No'
         end as ismarried, -- creating derived metrics
-        datediff('year', hiredate_updated, getdate()) -- creating derived metrics
+        -- creating derived metrics
+        datediff('year', hiredate_updated, getdate())
             as yearssincehired,
-        datediff('year', birthdate_updated, getdate()) -- creating derived metrics
+        -- creating derived metrics
+        datediff('year', birthdate_updated, getdate())
             as employeeage,
 
         -- creation timing
-        datediff('day', hiredate_updated, startdate_updated) as daystoonboard -- creating derived metrics
+        -- creating derived metrics
+        datediff('day', hiredate_updated, startdate_updated) as daystoonboard
 
     from source
 )

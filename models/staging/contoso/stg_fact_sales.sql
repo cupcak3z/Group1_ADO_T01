@@ -29,9 +29,11 @@ sales as (
         CAST(totalcost as NUMERIC(38, 2)) as totalcost_updated,
 
         -- Derived Columns
-        CAST(salesamount - discountamount as NUMERIC(38, 4)) -- creating derived metrics
+        -- creating derived metrics
+        CAST(salesamount - discountamount as NUMERIC(38, 4))
             as net_sales_amount,
-        CAST((unitprice - unitcost) * salesquantity as NUMERIC(38, 2)) -- creating derived metrics
+        -- creating derived metrics
+        CAST((unitprice - unitcost) * salesquantity as NUMERIC(38, 2))
             as total_profit,
 
         -- Creation Timings

@@ -7,12 +7,14 @@ source as (
 channel as (
     select
         -- ids
-        cast(channelkey as numeric(38, 0)) as channelkey_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(channelkey as numeric(38, 0)) as channelkey_updated,
         -- strings
         channelname,
         channeldescription,
         -- creation timing
-        cast(loaddate as timestamp_ntz) as created_at -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(loaddate as timestamp_ntz) as created_at
     from source
 )
 

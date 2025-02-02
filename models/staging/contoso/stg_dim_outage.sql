@@ -7,7 +7,8 @@ source as (
 outage as (
     select
         -- ids
-        cast(outagekey as numeric(38, 0)) as outagekey_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(outagekey as numeric(38, 0)) as outagekey_updated,
 
         -- strings
         outagename,
@@ -16,7 +17,8 @@ outage as (
         outagesubtypedescription,
 
         -- creation timing
-        cast(loaddate as timestamp_ntz) as created_at -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(loaddate as timestamp_ntz) as created_at
 
     from source
 )

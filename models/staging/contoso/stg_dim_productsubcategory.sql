@@ -7,16 +7,19 @@ source as (
 productsubcategory as (
     select
         -- ids
-        cast(productsubcategorykey as numeric(38, 0)) -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(productsubcategorykey as numeric(38, 0))
             as productsubcategorykey_updated,
-        cast(productcategorykey as numeric(38, 0)) -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(productcategorykey as numeric(38, 0))
             as productcategorykey_updated,
 
         -- strings
         productsubcategoryname,
 
         -- creation timing
-        cast(loaddate as timestamp_ntz) as created_at -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(loaddate as timestamp_ntz) as created_at
 
     from source
 )

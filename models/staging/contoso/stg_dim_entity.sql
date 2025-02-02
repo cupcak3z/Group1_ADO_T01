@@ -7,24 +7,30 @@ source as (
 entity as (
     select
         -- ids
-        cast(entitykey as numeric(38, 0)) as entitykey_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(entitykey as numeric(38, 0)) as entitykey_updated,
         entityname,
 
         -- strings
         entitydescription,
         entitytype,
         status,
-        cast(loaddate as timestamp_ntz) as created_at, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(loaddate as timestamp_ntz) as created_at,
         case
-            when parententitykey = 'NULL' then cast(entitykey as numeric(38, 0)) -- checking and replacing null values, converting data type
+            -- checking and replacing null values, converting data type
+            when parententitykey = 'NULL' then cast(entitykey as numeric(38, 0))
             else cast(parententitykey as numeric(38, 0))
         end as parententitykey_updated,
 
         -- creation timing
         case
-            when parententitykey_updated = 1 then 'North America' -- convert values for easier understanding
-            when parententitykey_updated = 2 then 'Europe' -- convert values for easier understanding
-            when parententitykey_updated = 3 then 'Asia' -- convert values for easier understanding
+            -- convert values for easier understanding
+            when parententitykey_updated = 1 then 'North America'
+            -- convert values for easier understanding
+            when parententitykey_updated = 2 then 'Europe'
+            -- convert values for easier understanding
+            when parententitykey_updated = 3 then 'Asia'
             else parententitylabel
         end as parententitylabel_updated
 

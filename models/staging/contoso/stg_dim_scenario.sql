@@ -7,13 +7,15 @@ source as (
 scenario as (
     select
     --ids
-        cast(scenariokey as numeric(38, 0)) as scenariokey_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(scenariokey as numeric(38, 0)) as scenariokey_updated,
 
         --strings
         scenarioname,
 
         --creation date
-        cast(loaddate as timestamp_ntz) as created_at -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(loaddate as timestamp_ntz) as created_at
 
     from source
 )

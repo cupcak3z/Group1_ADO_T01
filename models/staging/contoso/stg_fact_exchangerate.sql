@@ -7,12 +7,16 @@ source as (
 exchangerate as (
     select
     --ids
-        cast(exchangeratekey as numeric(38, 0)) as exchangeratekey_updated, -- converting data type
-        cast(currencykey as numeric(38, 0)) as currencykey_updated, -- converting data type
+        -- converting data type
+        cast(exchangeratekey as numeric(38, 0)) as exchangeratekey_updated,
+        -- converting data type
+        cast(currencykey as numeric(38, 0)) as currencykey_updated,
 
         --numbers
-        cast(averagerate as numeric(38, 5)) as averagerate_updated, -- converting data type
-        cast(endofdayrate as numeric(38, 6)) as endofdayrate_updated, -- converting data type
+        -- converting data type
+        cast(averagerate as numeric(38, 5)) as averagerate_updated,
+        -- converting data type
+        cast(endofdayrate as numeric(38, 6)) as endofdayrate_updated,
 
         --date
         cast(datekey as date) as datekey_updated, -- converting data type

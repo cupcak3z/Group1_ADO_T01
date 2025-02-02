@@ -7,7 +7,8 @@ source as (
 date as (
     select
         -- ids
-        cast(datekey as date) as datekey_updated, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(datekey as date) as datekey_updated,
         -- strings
         calendaryearlabel,
         calendarhalfyearlabel,
@@ -20,31 +21,40 @@ date as (
         fiscalmonthlabel,
         fiscalquarterlabel,
         isworkday,
-        cast(calendaryear as numeric(38, 0)) as calendaryear_updated, -- converting data type to ensure correct parsing
-        cast(fiscalyear as numeric(38, 0)) as fiscalyear_updated, -- converting data type to ensure correct parsing
-        cast(extract(month from datekey) as numeric(38, 0)) -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(calendaryear as numeric(38, 0)) as calendaryear_updated,
+        -- converting data type to ensure correct parsing
+        cast(fiscalyear as numeric(38, 0)) as fiscalyear_updated,
+        -- converting data type to ensure correct parsing
+        cast(extract(month from datekey) as numeric(38, 0))
             as monthnumber_updated,
-        cast(extract(dayofweek from datekey) as numeric(38, 0)) -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(extract(dayofweek from datekey) as numeric(38, 0))
             as calendardayofweeknumber_updated,
         -- Numbers
         case
-            when isholiday = 1 then 'Yes' -- convert values for easier understanding
+            -- convert values for easier understanding
+            when isholiday = 1 then 'Yes'
             else 'No'
         end as isholiday_updated,
         case
-            when europeseason = 'NULL' then 'No Season' -- checking and replacing null values
+            -- checking and replacing null values
+            when europeseason = 'NULL' then 'No Season'
             else europeseason
         end as europeseason_updated,
         case
-            when northamericaseason = 'NULL' then 'No Season' -- checking and replacing null values
+            -- checking and replacing null values
+            when northamericaseason = 'NULL' then 'No Season'
             else northamericaseason
         end as northamericaseason_updated,
         case
-            when asiaseason = 'NULL' then 'No Season' -- checking and replacing null values
+            -- checking and replacing null values
+            when asiaseason = 'NULL' then 'No Season'
             else asiaseason
         end as asiaseason_updated,
         -- Creation timing
-        to_timestamp(datekey) as created_at -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        to_timestamp(datekey) as created_at
     from source
 )
 

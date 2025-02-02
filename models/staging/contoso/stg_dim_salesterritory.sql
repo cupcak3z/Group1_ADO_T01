@@ -7,9 +7,12 @@ source as (
 salesterritory as (
     select
         -- ids
-        cast(salesterritorykey as numeric(38, 0)) as salesterritorykey_updated, -- converting data type to ensure correct parsing
-        cast(geographykey as numeric(38, 0)) as geographykey_updated, -- converting data type to ensure correct parsing
-        cast(salesterritorymanager as numeric(38, 0)) -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(salesterritorykey as numeric(38, 0)) as salesterritorykey_updated,
+        -- converting data type to ensure correct parsing
+        cast(geographykey as numeric(38, 0)) as geographykey_updated,
+        -- converting data type to ensure correct parsing
+        cast(salesterritorymanager as numeric(38, 0))
             as salesterritorymanager_updated,
 
         -- strings
@@ -20,16 +23,20 @@ salesterritory as (
         status,
 
         -- numbers
-        cast(salesterritorylevel as numeric(38, 0)) -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(salesterritorylevel as numeric(38, 0))
             as salesterritorylevel_updated,
 
         -- dates
-        cast(startdate as date) as startdate_updated, -- converting data type to ensure correct parsing
-        cast(loaddate as timestamp_ntz) as created_at, -- converting data type to ensure correct parsing
+        -- converting data type to ensure correct parsing
+        cast(startdate as date) as startdate_updated,
+        -- converting data type to ensure correct parsing
+        cast(loaddate as timestamp_ntz) as created_at,
 
         -- additional
         case
-            when enddate = 'NULL' then null -- checking and replacing null values, converting data type
+            -- checking and replacing null values, converting data type
+            when enddate = 'NULL' then null
             else cast(enddate as date)
         end as enddate_updated,
 
