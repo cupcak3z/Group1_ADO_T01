@@ -39,7 +39,7 @@ models:
     # Applies to all files under models/example/
     staging:
       +schema: development    # Write staging models to a new schema
-      +materialized: view
+      +materialized: table
     logistics:
       +schema: logistics
       +materialized: table
