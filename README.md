@@ -6,4 +6,20 @@ Constoso is a fictional multinational corporation that operates in retail, elect
 ## Content
 This repository contains all materials including Python code and SQL scripts that are used during data cleaning, data transformation, and other tasks.
 
-## TESTING DBT WORKFLOW IN README.MD FILE
+## Pre-requisites
+These are the things required before implementing these processes.
+
+### General
+- Snowflake Account
+### Data Migration
+- AWS Account with both a User and IAM Role with AmazonS3FullAccess
+### Data Transformation
+- dbt Account (dbt Core/dbt Cloud)
+### CICD Pipeline + Orchestration
+- GitHub Account
+- GitHub Repository
+- Astronomer CLI
+- Airflow Account
+- Docker
+### Visualisation
+- PowerBI Desktop

@@ -1,0 +1,9 @@
+# Dbt Cloud Job
+# Pre-requisites dbt Cloud account is connected to GitHub repository
+To create a job, go Deploy -> Job -> Create job -> Continuous Integration Job
+
+
+Environment: CI/CD
+Git Trigger: Click check on 'Triggered by Pull Request'
+Execution Settings: dbt test
+
