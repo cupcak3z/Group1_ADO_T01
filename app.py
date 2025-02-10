@@ -1,3 +1,3 @@
 import csv
-for i raneg(8):
+for i range(8):
     print(i)
